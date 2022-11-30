@@ -1,0 +1,525 @@
+{
+    "gs": [
+        {
+            "name": "Google Snake",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/google-snake/&w=600&h=600",
+            "thumb": "https://play-lh.googleusercontent.com/p19u9SINIT3SZUQ8NcdcX5ROSFeEgTBc8J2okk8TsqSz2cq6eFJ0ekT-TwwqEXAKrQ",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Among Us",
+            "location": "https://gamehub88.github.io/bg1/projects/among-us/",
+            "thumb": "https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec",
+            "sQuery": [
+                "RPG"
+            ]
+        },
+        {
+            "name": "Slope",
+            "location": "https://gamehub88.github.io/bg1/projects/slope/",
+            "thumb": "https://play-lh.googleusercontent.com/uJn2i9h7KxYQarC_c3K4qH6o7gLtflFnhD_dN14MNkzHJ1NeNFzCL69jpB5mT0vCoQs",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Moto x3m",
+            "location": "https://www-sites-opensocial.googleusercontent.com/gadgets/ifr?url=https://gamehub88.github.io/bg3/gs/moto-x3m.xml",
+            "thumb": "https://play-lh.googleusercontent.com/AbQMuT4ncBfWDqNF-4ubmfaRag59nrW3fJARDsHK51_PENScmWCnMFeQX81wfPlfGBo",
+            "sQuery": [
+                "racing"
+            ]
+        },
+        {
+            "name": "Moto x3m Winter",
+            "location": "https://gamehub88.github.io/bg1/projects/motox3m-winter/",
+            "thumb": "https://kizicdn.com/system/static/thumbs/big_tile_thumb/5240/thumb300_MotoX3M_4_300x300.jpg?1556203781",
+            "sQuery": [
+                "racing"
+            ]
+        },
+        {
+            "name": "Moto x3m Pool Party",
+            "location": "https://gamehub88.github.io/bg1/projects/motox3m-pool/",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4peBDjeUj2y6uWgc-4ckza9Mmw28e3B8iiw&usqp=CAU",
+            "sQuery": [
+                "racing"
+            ]
+        },
+        {
+            "name": "Moto x3m Spooky Land",
+            "location": "https://gamehub88.github.io/bg1/projects/motox3m-spooky/",
+            "thumb": "https://www.cokogames.com/wp-content/uploads/thumbs/custom/M/moto-x3m-halloween.png",
+            "sQuery": [
+                "racing"
+            ]
+        },
+        {
+            "name": "2048",
+            "location": "https://gamehub88.github.io/bg1/projects/2048/",
+            "thumb": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png",
+            "sQuery": [
+                "puzzle"
+            ]
+        },
+        {
+            "name": "Vex 3",
+            "location": "https://gamehub88.github.io/bg1/projects/vex3/",
+            "thumb": "https://is2-ssl.mzstatic.com/image/thumb/Purple128/v4/23/cc/ea/23ccea49-28e1-2327-8b95-5d05a00a312e/source/512x512bb.jpg",
+            "sQuery": [
+                "Platformer"
+            ]
+        },
+        {
+            "name": "Vex 4",
+            "location": "https://gamehub88.github.io/bg1/projects/vex4/",
+            "thumb": "https://store-images.s-microsoft.com/image/apps.16029.14622517353732960.576abfa8-e499-4dbe-adc4-750c6ba65c7f.72a18063-f8b6-41b6-a6ca-8d549bd33d53?mode=scale&q=90&h=200&w=200&background=%23FFFFFF",
+            "sQuery": [
+                "Platformer"
+            ]
+        },
+        {
+            "name": "Vex 5",
+            "location": "https://gamehub88.github.io/bg1/projects/vex5/",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLib8NqJ_04M2on6Dgc97B4Q3ruqG3ysJMMu8L66tE0MfFBK6D0-IVc1-Rio6FQYJH38A&usqp=CAU",
+            "sQuery": [
+                "Platformer"
+            ]
+        },
+        {
+            "name": "Vex 6",
+            "location": "https://gamehub88.github.io/bg1/projects/vex6/",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmitTJVUgIRKTDfH_0ORnyitfnt5TmNXjMvdQnKQ36dStAyKbcuT8OvkIcLxevwT7vbE&usqp=CAU",
+            "sQuery": [
+                "Platformer"
+            ]
+        },
+        {
+            "name": "Paper.io",
+            "location": "https://gamehub88.github.io/bg1/projects/paperio2/",
+            "thumb": "https://play-lh.googleusercontent.com/gVWDgD1DOWbTjoZrI3hpg6kCh1TWoH4GInvrAmqkl50oKXEF1wG7ncxIrZPjlhTJnukg",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Retro Bowl",
+            "location": "https://gamehub88.github.io/bg1/projects/retro-bowl/",
+            "thumb": "https://play-lh.googleusercontent.com/WRM5Y1xZmzcCP1YtO5zl6G2g7CU5c5ZfjX4UVrgi1bpNgkfy-wuB-bQx3kkeRfaGYQ=w240-h480-rw",
+            "sQuery": [
+                "RPG"
+            ]
+        },
+        {
+            "name": "Rooftop Snipers",
+            "location": "https://gamehub88.github.io/bg1/projects/rooftop-snipers/",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuG2x8zKAnc5O19LTFpMQysRnU4J99NDvgnA&usqp=CAU",
+            "sQuery": [
+                "1v1"
+            ]
+        },
+        {
+            "name": "Basketball Stars",
+            "location": "https://gamehub88.github.io/bg1/projects/basketball-stars/",
+            "thumb": "https://play-lh.googleusercontent.com/EjJV6kCXgX9EIhKEtpYhQF8-BUb5En8sDKpOPiWSQJUxv9_RAfl4tMxyIMkQYgeqC6I",
+            "sQuery": [
+                "1v1"
+            ]
+        },
+        {
+            "name": "Chrome Dino",
+            "location": "https://gamehub88.github.io/bg1/projects/chrome-dino/",
+            "thumb": "https://play-lh.googleusercontent.com/i-0HlK6I-K5ZVI28HFa4iXz0T22Mg2WjQ4gMsEYvqmSNdifp2NE41ZiaUCavmbIimQ",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Cookie Clicker",
+            "location": "https://gamehub88.github.io/bg1/projects/cookie-clicker/",
+            "thumb": "https://play-lh.googleusercontent.com/OssE3ON9WsLZedOF39UCgtIHcRYfV0OqQS9O78LfmRdxSyKdHX52G2OFa0LkG6D-k9w",
+            "sQuery": [
+                "Clicker"
+            ]
+        },
+        {
+            "name": "Craftmine",
+            "location": "https://gamehub88.github.io/bg1/projects/craftmine/",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTifcovdpTZf-Ic7QdNynZMbWCig78rjTlbt59cGAgh3DDpMlFWbyB_bEl2xIl3d7hj3sw&usqp=CAU",
+            "sQuery": [
+                "Sandbox"
+            ]
+        },
+        {
+            "name": "Henry Stickmin: Breaking The Bank",
+            "location": "https://gamehub88.github.io/bg1/projects/breakingthebank/",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJtlgsidi4QGr9FQcvuGqcojffY9nOEOxn_MT_mIUwn3ezewdclFkMezOCJ5ny-YaqBYk&usqp=CAU",
+            "sQuery": [
+                "Flash"
+            ]
+        },
+        {
+            "name": "Henry Stickmin: Stealing The Diamond",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/stealingthediamond/&w=1024&h=730",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjt7q3JXi2t6QmUiJ7OjZe-_kQt5v9FjJT7GoM1F0Uvs8PXHrMzN7QCoQOenLkeBv6T_c&usqp=CAU",
+            "sQuery": [
+                "Flash"
+            ]
+        },
+        {
+            "name": "Subway Surfers",
+            "location": "https://gamehub88.github.io/bg1/projects/subway-surfers/",
+            "thumb": "https://play-lh.googleusercontent.com/Y8ZPV4kNDtpUhipGQwSFYKw13hOw_hpEtLZXDMGRm30yHAzvKnN09AIgGZW0uQT0BQs",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Cut The Rope",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/ctr/&w=1024&h=730",
+            "thumb": "https://play-lh.googleusercontent.com/SF3coAnnYpDeeCyWb3WEBQRxVQQPHyYSoaro6TmBaDYeM5tKkahwwdjhxW9E0Ref8A",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Ducklife 3",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/ducklife3/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/ducklife3/duck.png?raw=true",
+            "sQuery": [
+                "Flash"
+            ]
+        },
+        {
+            "name": "Ducklife 4",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/ducklife4/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/ducklife4/splash.jpg?raw=true",
+            "sQuery": [
+                "Flash"
+            ]
+        },
+        {
+            "name": "Minecraft Classic",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/minecraft-classic/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/minecraft-classic/pack.png?raw=true",
+            "sQuery": [
+                "Sandbox"
+            ]
+        },
+        {
+            "name": "Tube Jumpers",
+            "location": "https://gamehub88.github.io/bg1/projects/tube-jumpers/",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/tube-jumpers/img/icon.jpg?raw=true",
+            "sQuery": [
+                "1v1"
+            ]
+        },
+        {
+            "name": "EaglerCraft",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/minecraft/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/minecraft/splash.jpeg?raw=true",
+            "sQuery": [
+                "Sandbox",
+                "Multiplayer"
+            ]
+        },
+        {
+            "name": "Flappy Bird",
+            "location": "https://gamehub88.github.io/bg1/projects/flappy-bird/",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/flappy-bird/assets/thumb.png?raw=true",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Om-Nom Bounce",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/om-bounce/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/om-bounce/assets/icon.jpeg?raw=true",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Cut The Rope: Time Travel",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/ctr-tr/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/ctr-tr/logo.png?raw=true",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Cut The Rope: Holiday",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/ctr-holiday/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/ctr-holiday/Holiday_Gift.webp?raw=true",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Backrooms",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/backrooms/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/backrooms/img/splash.jpg?raw=true",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Stack",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/stack/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/stack/stack.png?raw=true",
+            "sQuery": [
+                "Puzzle"
+            ]
+        },
+        {
+            "name": "Doodle Jump",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/doodle-jump/&w=400&h=600",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/doodle-jump/doodle.png?raw=true",
+            "sQuery": [
+                "Platformer"
+            ]
+        },
+        {
+            "name": "Death Run 3D",
+            "location": "https://gamehub88.github.io/bg1/projects/death-run-3d/",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/death-run-3d/img/death.png?raw=true",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Getaway Shootout",
+            "location": "https://gamehub88.github.io/bg1/projects/getaway-shootout/",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/getaway-shootout/img/index.jpg?raw=true",
+            "sQuery": [
+                "1v1"
+            ]
+        },
+        {
+            "name": "Hextris",
+            "location": "https://gamehub88.github.io/bg1/projects/hextris/",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/hextris/images/hextris-logo.png?raw=true",
+            "sQuery": [
+                "Puzzle"
+            ]
+        },
+        {
+            "name": "HexGL",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/HexGL/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/HexGL/icon.png?raw=true",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Hacker Typer",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/hackertype/&w=1024&h=730",
+            "thumb": "https://github.com/GameHub88/bg1/blob/main/projects/hackertype/logo192.png?raw=true",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Drift Hunters",
+            "location": "https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/136734914403232081/drift_hunter.html",
+            "thumb": "https://supergrafix.co.uk/wp-content/uploads/2020/02/IMG_3715.png",
+            "sQuery": [
+                "car"
+            ]
+        },
+        {
+            "name": "Run 3",
+            "location": "https://lekug.github.io/tn6pS9dCf37xAhkJv/",
+            "thumb": "https://play-lh.googleusercontent.com/A97ygyZMgnoapGfPhWZn9QBMsrskPuPQmJqeEtROZWnbQRfAOZZlhtP-UBWxaKtMI6U",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Paper.io 3D",
+            "location": "https://cdn2.hubspot.net/hubfs/5338309/Playables/Paperio3d/ad.html",
+            "thumb": "https://play-lh.googleusercontent.com/Lyr9F4rWmbC3--lgyJi2KKY24lTAbKISBdzAi31QB-jbB_H4e_nCZOIM9xG3_QY71uuU",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Mario Kart 64",
+            "location": "/assets/public/gs/emulator?g=https://cdn.glitch.global/e80ed295-94d7-4282-84eb-cd197622b753/Mario%20Kart%2064%20(USA).z64?v=1641938483293&core=n64",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyQvYC2TsImKEbggq964_HwKi3Rv2QlOjiJ1mnhAXnGL6ql_o9cRoppn-LdD0_KLor2pY&usqp=CAU",
+            "sQuery": [
+                "Retro",
+                "N64",
+                "Racing"
+            ]
+        },
+        {
+            "name": "Legends Of Zelda Ocarina of Time",
+            "location": "/assets/public/gs/emulator?g=https://cdn.glitch.me/b189d138-c223-4a4a-85f8-43c7d8a03587%2FLegend%20of%20Zelda%2C%20The%20-%20Ocarina%20of%20Time.z64?v=1634940446627&core=n64",
+            "thumb": "https://assets-prd.ignimgs.com/2021/12/07/zeldaoot-ignart-1638901927766.jpg",
+            "sQuery": [
+                "Retro",
+                "N64",
+                "RPG"
+            ]
+        },
+        {
+            "name": "Super Mario 64",
+            "location": "/assets/public/gs/emulator?g=https://cdn.glitch.global/e80ed295-94d7-4282-84eb-cd197622b753/Super%20Mario%2064%20(USA).z64?v=1641938691836&core=n64",
+            "thumb": "https://i.kym-cdn.com/entries/icons/facebook/000/015/433/Supermario64.jpg",
+            "sQuery": [
+                "Retro",
+                "N64",
+                "RPG"
+            ]
+        },
+        {
+            "name": "BongoCraft Singleplayer",
+            "location": "https://bongocraft.cf",
+            "thumb": "https://jrnetwork.net/uploads/monthly_2015_07/cfac19ee9e89b5457763b81a7651325c.png.39859ae8c42a8447b651fc4de79d4307.png",
+            "sQuery": [
+                "Sandbox",
+                "Multiplayer"
+            ]
+        },
+        {
+            "name": "Drift Boss",
+            "location": "https://www.mathplayground.com/drift-boss-v3/index.html",
+            "thumb": "https://play-lh.googleusercontent.com/uIIhzQtUDQbJUqoG3HIEfxSURI6VAWYIblBFw2kvufGOddcQeNBt8CwNtucZvMEpFis=w240-h480-rw",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Zelda II: The Adventure of Link",
+            "location": "/assets/public/gs/emulator?g=https://gamehub88.github.io/bg3/roms/nes/ZELDA_2_THE_ADVENTURE_OF_.NES&core=nes",
+            "thumb": "https://i.ytimg.com/vi/oufgG46D_48/hqdefault.jpg",
+            "sQuery": [
+                "Retro",
+                "NES",
+                "RPG"
+            ]
+        },
+        {
+            "name": "Contra",
+            "location": "/assets/public/gs/emulator?g=https://gamehub88.github.io/bg3/roms/nes/CONTRA_U_.NES&core=nes",
+            "thumb": "https://i.ytimg.com/vi/k7vcUei5u2E/maxresdefault.jpg",
+            "sQuery": [
+                "Retro",
+                "NES",
+                "Shooter"
+            ]
+        },
+        {
+            "name": "The Legend of Zelda: A Link to the Past",
+            "location": "/assets/public/gs/emulator?g=https://gamehub88.github.io/bg3/roms/gba/ZELDA_PAST.gba&core=gba",
+            "thumb": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1636214127l/59553308._SX318_.jpg",
+            "sQuery": [
+                "Retro",
+                "GBA",
+                "RPG"
+            ]
+        },
+        {
+            "name": "The Legend of Zelda: The Minish Cap",
+            "location": "/assets/public/gs/emulator?g=https://gamehub88.github.io/bg3/roms/gba/ZELDA_MINISH.gba&core=gba",
+            "thumb": "https://static.wikia.nocookie.net/zelda_gamepedia_en/images/5/51/TMC_Link_Artwork_12.png",
+            "sQuery": [
+                "Retro",
+                "GBA",
+                "RPG"
+            ]
+        },
+        {
+            "name": "Appel",
+            "location": "https://gamehub88.github.io/bg3/gs/Appel%20_%20GameHub.html",
+            "thumb": "https://store-images.s-microsoft.com/image/apps.14476.13631454430641262.37c87ec2-8482-46a7-a63a-261257b0eba0.238f1630-e1a2-4cdc-ab31-ae80905aacb4?mode=scale&q=90&h=300&w=300",
+            "sQuery": [
+                "Platformer",
+                "Scratch"
+            ]
+        },
+        {
+            "name": "The Legend of Zelda",
+            "location": "/assets/public/gs/emulator?g=https://cdn.glitch.global/e80ed295-94d7-4282-84eb-cd197622b753/Legend%20of%20Zelda%2C%20The%20(USA)%20(Rev%201).nes?v=1641937833678&core=nes",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWTz3eIqLVWQjwcbewRqiaamh3dSja1zhlBA&usqp=CAU",
+            "sQuery": [
+                "Retro",
+                "NES",
+                "RPG"
+            ]
+        },
+        {
+            "name": "Dino Run 3D",
+            "location": "https://gamehub88.github.io/dino3d/low",
+            "thumb": "https://repository-images.githubusercontent.com/239178174/f8d35b00-4b96-11ea-97b1-1e566b6eb22d",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Temple Run 2",
+            "location": "https://gamehub88.github.io/bg1/projects/temple-run-2",
+            "thumb": "https://upload.wikimedia.org/wikipedia/en/9/98/Temple_Run_2.png",
+            "sQuery": [
+                "Webgl"
+            ]
+        },
+        {
+            "name": "Tank Trouble 2",
+            "location": "https://gamehub88.github.io/bg1/projects/tank-trouble-2",
+            "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCG382DfYIyr5vZzlXW0fjYxcNFIECzOqL-XIYMVPJ8MHRzQi9pYlFxcQjZTOqcO4ugVc&usqp=CAU",
+            "sQuery": [
+                "other"
+            ]
+        },
+        {
+            "name": "Stick War",
+            "location": "/assets/public/gs/gameframe.html?game=https://gamehub88.github.io/bg1/projects/stickwar/&w=1024&h=730",
+            "thumb": "https://play-lh.googleusercontent.com/sITxnGaUxYVzTDkVAjRSKM8JKehWTuseE4hF8937sWVattKHEAirl7uZw93gqad_fQg6",
+            "sQuery": [
+                "webgl"
+            ]
+        },
+        {
+            "name": "Stack Bump 3D",
+            "location": "https://gamehub88.github.io/bg1/projects/stack-bump-3d/",
+            "thumb": "https://play-lh.googleusercontent.com/3EAXXU-ZFNN758qCY23saXWpqbdPB-6hsHT4raNOZBmx9s4-cfDiTI8SDXAh3idDdw4=w240-h480-rw",
+            "sQuery": [
+                "flash"
+            ]
+        },
+        {
+            "name": "Papa's Pizzeria",
+            "location": "https://gamehub88.github.io/bg1/projects/papaspizzaria/",
+            "thumb": "https://m.media-amazon.com/images/I/71XP8OJOfOL.png",
+            "sQuery": [
+                "flash"
+            ]
+        }
+    ],
+    "queries": [
+        "other",
+        "retro",
+        "nes",
+        "rpg",
+        "platformer",
+        "scratch",
+        "gba",
+        "n64",
+        "shooter",
+        "webgl",
+        "sandbox",
+        "multiplayer",
+        "racing",
+        "car",
+        "puzzle",
+        "1v1",
+        "clicker",
+        "flash"
+    ],
+    "gameComments": [
+    ]
+}

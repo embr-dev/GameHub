@@ -1,0 +1,6 @@
+{
+    "main": ["/", "/login", "/signup"],
+    "secondary": ["/home"],
+    "all": ["/", "/login", "/signup", "/home"],
+    "third_party": ["http://retronetwork.codehs.me/"]
+}

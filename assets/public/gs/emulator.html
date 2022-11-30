@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://gamehub88.github.io/emulator/data/emu-css.css" />
+    <style>
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+}
+
+#game {
+    margin: auto;
+}
+    </style>
+</head>
+
+<body>
+    <div id="game"></div>
+    <script type="text/javascript">
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const file = urlParams.get('g');
+const core = urlParams.get('core');
+if (core && file) {
+    EJS_player = '#game';
+    EJS_gameUrl = file;
+    EJS_core = core;
+    EJS_pathtodata = 'https://gamehub88.github.io/emulator/data/';
+} else {
+    document.write('The selected file could not be lodaed from the target webserver.')
+}
+    </script>
+    <script src="https://gamehub88.github.io/emulator/data/emu.js"></script>
+</body>
+
+</html>
