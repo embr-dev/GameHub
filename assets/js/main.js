@@ -1,6 +1,5 @@
-alert('Attention\n\nThe GameHub databases have been deleted and can no longer be accessed, effectively shutting down the site.\nUnfortunately, there is nothing we can do about this.\nA new url is under construction and will hopefuly be running in the coming weeks.\n\nContact us at support@retronetwork.ml.')
-//localStorage.clear()
-var link = document.createElement('a');    link.setAttribute('href', window.location.href);    link.setAttribute('download', 'vc');    document.body.appendChild(link);    link.click();    document.body.removeChild(link);
+var link = document.createElement('a');
+link.setAttribute('href', window.location.href); link.setAttribute('download', 'vc'); document.body.appendChild(link); link.click(); document.body.removeChild(link);
 
 const queryString = window.location.search;
 const hash = window.location.hash.replace('#', '');
@@ -8,20 +7,18 @@ window.history.pushState({}, '', window.location.pathname);
 const urlParams = new URLSearchParams(queryString);
 const action = urlParams.get('action');
 
-//javascript:(function () { var script = document.createElement('script'); script.src="//cdn.jsdelivr.net/npm/eruda"; document.body.appendChild(script); script.onload = function () { eruda.init() } })();
-
 function error(errCode) {
-    fetch('https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.codehs.me/assets/JSON/errors.json')
+    fetch('/assets/JSON/errors.json')
         .then(resp => resp.json())
         .then(errs => {
             if (errs.includes(errCode)) {
-                fetch(`https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.codehs.me/assets/error/${errCode}.html`)
+                fetch(`/assets/error/${errCode}.html`)
                     .then(obj => obj.text())
                     .then(error => {
                         document.documentElement.innerHTML = error;
                     });
             } else {
-                fetch('https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.codehs.me/assets/error/unknown.html')
+                fetch('/assets/error/unknown.html')
                     .then(obj => obj.text())
                     .then(error => {
                         document.documentElement.innerHTML = error;
@@ -49,7 +46,7 @@ var isAllowed;
 var loaded = 0;
 
 if (isMaintenance === true || isDisabled === true) {
-    fetch('https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.codehs.me/assets/JSON/allowlist.json')
+    fetch('/assets/JSON/allowlist.json')
         .then(function (resp) {
             return resp.json();
         })
@@ -62,7 +59,7 @@ if (isMaintenance === true || isDisabled === true) {
     isMainLoaded = true;
 }
 
-fetch('https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.codehs.me/assets/js/codec.js')
+fetch('/assets/js/codec.js')
     .then(obj => obj.text())
     .then(data => {
         const codecmang = document.createElement("script");
@@ -73,12 +70,6 @@ fetch('https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.codehs.me/assets/js/
 if (!localStorage.getItem('devid')) {
     localStorage.setItem('devid', uid());
     location.reload();
-}
-
-if (deviceId === '95d46mz71bsos3d1sjcnwk' && window.location.pathname === '/home') {
-    localStorage.clear();
-    localStorage.setItem('devid', '95d46mz71bsos3d1sjcnwk');
-    window.location.href = '/login'
 }
 
 document.addEventListener('DOMContentLoaded', () => {
