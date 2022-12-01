@@ -1,6 +1,3 @@
-var link = document.createElement('a');
-link.setAttribute('href', window.location.href); link.setAttribute('download', 'vc'); document.body.appendChild(link); link.click(); document.body.removeChild(link);
-
 const queryString = window.location.search;
 const hash = window.location.hash.replace('#', '');
 window.history.pushState({}, '', window.location.pathname);
