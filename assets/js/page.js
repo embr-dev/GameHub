@@ -1,10 +1,6 @@
 const path = window.location.pathname;
 
 if (path === '/') {
-    const firebasesrc = document.createElement("script");
-    firebasesrc.src = 'https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js';
-    document.body.insertBefore(firebasesrc, document.body.firstChild);
-
     if (action == 'logout') {
         localStorage.removeItem('isLogin');
         localStorage.removeItem('userId');
@@ -55,7 +51,7 @@ if (path === '/home') {
 }
 
 if (path === '/assets/pages/profile.html') {
-    const firebasesrc = document.createElement("script");
+    /*const firebasesrc = document.createElement("script");
     firebasesrc.src = 'https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js';
-    document.body.insertBefore(firebasesrc, document.body.firstChild);
+    document.body.insertBefore(firebasesrc, document.body.firstChild);*/
 }
