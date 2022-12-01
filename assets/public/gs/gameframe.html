@@ -6,41 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-* {
-    overflow: hidden;
-}
+        * {
+            overflow: hidden;
+        }
 
-iframe {
-    overflow: hidden;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+        iframe {
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     </style>
 </head>
 
 <body> <iframe id="ifr" frameborder="0" scrolling="no"></iframe>
     <script>
-let ifr = (window === window.parent) ? false : true;
-if (ifr) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const game = urlParams.get('game') const width = urlParams.get('w') const height = urlParams.get('h') if (game && width && height) {
-        const ifr = document.getElementById('ifr');
-        ifr.src = game;
-        ifr.height = height + 'px';
-        ifr.width = width + 'px';
-        const contentwindow = document.querySelector("iframe").contentWindow;
-        contentwindow.document.body.style.overflow = "hidden";
-    } else {
-        document.head.innerHTML = ''
-        document.body.innerHTML = ''
-        document.write('Failed to load game');
-    }
-} else {
-    window.location.href = '/403'
-}
+        let ifr = (window === window.parent) ? false : true;
+        if (ifr) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const game = urlParams.get('game');
+            const width = urlParams.get('w');
+            const height = urlParams.get('h');
+            if (game && width && height) {
+                const ifr = document.getElementById('ifr');
+                ifr.src = game;
+                ifr.height = height + 'px';
+                ifr.width = width + 'px';
+                const contentwindow = document.querySelector("iframe").contentWindow;
+                contentwindow.document.body.style.overflow = "hidden";
+            } else {
+                document.head.innerHTML = ''
+                document.body.innerHTML = ''
+                document.write('Failed to load game');
+            }
+        } else {
+            window.location.href = '/403'
+        }
     </script>
 </body>
 
