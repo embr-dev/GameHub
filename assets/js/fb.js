@@ -7,5 +7,15 @@ const firebaseConfig = {
   appId: "1:609224844553:web:4e5e898220b26b594ddfd8"
 };
 
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+
 const database = firebase.database();
+
+const gamesDB = database.ref('games')
+
+fetch('/assets/JSON/gs2.json')
+  .then(obj => obj.json())
+  .then(data => {
+    gamesDB.set(data)
+  });
