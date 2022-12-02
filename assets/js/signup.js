@@ -161,3 +161,9 @@ form.addEventListener('submit', (event) => {
         }, 500);
     }
 });
+
+if (firebase) {
+    alert('yay')
+} else {
+    alert('noooo')
+}
