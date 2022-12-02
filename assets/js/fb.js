@@ -18,6 +18,6 @@ fetch('/assets/JSON/gs2.json')
     gamesDB.set(data)
   });
 
-gamesDB.on("value", function (snapshot) {
-  console.log(snapshot.val());
+gamesDB.on("value", function (data) {
+  console.log(data.val());
 })
