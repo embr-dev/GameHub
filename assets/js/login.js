@@ -30,7 +30,8 @@ setTimeout(() => {
     }
 
     function f1() {
-        accountsDB.on('value', function (data) {
+        accountsDB.on('value', function (accounts) {
+            const data = accounts.val();
             if (data) {
                 for (let i = 0; i < data.length; i++) {
                     const isUsername = username.value === data[i].username;

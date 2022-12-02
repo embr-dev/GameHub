@@ -71,7 +71,9 @@ setTimeout(() => {
         return false;
     }
     function f2(users, user) {
-        db.on('value', function (data) {
+        db.on('value', function (accounts) {
+            const data = accounts.val();
+
             var interval = setInterval(() => {
                 if (isLoaded === 2) {
                     clearInterval(interval)
@@ -130,7 +132,8 @@ setTimeout(() => {
     }
 
     function f1() {
-        db.on('value', function (data) {
+        db.on('value', function (accounts) {
+            const data = accounts.val();
             if (data) {
                 let usernames = [];
                 for (let i = 0; i < data.length; i++) {
