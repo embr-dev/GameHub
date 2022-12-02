@@ -9,3 +9,9 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+  alert(msg + '\n\n'+ url + '\n\n' + lineNo + '\n\n' + error)
+
+  return false;
+}
