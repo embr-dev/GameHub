@@ -4,6 +4,12 @@ window.history.pushState({}, '', window.location.pathname);
 const urlParams = new URLSearchParams(queryString);
 const action = urlParams.get('action');
 
+window.onerror = function (msg, url, lineNo, columnNo, error) {
+    alert(msg + '\n\n' + url + '\n\n' + lineNo + '\n\n' + error)
+
+    return false;
+}
+
 function error(errCode) {
     fetch('/assets/JSON/errors.json')
         .then(resp => resp.json())
