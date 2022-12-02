@@ -1,10 +1,10 @@
 var timeElapsed = 0;
 var timeActive;
 
-firebase.initialize({
-    projectName: 'GameHub'
-});
-const logs = firebase.database().ref('log');
+//firebase.initialize({
+//    projectName: 'GameHub'
+//});
+//const logs = firebase.database().ref('log');
 
 if (document.hasFocus()) {
     timeActive = setInterval(() => {
