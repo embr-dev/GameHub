@@ -8,14 +8,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-const database = firebase.database();
-
-const gamesDB = database.ref('games')
+const gamesDB = firebase.database().ref('games');
 
 fetch('/assets/JSON/gs2.json')
   .then(obj => obj.json())
   .then(data => {
     gamesDB.set(data)
   });
+
+gamesDB.on("value", function (snapshot) {
+  console.log(snapshot.val());
+})
