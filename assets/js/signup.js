@@ -1,6 +1,6 @@
 const firebaseConfig = {
     apiKey: "AIzaSyCljTB8jYkhyf_XRlbcRk6ai2c1kmTwSpQ",
-    authDomain: "gamehub-527d9-default-rtdb.firebaseio.com",
+    authDomain: "gamehub-527d9.firebaseapp.com",
     projectId: "gamehub-527d9",
     storageBucket: "gamehub-527d9.appspot.com",
     messagingSenderId: "609224844553",
@@ -9,11 +9,17 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+database.ref(accounts).on('value', (snapshot) => {
+    alert(snapshot.val());
+    console.log(snapshot.val());
+})
 
 const form = document.getElementById('signup');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');
-const accountsDB = firebase.database().ref('accounts');
+const accountsDB = database.ref('accounts');
 var isTaken;
 var isCreated = false;
 var isLoaded = 0;
@@ -32,7 +38,7 @@ function newAvatar() {
         document.body.appendChild(ifr);
     });
     peer.on('connection', (conn) => connection(conn, 'avatar'));
-} 
+}
 function connection(conn, parent) {
     const decrypt = (salt, encoded) => {
         const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
