@@ -10,14 +10,14 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-const gamesDB = firebase.database().ref('games');
+const accountsDB = firebase.database().ref('accounts');
 
 fetch('/assets/JSON/gs2.json')
   .then(obj => obj.json())
   .then(data => {
-    gamesDB.set(data)
+    accountsDB.set(data)
   });
 
-gamesDB.on("value", function (data) {
+  accountsDB.on("value", function (data) {
   console.log(data.val());
 })
