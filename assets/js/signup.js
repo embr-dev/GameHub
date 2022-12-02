@@ -32,7 +32,7 @@ function newAvatar() {
         document.body.appendChild(ifr);
     });
     peer.on('connection', (conn) => connection(conn, 'avatar'));
-}
+} 
 function connection(conn, parent) {
     const decrypt = (salt, encoded) => {
         const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
