@@ -9,15 +9,3 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
-const accountsDB = firebase.database().ref('accounts');
-
-fetch('/assets/JSON/gs2.json')
-  .then(obj => obj.json())
-  .then(data => {
-    accountsDB.set(data)
-  });
-
-  accountsDB.on("value", function (data) {
-  console.log(data.val());
-})

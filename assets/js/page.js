@@ -6,16 +6,10 @@ if (path === '/') {
         localStorage.removeItem('userId');
         localStorage.removeItem('username');
     }
-
-    firebasesrc.onload = function() {
-        firebase.initialize({
-            projectName: 'GameHub'
-        });
-        const db = firebase.database().ref('accounts');
-        db.on('value', function(data) {
-            document.querySelector('.user-count').innerText = Math.ceil(data.length / 100) * 100 - 100;
-        });
-    }
+    const db = firebase.database().ref('accounts');
+    db.on('value', function (data) {
+        document.querySelector('.user-count').innerText = Math.ceil(data.length / 100) * 100 - 100;
+    });
 }
 
 if (path === '/home') {
@@ -48,10 +42,4 @@ if (path === '/home') {
                 });
         });
     }
-}
-
-if (path === '/assets/pages/profile.html') {
-    /*const firebasesrc = document.createElement("script");
-    firebasesrc.src = 'https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js';
-    document.body.insertBefore(firebasesrc, document.body.firstChild);*/
 }

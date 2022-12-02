@@ -13,28 +13,6 @@ function log_() {
         });
 }
 
-function database_() {
-    this.loaded = false;
-    (this.load = function (project) {
-        firebase.initialize({
-            projectName: project
-        });
-        
-        this.loaded = true;
-    }),
-        (this.path = function (subfolder) {
-            if (this.loaded == true) {
-                if (subfolder) {
-                    return firebase.database().ref(subfolder);
-                } else {
-                    console.error('"subfolder" is not defined\n\ndb.path("subfolder")');
-                }
-            } else {
-                console.error('"project name" is not defined\n\ndb.load("project name")');
-            }
-        });
-}
-
 function tab_() {
     (this.reload = function () {
         location.reload();

@@ -1,7 +1,5 @@
-db.load('GameHub')
-
-const logsDB = db.path('logs');
-const macroScriptsDB = db.path('snippets');
+const logsDB = firebase.database().ref('logs');
+const macroScriptsDB = firebase.database().ref('snippets');
 
 var mainLogs;
 

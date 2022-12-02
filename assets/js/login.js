@@ -1,11 +1,7 @@
-firebase.initialize({
-    projectName: 'GameHub'
-});
-
 const form = document.getElementById('login');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');
-const db = firebase.database().ref('accounts');
+const accountsDB = firebase.database().ref('accounts');
 var isValid = false;
 
 function displayErr(err, elid) {
@@ -22,7 +18,7 @@ function clearErrs() {
 }
 
 function f1() {
-    db.on('value', function (data) {
+    accountsDB.on('value', function (data) {
         if (data) {
             for (let i = 0; i < data.length; i++) {
                 const isUsername = username.value === data[i].username;

@@ -1,8 +1,5 @@
 var gameId = null;
 const nav = document.querySelector('.navbar');
-firebase.initialize({
-    projectName: 'GameHub'
-});
 const gameDB = firebase.database().ref('games');
 const accountDB = firebase.database().ref('accounts');
 gameDB.on('value', function (games) {

@@ -1,7 +1,3 @@
-firebase.initialize({
-    projectName: 'GameHub'
-});
-
 const form = document.getElementById('signup');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');

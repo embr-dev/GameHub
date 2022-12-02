@@ -1,6 +1,3 @@
-firebase.initialize({
-    projectName: 'GameHub'
-});
 //alert(codec.decode(codec.encode('hi')))
 const usernameDisplay = document.querySelector('#username');
 const userId = localStorage.getItem('userId');
