@@ -1,6 +1,6 @@
 const firebaseConfig = {
     apiKey: "AIzaSyCljTB8jYkhyf_XRlbcRk6ai2c1kmTwSpQ",
-    authDomain: "gamehub-527d9.firebaseapp.com",
+    authDomain: "gamehub-527d9-default-rtdb.firebaseio.com",
     projectId: "gamehub-527d9",
     storageBucket: "gamehub-527d9.appspot.com",
     messagingSenderId: "609224844553",
