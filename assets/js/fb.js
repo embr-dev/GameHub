@@ -1,4 +1,4 @@
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: "AIzaSyCljTB8jYkhyf_XRlbcRk6ai2c1kmTwSpQ",
   authDomain: "gamehub-527d9.firebaseapp.com",
   projectId: "gamehub-527d9",
@@ -8,4 +8,4 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);*/
