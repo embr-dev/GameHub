@@ -72,9 +72,6 @@ if (!localStorage.getItem('devid')) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    /*const firebasesrc = document.createElement("script");
-    firebasesrc.src = 'https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js';
-    document.body.insertBefore(firebasesrc, document.body.firstChild);*/
     const anayltics = document.createElement("script");
     anayltics.src = '/assets/js/analytics.js';
     document.body.appendChild(anayltics);

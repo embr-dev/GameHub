@@ -164,4 +164,3 @@ const tab = new tab_();
 const audio = new audio_();
 const page = new page_();
 const ls = new localStorage_();
-const db = new database_();

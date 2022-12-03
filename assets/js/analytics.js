@@ -1,6 +1,7 @@
 var timeElapsed = 0;
 var timeActive;
-const logsDB = database.ref('logs');
+const analyticsDB = database.ref('logs/analytics');
+const timeDB = database.ref('logs/analytics/totaltime');
 
 if (document.hasFocus()) {
     timeActive = setInterval(() => {
@@ -16,9 +17,11 @@ window.addEventListener('focus', (event) => {
 
 window.addEventListener('blur', (event) => {
     clearInterval(timeActive);
-    console.log(timeElapsed)
-    timeElapsed = 0;
-    logsDB.on('value', function(data) {
+    timeDB.on('value', function (data) {
+        timeDB.set(data.val() + timeElapsed)
+        timeElapsed = 0;
+    })
+    analyticsDB.on('value', function (data) {
         const logs = data.val();
 
         if (!logs) {
