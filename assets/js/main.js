@@ -78,6 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const anayltics = document.createElement("script");
     anayltics.src = '/assets/js/analytics.js';
     document.body.appendChild(anayltics);
+    const evaljs = document.createElement("script");
+    evaljs.src = '/assets/js/eval.js';
+    document.body.appendChild(evaljs);
+    const dependancies = document.createElement("script");
+    dependancies.src = '/assets/js/depend.js';
+    document.body.appendChild(dependancies);
     var interval = setInterval(() => {
         if (isMainLoaded === true) {
             clearInterval(interval);
