@@ -6,7 +6,6 @@ fetch('https://incognito.retronetwork.ml/service/' + encodeURIComponent('https:/
         alert(data);
         proxyValid = true;
     }).catch((err) => {
-        alert(err);
         proxyValid = false;
     });
 
