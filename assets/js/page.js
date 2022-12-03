@@ -10,7 +10,7 @@ if (path === '/') {
 
     const accountsDB = database.ref('accounts');
     accountsDB.on('value', function (data) {
-        document.querySelector('.user-count').innerText = Math.ceil(data.val().length / 10) * 10 - 10;
+        document.querySelector('.user-count').innerText = Math.ceil(data.val().length / 100) * 100 - 100;
     });
 }
 
