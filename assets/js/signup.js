@@ -6,9 +6,9 @@ const firebaseConfig = {
     storageBucket: "gamehub-527d9.appspot.com",
     messagingSenderId: "609224844553",
     appId: "1:609224844553:web:dc43596c5145a7d64ddfd8"
-  };
+};
 
-  // Initialize Firebase
+// Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
