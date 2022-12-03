@@ -17,16 +17,16 @@ window.addEventListener('focus', (event) => {
 
 window.addEventListener('blur', (event) => {
     clearInterval(timeActive);
-    timeDB.on('value', function (data) {
-        timeDB.set(data.val() + timeElapsed)
+    //timeDB.on('value', function (data) {
+        //timeDB.set(data.val() + timeElapsed)
         timeElapsed = 0;
-    })
-    analyticsDB.on('value', function (data) {
+    //})
+    //analyticsDB.on('value', function (data) {
         const logs = data.val();
 
         if (!logs) {
             console.log('ahsdgshdgah')
         }
         console.log(logs)
-    });
+    //});
 });
