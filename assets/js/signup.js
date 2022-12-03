@@ -9,7 +9,7 @@ const firebaseConfig = {
   };
 
   // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 database.ref(accounts).on('value', (snapshot) => {
