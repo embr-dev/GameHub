@@ -65,10 +65,10 @@ var fbjsLoader = setInterval(() => {
             gFrame.classList.remove('hidden');
             gameDatabase.classList.add('hidden');
             document.querySelector('.database_nav').classList.add('hidden');
-            accountDB.on('value', function (users) {
+            accountDB.on('value', function (data) {
                 const accounts = data.val();
-                gameDB.on('value', function (data) {
-                    const games = data.val();
+                gameDB.on('value', function (data2) {
+                    const games = data2.val();
                     /*for (let i = 0; i < accounts.length; i++) {
                         var likeListDB = accounts
                         likeListDB[i].likeList = [];
