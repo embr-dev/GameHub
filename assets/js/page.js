@@ -19,7 +19,7 @@ if (path === '/home') {
         //window.history.pushState({}, '', hash /* + '/'*/ );
         if (hash === 'profile') {
             window.history.pushState({}, '', '#' + hash);
-            fetch('/assets/files/modal.json')
+            fetch('/assets/files/modal')
                 .then(obj => obj.text())
                 .then(modal => {
                     const modalEl = document.createElement("div");
@@ -34,7 +34,7 @@ if (path === '/home') {
     for (let i = 0; i < profileTrigger.length; i++) {
         profileTrigger[i].addEventListener('click', (event) => {
             window.history.pushState({}, '', '#profile');
-            fetch('/assets/files/modal.json')
+            fetch('/assets/files/modal')
                 .then(obj => obj.text())
                 .then(modal => {
                     const modalEl = document.createElement("div");
