@@ -1,6 +1,18 @@
 var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
         clearInterval(fbjsLoader)
+        var proxyValid;
+
+        fetch('https://incognito.retronetwork.ml/service/' + encodeURIComponent('https://gh.retronetwork.ml/assets/files/proxy'.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join('')))
+            .then(obj => obj.text())
+            .then(data => {
+                alert(data);
+                proxy = true;
+            }).catch((err) => {
+                alert(err);
+                proxy = false;
+            });
+
         var gameId = null;
         const nav = document.querySelector('.navbar');
         const gameDB = database.ref('games');
@@ -50,7 +62,7 @@ var fbjsLoader = setInterval(() => {
                     //}
                 }
                 game.title = games.gs[i].name
-                game.innerHTML = `<img src="${games.gs[i].thumb}"/><p>${games.gs[i].name}</p>`
+                game.innerHTML = `<img src="${proxy(games.gs[i].thumb)}"/><p>${games.gs[i].name}</p>`
                 document.querySelector('.games').appendChild(game);
                 game.addEventListener('click', (e) => {
                     openGame(i);
@@ -185,7 +197,7 @@ var fbjsLoader = setInterval(() => {
                         for (let i = 0; i < recomendedGames.length; i++) {
                             const randomNum = Math.floor(Math.random() * games.gs.length)
                             const randGame = games.gs[randomNum]
-                            recomendedGames[i].innerHTML = `<img src="${randGame.thumb}" title="${randGame.name}"></img>`;
+                            recomendedGames[i].innerHTML = `<img src="${proxy(randGame.thumb)}" title="${randGame.name}"></img>`;
                             recomendedGames[i].addEventListener('click', (e) => {
                                 document.querySelector('.innerGame').remove();
                                 openGame(randomNum);
@@ -217,9 +229,15 @@ var fbjsLoader = setInterval(() => {
             game.scrollIntoView();
         }
 
-        function code(data) {
-            var url = 'https://zlxrlr.org/uv/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
-            return url;
+        function proxy(data) {
+            if (proxyValid === true) {
+                var url = 'https://incognito.retronetwork.ml/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
+                return url;
+            } else if (proxyValid === false) {
+                return data;
+            } else {
+                alert('the data is invalid')
+            }
         }
     }
 }, 100);
