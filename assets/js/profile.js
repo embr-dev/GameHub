@@ -16,7 +16,9 @@ var fbjsLoader = setInterval(() => {
                 if (window.location.pathname !== '/assets/pages/profile.html') {
                     usernameDisplay.innerText = accounts[userId - 1].username;
                     loaded++
-                } else if (window.location.pathname === '/assets/pages/profile.html') {
+                }
+                
+                if (window.location.pathname === '/assets/pages/profile.html') {
                     const parentstyles = document.createElement("style");
                     parentstyles.innerHTML = 'html,body {overflow: hidden;}';
                     window.parent.document.head.appendChild(parentstyles);
