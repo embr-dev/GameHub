@@ -1,3 +1,5 @@
+const database = firebase.database();
+
 const form = document.getElementById('login');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');

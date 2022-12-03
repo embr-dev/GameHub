@@ -6,6 +6,8 @@ if (path === '/') {
         localStorage.removeItem('userId');
         localStorage.removeItem('username');
     }
+    const database = firebase.database();
+
     const accountsDB = database.ref('accounts');
     accountsDB.on('value', function (data) {
         document.querySelector('.user-count').innerText = Math.ceil(data.val().length / 10) * 10 - 10;
