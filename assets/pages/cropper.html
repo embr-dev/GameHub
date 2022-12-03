@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/cropbox.css">
+    <link rel="stylesheet" href="https://russell2259.github.io/G99/bulma.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <style>
+        * {
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .container {
+            position: absolute;
+            top: 8%;
+            left: 10%;
+        }
+
+        .action {
+            width: 400px;
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .file.is-danger {
+            margin-right: 80px;
+        }
+
+        .button.is-danger {
+            margin: auto;
+        }
+
+        .disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="/assets/js/cropbox.js"></script>
+    <div class="container">
+        <div class="imageBox">
+            <div class="thumbBox"></div>
+            <div class="spinner" style="display: none">No Image Selected</div>
+        </div>
+        <div class="action">
+            <div class="file is-danger"> <label class="file-label"> <input class="file-input" data-attr="file_upload"
+                        type="file" accept="image/jpeg, image/png, image/jpg, image/webp"> <span class="file-cta"> <span
+                            class="file-icon"> <i class="fas fa-upload"></i> </span> <span class="file-label">Choose a
+                            file… </span> </span> </label> </div> <button class="button is-small is-rounded is-danger"
+                data-func="submit_pfp" disabled>Done</button> <button class="button is-small is-rounded is-danger"
+                data-func="zoomin_cropper" disabled>+</button> <button class="button is-small is-rounded is-danger"
+                data-func="zoomout_cropper" disabled>-</button>
+        </div>
+        <div id="cropped"></div>
+    </div>
+    <script>
+        let options = {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner'
+        };
+        
+        var cropper = new cropbox(options);
+        document.querySelector('[data-attr="file_upload"]').addEventListener('change', function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                options.imgSrc = e.target.result;
+                cropper = new cropbox(options);
+                document.querySelector('[data-attr="file_upload"]').disabled = true;
+                document.querySelector('.file-cta').classList.add('disabled');
+                document.querySelectorAll('span')[2].classList.add('disabled');
+                document.querySelector('[data-func="submit_pfp"]').disabled = false;
+                document.querySelector('[data-func="zoomin_cropper"]').disabled = false;
+                document.querySelector('[data-func="zoomout_cropper"]').disabled = false;
+            }
+            reader.readAsDataURL(this.files[0]);
+        });
+        document.querySelector('[data-func="submit_pfp"]').addEventListener('click', function () {
+            var cropped = cropper.getDataURL();
+            document.querySelector('[data-func="submit_pfp"]').disabled = true;
+            document.querySelector('[data-func="zoomin_cropper"]').disabled = true;
+            document.querySelector('[data-func="zoomout_cropper"]').disabled = true;
+            window.parent.postMessage(cropped, `https://${window.location.hostname}`);
+        })
+        document.querySelector('[data-func="zoomin_cropper"]').addEventListener('click', function () {
+            cropper.zoomIn();
+        })
+        document.querySelector('[data-func="zoomout_cropper"]').addEventListener('click', function () {
+            cropper.zoomOut();
+        })   
+    </script>
+</body>
+
+</html>
