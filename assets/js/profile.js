@@ -9,10 +9,6 @@ var fbjsLoader = setInterval(() => {
             const accounts = data.val();
 
             if (accounts[userId - 1]) {
-                /*if (accounts[userId - 1].username === 'Mr. Sprout') {
-                    localStorage.clear();
-                    window.location.href = '/signup';
-                }*/
                 var pfpstyles = document.createElement("style");
                 pfpstyles.innerHTML = `.profile-icon{background-image:url("${accounts[userId - 1].pfp}");}`
                 document.head.appendChild(pfpstyles);
@@ -20,15 +16,13 @@ var fbjsLoader = setInterval(() => {
                 if (window.location.pathname !== '/assets/pages/profile.html') {
                     usernameDisplay.innerText = accounts[userId - 1].username;
                     loaded++
-                }
-
-                if (window.location.pathname === '/assets/pages/profile.html') {
+                } else if (window.location.pathname === '/assets/pages/profile.html') {
                     const parentstyles = document.createElement("style");
                     parentstyles.innerHTML = 'html,body {overflow: hidden;}';
                     window.parent.document.head.appendChild(parentstyles);
                     const pfp = document.querySelector('.pfp');
                     const closeBtn = window.parent.document.querySelector('.modal-close');
-                    const usernameInput = document.querySelector('[accounts-attr="username"]');
+                    const usernameInput = document.querySelector('[data-attr="username"]');
                     const idDisplay = document.querySelector('.userid');
                     const loader = document.querySelector('.lds-spinner');
                     const overlay = document.querySelector('.uploadIcon');
@@ -43,7 +37,7 @@ var fbjsLoader = setInterval(() => {
                         parentstyles.remove();
                     });
 
-                    usernameInput.addEventListener('click', (event) => {
+                    /*usernameInput.addEventListener('click', (event) => {
                         usernameInput.value = accounts[userId - 1].username;
 
                         document.querySelector('.usernameForm').classList.remove('hidden');
@@ -52,7 +46,7 @@ var fbjsLoader = setInterval(() => {
                         idDisplay.classList.add('hidden');
 
                         usernameInput.focus();
-                    });
+                    });*/
 
                     document.querySelector('.usernameForm').addEventListener('submit', (event) => {
                         event.preventDefault();
