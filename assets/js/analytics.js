@@ -1,6 +1,6 @@
 var timeElapsed = 0;
 var timeActive;
-const logs = firebase.database().ref('log');
+const logsDB = database.ref('logs');
 
 if (document.hasFocus()) {
     timeActive = setInterval(() => {
@@ -18,10 +18,12 @@ window.addEventListener('blur', (event) => {
     clearInterval(timeActive);
     console.log(timeElapsed)
     timeElapsed = 0;
-    logs.on('value', function(log) {
-        if (!log) {
+    logsDB.on('value', function(data) {
+        const logs = data.val();
+
+        if (!logs) {
             console.log('ahsdgshdgah')
         }
-        console.log(log)
+        console.log(logs)
     });
 });

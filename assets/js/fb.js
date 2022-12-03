@@ -10,12 +10,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
-console.log(app.name);
 
 const database = firebase.database();
 
-var starCountRef = firebase.database().ref('accounts');
+/*var starCountRef = firebase.database().ref('accounts');
 starCountRef.on('value', (snapshot) => {
   const data = snapshot.val();
   console.log(data)
-});
+});*/

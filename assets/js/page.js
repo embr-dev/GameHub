@@ -6,9 +6,9 @@ if (path === '/') {
         localStorage.removeItem('userId');
         localStorage.removeItem('username');
     }
-    const db = firebase.database().ref('accounts');
-    db.on('value', function (data) {
-        document.querySelector('.user-count').innerText = Math.ceil(data.length / 100) * 100 - 100;
+    const accountsDB = database.ref('accounts');
+    accountsDB.on('value', function (data) {
+        document.querySelector('.user-count').innerText = Math.ceil(data.val().length / 10) * 10 - 10;
     });
 }
 

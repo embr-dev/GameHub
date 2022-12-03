@@ -1,8 +1,10 @@
 var gameId = null;
 const nav = document.querySelector('.navbar');
-const gameDB = firebase.database().ref('games');
-const accountDB = firebase.database().ref('accounts');
-gameDB.on('value', function (games) {
+const gameDB = database.ref('games');
+const accountDB = database.ref('accounts');
+gameDB.on('value', function (data) {
+    const games = data.val();
+
     let gameList = [];
     const searchBar = document.querySelector('[data-func="search"]');
     var prev_value;
@@ -60,8 +62,10 @@ function openGame(id) {
     gFrame.classList.remove('hidden');
     gameDatabase.classList.add('hidden');
     document.querySelector('.database_nav').classList.add('hidden');
-    accountDB.on('value', function (accounts) {
-        gameDB.on('value', function (games) {
+    accountDB.on('value', function (users) {
+        const accounts = data.val();
+        gameDB.on('value', function (data) {
+            const games = data.val();
             /*for (let i = 0; i < accounts.length; i++) {
                 var likeListDB = accounts
                 likeListDB[i].likeList = [];

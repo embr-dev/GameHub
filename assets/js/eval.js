@@ -1,5 +1,5 @@
-const logsDB = firebase.database().ref('logs');
-const macroScriptsDB = firebase.database().ref('snippets');
+const logsDB = database.ref('logs');
+const macroScriptsDB = database.ref('snippets');
 
 var mainLogs;
 
@@ -44,29 +44,37 @@ macroScriptsDB.set([
     }
 ]);
 
-logsDB.on("value", function (logData) {
-    mainLogs = logData;
-    for (let i = 0; i < logData.snippets.length; i++) {
-        if (logData.snippets[i].status === 'active') {
-            macroScriptsDB.on("value", function (macroData) {
-                eval(macroData[i].data);
+logsDB.on("value", function (data) {
+    const logs = data.val();
+
+    mainLogs = logs;
+    for (let i = 0; i < logs.snippets.length; i++) {
+        if (logs.snippets[i].status === 'active') {
+            macroScriptsDB.on("value", function (data2) {
+                const macros = data2.val();
+
+                eval(macros[i].data);
             });
         }
     }
 });
 
 setInterval(() => {
-    logsDB.on("value", function (logData) {
-        const change = JSON.stringify(mainLogs.snippets) == JSON.stringify(logData.snippets);
+    logsDB.on("value", function (data) {
+        const logs = data.val();
+
+        const change = JSON.stringify(mainLogs.snippets) == JSON.stringify(logs.snippets);
         if (change === false) {
-            for (let i = 0; i < logData.snippets.length; i++) {
-                if (logData.snippets[i].status === 'active') {
-                    macroScriptsDB.on("value", function (macroData) {
-                        eval(macroData[i].data);
+            for (let i = 0; i < logs.snippets.length; i++) {
+                if (logs.snippets[i].status === 'active') {
+                    macroScriptsDB.on("value", function (data2) {
+                        const macros = data2.val();
+
+                        eval(macros[i].data);
                     });
                 }
             }
-            mainLogs = logData;
+            mainLogs = logs;
         }
     });
 }, 5000);

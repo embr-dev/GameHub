@@ -8,46 +8,48 @@
 </head>
 
 <body>
-    <script src="https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js"></script> <input type="text" placeholder="Game Name" id="a"> <input type="text" placeholder="Game Url" id="b"> <input type="text" placeholder="Game Thumbnail Url" id="c"> <button id="d">Done</button>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+    <script src="/assets/js/fb.js"></script>
+    <input type="text" placeholder="Game Name" id="a">
+    <input type="text" placeholder="Game Url" id="b">
+    <input type="text" placeholder="Game Thumbnail Url" id="c">
+    <button id="d">Done</button>
     <script>
-javascript: var firebug = document.createElement('script');
-firebug.setAttribute('src', 'https://luphoria.com/fbl/fbl/firebug-lite-debug.js');
-document.body.appendChild(firebug);
-(function() {
-    if (window.firebug.version) {
-        firebug.init();
-    } else {
-        setTimeout(arguments.callee);
-    }
-})();
-void(firebug);
-const userId = localStorage.getItem('userId');
-if (userId === '102') {
-    firebase.initialize({
-        projectName: 'GameHub'
-    });
-    const gamesDB = firebase.database().ref('games');
-    gamesDB.on('value', function(games) {
-        document.querySelector('#d').addEventListener('click', (event) => {
-            let tempDB = games; /*delete tempDB.gs[tempDB.gs.length-1];                    delete tempDB.gameComments[tempDB.gameComments.length-1];*/
-            tempDB.gs.push({
-                "name": document.querySelector('#a').value,
-                "location": document.querySelector('#b').value,
-                "thumb": document.querySelector('#c').value,
-                "sQuery": ["other"],
-                "ratings": "0"
-            }) tempDB.gameComments.push([{
-                "author": "102",
-                "subject": "Welcome to the GameHub comment thread"
-            }]) gamesDB.set(tempDB);
-            gamesDB.on('value', function(games) {
-                alert(games.gs.length) tempDB = games;
-            }) alert(JSON.stringify(tempDB.gs[tempDB.gs.length - 1]) + '\n\n' + JSON.stringify(tempDB.gameComments[tempDB.gameComments.length - 1]) + '\n\n' + tempDB.gs.length);
-        });
-    });
-} else {
-    alert('no')
-}
+        const userId = localStorage.getItem('userId');
+        if (userId === '102') {
+            const gamesDB = database.ref('games');
+            gamesDB.on('value', function (data) {
+                const games = data.val();
+
+                document.querySelector('#d').addEventListener('click', (event) => {
+                    let tempDB = games;
+                    //delete tempDB.gameComments[tempDB.gameComments.length-1];
+                    tempDB.gs.push({
+                        "name": document.querySelector('#a').value,
+                        "location": document.querySelector('#b').value,
+                        "thumb": document.querySelector('#c').value,
+                        "sQuery": ["other"],
+                        "ratings": "0"
+                    });
+                    tempDB.gameComments.push([{
+                        "author": "102",
+                        "subject": "Welcome to the GameHub comment thread"
+                    }]);
+                    gamesDB.set(tempDB);
+
+                    gamesDB.on('value', function (data) {
+                        const games = data.val();
+
+                        alert(games.gs.length);
+                        tempDB = games;
+                    });
+                    alert(JSON.stringify(tempDB.gs[tempDB.gs.length - 1]) + '\n\n' + JSON.stringify(tempDB.gameComments[tempDB.gameComments.length - 1]) + '\n\n' + tempDB.gs.length);
+                });
+            });
+        } else {
+            alert('no')
+        }
     </script>
 </body>
 

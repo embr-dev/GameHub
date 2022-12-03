@@ -1,84 +1,71 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyCljTB8jYkhyf_XRlbcRk6ai2c1kmTwSpQ",
-    authDomain: "gamehub-527d9.firebaseapp.com",
-    projectId: "gamehub-527d9",
-    storageBucket: "gamehub-527d9.appspot.com",
-    messagingSenderId: "609224844553",
-    appId: "1:609224844553:web:4e5e898220b26b594ddfd8"
-};
+const form = document.getElementById('login');
+const username = document.getElementById('username');
+const pswrd = document.getElementById('pswrd');
+const accountsDB = database.ref('accounts');
+var isValid = false;
 
-setTimeout(() => {
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const form = document.getElementById('login');
-    const username = document.getElementById('username');
-    const pswrd = document.getElementById('pswrd');
-    const accountsDB = firebase.database().ref('accounts');
-    var isValid = false;
+function displayErr(err, elid) {
+    document.querySelector('.form').classList.remove('hidden')
+    document.querySelector('.Loader').classList.add('hidden')
+    document.getElementById(elid).innerText = err;
+}
 
-    function displayErr(err, elid) {
-        document.querySelector('.form').classList.remove('hidden')
-        document.querySelector('.Loader').classList.add('hidden')
-        document.getElementById(elid).innerText = err
+function clearErrs() {
+    const err = document.querySelectorAll('.err');
+    for (let i = 0; i < err.length; i++) {
+        err[i].innerText = ''
     }
+}
 
-    function clearErrs() {
-        const err = document.querySelectorAll('.err');
-        for (let i = 0; i < err.length; i++) {
-            err[i].innerText = ''
-        }
-    }
-
-    function f1() {
-        accountsDB.on('value', function (accounts) {
-            const data = accounts.val();
-            if (data) {
-                for (let i = 0; i < data.length; i++) {
-                    const isUsername = username.value === data[i].username;
-                    const isPassword = pswrd.value === data[i].password;
-                    const isCorrect = isUsername && isPassword;
-                    const isLast = i + 1 === data.length;
-                    if (isCorrect) {
-                        isValid = true;
-                        localStorage.setItem('userId', data[i].id)
-                    } else {
-                        if (isLast && isValid === false) {
-                            displayErr('The requested account does not exist.', 'usernameErr');
-                        }
+function f1() {
+    accountsDB.on('value', function (accounts) {
+        const data = accounts.val();
+        if (data) {
+            for (let i = 0; i < data.length; i++) {
+                const isUsername = username.value === data[i].username;
+                const isPassword = pswrd.value === data[i].password;
+                const isCorrect = isUsername && isPassword;
+                const isLast = i + 1 === data.length;
+                if (isCorrect) {
+                    isValid = true;
+                    localStorage.setItem('userId', data[i].id)
+                } else {
+                    if (isLast && isValid === false) {
+                        displayErr('The requested account does not exist.', 'usernameErr');
                     }
                 }
+            }
 
-            } else {
-                displayErr('The requested account does not exist.', 'usernameErr');
-            }
-        });
-    }
-
-    username.focus();
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        clearErrs();
-        if (!username.value || !pswrd.value) {
-            if (!pswrd.value) {
-                displayErr('Please fill out this field', 'pswrdErr');
-                pswrd.focus();
-            }
-            if (!username.value) {
-                displayErr('Please fill out this field', 'usernameErr');
-                username.focus();
-            }
         } else {
-            f1();
-            document.querySelector('.Loader').classList.remove('hidden')
-            document.querySelector('.form').classList.add('hidden')
-            var interval = setInterval(() => {
-                if (isValid === true) {
-                    clearInterval(interval);
-                    localStorage.setItem('isLogin', true)
-                    document.querySelector('#loadingText').innerText = 'Logging you in...';
-                    window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${localStorage.getItem('userId')}&uft=true`
-                }
-            }, 500);
+            displayErr('The requested account does not exist.', 'usernameErr');
         }
     });
-}, 1000)
+}
+
+username.focus();
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearErrs();
+    if (!username.value || !pswrd.value) {
+        if (!pswrd.value) {
+            displayErr('Please fill out this field', 'pswrdErr');
+            pswrd.focus();
+        }
+        if (!username.value) {
+            displayErr('Please fill out this field', 'usernameErr');
+            username.focus();
+        }
+    } else {
+        f1();
+        document.querySelector('.Loader').classList.remove('hidden')
+        document.querySelector('.form').classList.add('hidden')
+        var interval = setInterval(() => {
+            if (isValid === true) {
+                clearInterval(interval);
+                localStorage.setItem('isLogin', true)
+                document.querySelector('#loadingText').innerText = 'Logging you in...';
+                window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${localStorage.getItem('userId')}&uft=true`
+            }
+        }, 500);
+    }
+});
