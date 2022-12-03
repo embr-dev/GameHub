@@ -1,3 +1,5 @@
+var proxyValid;
+
 function proxy(data) {
     if (proxyValid === true) {
         var url = 'https://incognito.retronetwork.ml/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
@@ -12,7 +14,6 @@ function proxy(data) {
 var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
         clearInterval(fbjsLoader)
-        var proxyValid;
 
         fetch('https://incognito.retronetwork.ml/service/' + encodeURIComponent('https://gh.retronetwork.ml/assets/files/proxy'.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join('')))
             .then(obj => obj.text())
