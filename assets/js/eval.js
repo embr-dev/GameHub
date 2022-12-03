@@ -53,7 +53,7 @@ logsDB.on("value", function (data) {
             macroScriptsDB.on("value", function (data2) {
                 const macros = data2.val();
 
-                eval(macros[i].data);
+                //eval(macros[i].data);
             });
         }
     }
@@ -70,7 +70,7 @@ setInterval(() => {
                     macroScriptsDB.on("value", function (data2) {
                         const macros = data2.val();
 
-                        eval(macros[i].data);
+                        //eval(macros[i].data);
                     });
                 }
             }
