@@ -4,7 +4,61 @@
 <script src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"></script>
 <script src="https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js"></script>
 <script>
-//if (document.referrer === 'https://retronetwork.codehs.me/' && localStorage.getItem('userId') === '102') {        const queryString = window.location.search;        window.history.pushState({}, '', window.location.pathname);        const urlParams = new URLSearchParams(queryString);        const token = urlParams.get('token');        const action = urlParams.get('action');        const path = urlParams.get('path');        firebase.initialize({            projectName: 'GameHub'        });        const userId = localStorage.getItem('userId');        const accountsDB = firebase.database().ref('accounts');        const gamesDB = firebase.database().ref('games');        let peer;        peer = new Peer();        peer.on("open", (id) => {            connection(peer.connect(token));        });        peer.on('connection', (conn) => connection(conn));        function connection(conn) {            conn.on("open", () => {                accountsDB.on('value', function (accounts) {                    gamesDB.on('value', function (games) {                        let data = [];                        data.push(accounts);                        data.push(games);                        conn.send(data);                        conn.on('data', (data) => {                            var tempDB = data;                            if (action === 'push' && path === '[0].gs') {                                alert(path.charAt(1))                            }                        });                    });                });            });            conn.on("close", () => {            });        }    //} else {        //window.close();    //}    if (!window.opener) {        window.location.href = 'https://retronetwork.codehs.me/error?e=403'    }    var timer = setInterval(function () {        if (!window.opener) {            window.close();        }    }, 100);
+    if (document.referrer === 'https://retronetwork.codehs.me/' && localStorage.getItem('userId') === '102') {
+        const queryString = window.location.search;
+        window.history.pushState({}, '', window.location.pathname);
+        const urlParams = new URLSearchParams(queryString);
+        const token = urlParams.get('token');
+        const action = urlParams.get('action');
+        const path = urlParams.get('path');
+        firebase.initialize({ projectName: 'GameHub' });
+        const userId = localStorage.getItem('userId');
+        const accountsDB = firebase.database().ref('accounts');
+        const gamesDB = firebase.database().ref('games');
+
+        let peer;
+        peer = new Peer();
+        peer.on("open", (id) => {
+            connection(peer.connect(token));
+        });
+
+        peer.on('connection', (conn) => connection(conn));
+
+        function connection(conn) {
+            conn.on("open", () => {
+                accountsDB.on('value', function (accounts) {
+                    gamesDB.on('value', function (games) {
+                        let data = [];
+                        data.push(accounts);
+                        data.push(games);
+                        conn.send(data);
+
+                        conn.on('data', (data) => {
+                            var tempDB = data;
+                            if (action === 'push' && path === '[0].gs') {
+                                alert(path.charAt(1))
+                            }
+                        });
+                    });
+                });
+            });
+            conn.on("close", () => {
+
+            });
+        }
+    } else {
+        window.close();
+    }
+
+    if (!window.opener) {
+        window.location.href = 'https://retronetwork.codehs.me/error?e=403'
+    }
+    
+    var timer = setInterval(function () {
+        if (!window.opener) {
+            window.close();
+        }
+    }, 100);
 </script>
 <div class="square-loader">
     <div></div>
