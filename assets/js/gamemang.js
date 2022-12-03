@@ -1,5 +1,6 @@
-setInterval(() => {
+var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
+        clearInterval(fbjsLoader)
         var gameId = null;
         const nav = document.querySelector('.navbar');
         const gameDB = database.ref('games');

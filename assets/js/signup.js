@@ -1,5 +1,6 @@
-setInterval(() => {
+var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
+        clearInterval(fbjsLoader)
         const form = document.getElementById('signup');
         const username = document.getElementById('username');
         const pswrd = document.getElementById('pswrd');
