@@ -36,7 +36,7 @@ var fbjsLoader = setInterval(() => {
                 }
             });
 
-            document.qyerSelector('.games').innerHTML = '';
+            document.querySelector('.games').innerHTML = '';
             for (let i = 0; i < games.gs.length; i++) {
                 gameList.push(games.gs[i].name)
                 var game = document.createElement('div');
