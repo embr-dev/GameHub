@@ -16,7 +16,7 @@ function proxy(data) {
     } else if (proxyValid === false) {
         return data;
     } else {
-        alert('the data is invalid')
+        return data;
     }
 }
 
