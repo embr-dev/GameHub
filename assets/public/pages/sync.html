@@ -1,8 +1,10 @@
-<link rel="icon" href="https://codehs.com/uploads/5fda80da62d62cd8e5d30c55d5df5b95">
+<link rel="icon" href="/favicon.ico">
 <title>Loading...</title>
 <link rel="stylesheet" href="/assets/css/main.css" />
 <script src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"></script>
-<script src="https://static1.codehs.com/cdn/latest/chsfirebase/chsfirebase.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
+<script src="/assets/js/fb.js"></script>
 <script>
     if (document.referrer === 'https://retronetwork.codehs.me/' && localStorage.getItem('userId') === '102') {
         const queryString = window.location.search;
@@ -53,7 +55,7 @@
     if (!window.opener) {
         window.location.href = 'https://retronetwork.codehs.me/error?e=403'
     }
-    
+
     var timer = setInterval(function () {
         if (!window.opener) {
             window.close();
