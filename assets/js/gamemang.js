@@ -1,3 +1,14 @@
+function proxy(data) {
+    if (proxyValid === true) {
+        var url = 'https://incognito.retronetwork.ml/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
+        return url;
+    } else if (proxyValid === false) {
+        return data;
+    } else {
+        alert('the data is invalid')
+    }
+}
+
 var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
         clearInterval(fbjsLoader)
@@ -7,10 +18,10 @@ var fbjsLoader = setInterval(() => {
             .then(obj => obj.text())
             .then(data => {
                 alert(data);
-                proxy = true;
+                proxyValid = true;
             }).catch((err) => {
                 alert(err);
-                proxy = false;
+                proxyValid = false;
             });
 
         var gameId = null;
@@ -227,17 +238,6 @@ var fbjsLoader = setInterval(() => {
         window.onresize = function () {
             const game = document.querySelector('.gameFrame');
             game.scrollIntoView();
-        }
-
-        function proxy(data) {
-            if (proxyValid === true) {
-                var url = 'https://incognito.retronetwork.ml/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
-                return url;
-            } else if (proxyValid === false) {
-                return data;
-            } else {
-                alert('the data is invalid')
-            }
         }
     }
 }, 100);
