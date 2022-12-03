@@ -101,14 +101,14 @@ var fbjsLoader = setInterval(() => {
                         document.body.appendChild(frame);
 
                         window.onmessage = (e) => {
-                            if (e.accounts) {
-                                tempDB[userId - 1].pfp = e.accounts;
+                            if (e.data) {
+                                tempDB[userId - 1].pfp = e.data;
                                 accountsDB.set(tempDB)
                                 setTimeout(() => {
                                     window.parent.location.reload();
                                 }, 2000);
                             } else {
-                                alert('???')
+                                alert('Could not proccess your request. Please try again later.')
                             }
                         }
                     });
