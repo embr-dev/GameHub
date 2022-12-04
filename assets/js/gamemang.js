@@ -9,7 +9,7 @@ fetch('https://incognito.retronetwork.ml/service/' + encodeURIComponent('https:/
         proxyValid = false;
     });
 
-function proxy(data) {
+function proxy (data) {
     if (proxyValid === true) {
         var url = 'https://incognito.retronetwork.ml/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
         //return url;
@@ -74,7 +74,7 @@ var fbjsLoader = setInterval(() => {
                     //}
                 }
                 game.title = games.gs[i].name
-                game.innerHTML = `<img src="${proxy(games.gs[i].thumb)}"/><p>${games.gs[i].name}</p>`
+                game.innerHTML = `<img src="${games.gs[i].thumb}"/><p>${games.gs[i].name}</p>`
                 document.querySelector('.games').appendChild(game);
                 game.addEventListener('click', (e) => {
                     openGame(i);
@@ -205,15 +205,28 @@ var fbjsLoader = setInterval(() => {
                             gameRating[id].rating = -1
                             //alert(codec.encode('0'))
                         });
+                        var prevRand;
+
                         const recomendedGames = frame.querySelectorAll('.gameThumb');
                         for (let i = 0; i < recomendedGames.length; i++) {
-                            const randomNum = Math.floor(Math.random() * games.gs.length)
-                            const randGame = games.gs[randomNum]
-                            recomendedGames[i].innerHTML = `<img src="${proxy(randGame.thumb)}" title="${randGame.name}"></img>`;
+                            let randomNum = Math.floor(Math.random() * games.gs.length);
+                            const randGame = games.gs[randomNum];
+                            if (prevRand !== randomNum || randomNum !== id) {
+                                recomendedGames[i].innerHTML = `<img src="${randGame.thumb}" title="${randGame.name}"></img>`;
+                            } else {
+                                randomNum = Math.floor(Math.random() * games.gs.length);
+                                if (prevRand !== randomNum || randomNum !== id) {
+                                    recomendedGames[i].innerHTML = `<img src="${randGame.thumb}" title="${randGame.name}"></img>`;
+                                } else {
+                                    alert('An error occoured while trying to load the game recomendations. Please refresh to try again.');
+                                    eval(error('unknown'))
+                                }
+                            }
                             recomendedGames[i].addEventListener('click', (e) => {
                                 document.querySelector('.innerGame').remove();
                                 openGame(randomNum);
                             });
+                            prevRand = randomNum;
                         }
                         frame.querySelector('.logo').addEventListener('click', (e) => {
                             closeGame();
