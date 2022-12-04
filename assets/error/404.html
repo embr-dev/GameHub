@@ -17,7 +17,6 @@
         html {
             overflow: hidden;
             text-align: center;
-            background-image: url("/assets/img/background.jpeg");
             background-attachment: fixed;
             background-position: center;
             background-repeat: no-repeat;
@@ -27,12 +26,20 @@
 </head>
 
 <body>
-
     <body class="modalpage">
         <div class="box">
             <h1 class="subtitle is-4">Error 404</h1>
             <p>The page you tried to access could not be found. <a href="/">Home</a></p>
         </div>
+        <script>
+            if (window.location.host !== 'gh.retronetwork.ml') {
+                document.body.style = `background-image: url("https://${window.location.host.replace(window.location.host.split('.')[0], '').replace('.', '')}/assets/img/background.jpeg");`;
+
+                for (let i = 0; i < document.querySelectorAll('link').length; i++) {
+                    document.querySelectorAll('link')[i].src = `https://${window.location.host.replace(window.location.host.split('.')[0], '').replace('.', '')}` + document.querySelectorAll('link')[i];
+                }
+            }
+        </script>
     </body>
 
 </html>
