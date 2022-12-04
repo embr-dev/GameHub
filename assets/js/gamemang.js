@@ -12,7 +12,8 @@ fetch('https://incognito.retronetwork.ml/service/' + encodeURIComponent('https:/
 function proxy(data) {
     if (proxyValid === true) {
         var url = 'https://incognito.retronetwork.ml/service/' + encodeURIComponent(data.toString().split('').map((char, ind) => ind % 2 ? String.fromCharCode(char.charCodeAt() ^ 2) : char).join(''));
-        return url;
+        //return url;
+        return data;
     } else if (proxyValid === false) {
         return data;
     } else {
