@@ -40,11 +40,8 @@
 
                     gamesDB.on('value', function (data) {
                         const games = data.val();
-
-                        alert(games.gs.length);
                         tempDB = games;
                     });
-                    alert(JSON.stringify(tempDB.gs[tempDB.gs.length - 1]) + '\n\n' + JSON.stringify(tempDB.gameComments[tempDB.gameComments.length - 1]) + '\n\n' + tempDB.gs.length);
                 });
             });
         } else {
