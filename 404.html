@@ -1,6 +1,6 @@
 <script>
     fetch('/assets/JSON/pages.json')
-        .then(obj => obj.text())
+        .then(obj => obj.json())
         .then(pages => {
             var dataLoaded = false;
             var generationPath;
