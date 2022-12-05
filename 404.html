@@ -32,7 +32,7 @@
                         fetch('/assets/JSON/pageGeneration.json')
                             .then(obj => obj.json())
                             .then(data => {
-                                var stuff = 
+                                var stuff = eval('data.'+generationPath);
                                 console.log(stuff)
                             });
                     } else {
