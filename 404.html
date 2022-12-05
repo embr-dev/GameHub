@@ -23,6 +23,7 @@
 
             var interval = setInterval(() => {
                 if (dataLoaded === true) {
+                    clearInterval(interval);
                     if (isGeneratable === false) {
                         fetch('/assets/error/404.html')
                             .then(obj => obj.text())
