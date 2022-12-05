@@ -1,1 +1,40 @@
-<script>fetch('/assets/error/404.html').then(obj => obj.text()).then(error => {document.documentElement.innerHTML = error;})</script>
+<script>
+    fetch('/assets/JSON/pages.json')
+        .then(obj => obj.text())
+        .then(pages => {
+            var dataLoaded = false;
+            var generationPath;
+            var isGeneratable;
+
+            for (let i = 0; i < pages.generated.length; i++) {
+                if (window.location.pathname.includes(pages.generated[i]) === false) {
+                    generationPath = pages.generated[i];
+                    isGeneratable = true;
+                    dataLoaded = true;
+                }
+
+                if (pages.generated.length - 1 === i) {
+                    dataLoaded = true;
+                    if (!isGeneratable) {
+                        isGeneratable === false;
+                    }
+                }
+            }
+
+            var interval = setInterval(() => {
+                if (dataLoaded === true) {
+                    if (isGeneratable === false) {
+                        fetch('/assets/error/404.html')
+                            .then(obj => obj.text())
+                            .then(error => {
+                                document.documentElement.innerHTML = error;
+                            })
+                    } else if (isGeneratable === true) {
+                        alert('yay')
+                    } else {
+                        alert('An error occurred while loading the content. Please try again later.');
+                    }
+                }
+            }, 100);
+        });
+</script>
