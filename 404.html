@@ -7,7 +7,7 @@
             var isGeneratable;
 
             for (let i = 0; i < pages.generated.length; i++) {
-                if (window.location.pathname.includes(pages.generated[i]) === false) {
+                if (window.location.pathname.includes(pages.generated[i]) === true) {
                     generationPath = pages.generated[i];
                     isGeneratable = true;
                     dataLoaded = true;
