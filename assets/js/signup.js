@@ -1,3 +1,5 @@
+alert('DO NOT CREATE AN ACCOUNT. IF YOU HAVE ALREADY CREATED AN ACCOUNT ON GAMEHUB PLEASE LOGIN.')
+
 var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
         clearInterval(fbjsLoader)
@@ -84,11 +86,11 @@ var fbjsLoader = setInterval(() => {
                             isCreated = true;
                             if (!data) {
                                 users.push(user);
-                                accountsDB.set(users);
+                                //accountsDB.set(users);
                             } else {
                                 users = data;
                                 users.push(user);
-                                accountsDB.set(users);
+                                //accountsDB.set(users);
                             }
                             isCreated = true;
                         } else {
@@ -108,11 +110,11 @@ var fbjsLoader = setInterval(() => {
                             isCreated = true;
                             if (!data) {
                                 users.push(user);
-                                accountsDB.set(users);
+                                //accountsDB.set(users);
                             } else {
                                 users = data;
                                 users.push(user);
-                                accountsDB.set(users);
+                                //accountsDB.set(users);
                             }
                             isCreated = true;
                         }
