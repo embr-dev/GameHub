@@ -1,5 +1,5 @@
 {
-    "/games": {
+    "games": {
         "worker": "/assets/js/gamegeneration.js",
         "pages": "/generation/games/pages"
     }

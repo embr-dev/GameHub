@@ -8,16 +8,14 @@
 
             for (let i = 0; i < pages.generated.length; i++) {
                 if (window.location.pathname.includes(pages.generated[i]) === true) {
-                    generationPath = pages.generated[i];
+                    generationPath = pages.generated[i].replace('/', '');
                     isGeneratable = true;
                     dataLoaded = true;
                 }
 
-                if (pages.generated.length === i+1) {
+                if (pages.generated.length === i + 1) {
                     dataLoaded = true;
-                    if (!isGeneratable) {
-                        isGeneratable === false;
-                    }
+                    isGeneratable === false;
                 }
             }
 
@@ -31,7 +29,12 @@
                                 document.documentElement.innerHTML = error;
                             })
                     } else if (isGeneratable === true) {
-                        alert('yay')
+                        fetch('/assets/JSON/pageGeneration.json')
+                            .then(obj => obj.json())
+                            .then(data => {
+                                var stuff = 
+                                console.log(stuff)
+                            });
                     } else {
                         alert('An error occurred while loading the content. Please try again later.');
                     }
