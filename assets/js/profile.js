@@ -114,10 +114,7 @@ var fbjsLoader = setInterval(() => {
                     });
                 }
             } else {
-                localStorage.setItem('isLogin', false);
-                if (!window.location.href === '/signup') {
-                    window.location.href = '/signup';
-                }
+                window.location.href = '/?action=logout';
             }
         });
     }
