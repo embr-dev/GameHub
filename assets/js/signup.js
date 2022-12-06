@@ -59,7 +59,7 @@ var fbjsLoader = setInterval(() => {
             }
         }
         window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-            console.log('An internal error occurred. Please try again later.');
+            console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
             return false;
         }
         function f2(users, user) {
