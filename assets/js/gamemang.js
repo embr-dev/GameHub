@@ -177,11 +177,6 @@ var fbjsLoader = setInterval(() => {
                                 downFilled.classList.add('hidden');
                                 downFilled.dataset.val = 'false';
                             }
-                            gameRating[id].rating = 1
-                            //alert(codec.encode('1'))
-                            /*if (down.dataset.) {
-                                
-                            }*/
                         });
                         down.addEventListener('click', (e) => {
                             if (downFilled.dataset.val === 'false') {
@@ -219,7 +214,7 @@ var fbjsLoader = setInterval(() => {
                                     recomendedGames[i].innerHTML = `<img src="${randGame.thumb}" title="${randGame.name}"></img>`;
                                 } else {
                                     alert('An error occoured while trying to load the game recomendations. Please refresh to try again.');
-                                    eval(error('unknown'))
+                                    error('unknown')
                                 }
                             }
                             recomendedGames[i].addEventListener('click', (e) => {

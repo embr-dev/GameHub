@@ -59,7 +59,7 @@ var fbjsLoader = setInterval(() => {
             }
         }
         window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
-            console.log('An internal error occurred. Please try again later.');//or any message
+            console.log('An internal error occurred. Please try again later.');
             return false;
         }
         function f2(users, user) {
@@ -86,11 +86,11 @@ var fbjsLoader = setInterval(() => {
                             isCreated = true;
                             if (!data) {
                                 users.push(user);
-                                //accountsDB.set(users);
+                                accountsDB.set(users);
                             } else {
                                 users = data;
                                 users.push(user);
-                                //accountsDB.set(users);
+                                accountsDB.set(users);
                             }
                             isCreated = true;
                         } else {
@@ -110,11 +110,11 @@ var fbjsLoader = setInterval(() => {
                             isCreated = true;
                             if (!data) {
                                 users.push(user);
-                                //accountsDB.set(users);
+                                accountsDB.set(users);
                             } else {
                                 users = data;
                                 users.push(user);
-                                //accountsDB.set(users);
+                                accountsDB.set(users);
                             }
                             isCreated = true;
                         }
