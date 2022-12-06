@@ -47,21 +47,25 @@ var fbjsLoader = setInterval(() => {
                 });
             });
         }
+
         function displayErr(err, elid) {
             document.querySelector('.form').classList.remove('hidden')
             document.querySelector('.Loader').classList.add('hidden')
             document.getElementById(elid).innerText = err
         }
+
         function clearErrs() {
             const err = document.querySelectorAll('.err');
             for (let i = 0; i < err.length; i++) {
                 err[i].innerText = '';
             }
         }
+
         window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
             console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
             return false;
         }
+
         function f2(users, user) {
             accountsDB.on('value', function (accounts) {
                 const data = accounts.val();
@@ -124,24 +128,35 @@ var fbjsLoader = setInterval(() => {
         }
 
         function f1() {
-            accountsDB.on('value', function (accounts) {
-                const data = accounts.val();
-                if (data) {
-                    let usernames = [];
-                    for (let i = 0; i < data.length; i++) {
-                        usernames.push(data[i].username)
-                    }
-                    if (usernames.includes(username.value) === false) {
+            var accounts;
+            var dataLoaded = false;
+
+            accountsDB.on('value', function (data) {
+                accounts = data.val();
+                dataLoaded = true;
+            });
+
+            var interval = setInterval(() => {
+                if (dataLoaded === true) {
+                    clearInterval(interval)
+                    if (accounts) {
+                        let usernames = [];
+                        for (let i = 0; i < accounts.length; i++) {
+                            usernames.push(accounts[i].username);
+                        }
+
+                        if (usernames.includes(username.value) === false) {
+                            newAvatar()
+                            f2([], {})
+                        } else {
+                            displayErr('This username has already been taken', 'usernameErr');
+                        }
+                    } else {
                         newAvatar()
                         f2([], {})
-                    } else {
-                        displayErr('This username has already been taken', 'usernameErr');
                     }
-                } else {
-                    newAvatar()
-                    f2([], {})
                 }
-            });
+            }, 1000);
         }
         username.focus();
         form.addEventListener('submit', (event) => {
