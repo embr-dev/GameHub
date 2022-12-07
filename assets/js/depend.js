@@ -108,10 +108,12 @@ function audio_() {
             }
         }),
         (this.getYt = function (videoId) {
-            fetch(`https://pipedapi.adminforge.de/streams/${videoID}?hl=en&region=us`)
+            fetch(`https://pipedapi.adminforge.de/streams/${videoId}?hl=en&region=us`)
             .then(function (resp) {
                 return resp.json();
-            }).then(function (video) {
+            }).then(function (videoData) {
+                return videoData.audioStreams[0].url;
+            });
         })
 }
 
