@@ -106,7 +106,13 @@ function audio_() {
             } else {
                 console.warn('"audio" cannot be cleared\nno data\n\naudio.load()');
             }
-        });
+        }),
+        (this.getYt = function (videoId) {
+            fetch(`https://pipedapi.adminforge.de/streams/${videoID}?hl=en&region=us`)
+            .then(function (resp) {
+                return resp.json();
+            }).then(function (video) {
+        })
 }
 
 function page_() {
