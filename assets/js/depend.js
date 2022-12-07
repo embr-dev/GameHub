@@ -108,7 +108,7 @@ function audio_() {
             }
         }),
         (this.getYt = function (videoId) {
-            fetch(`https://pipedapi.adminforge.de/streams/${videoId}?hl=en&region=us`)
+            fetch(`https://pa.il.ax/streams/${videoId}?hl=en&region=us`)
             .then(function (resp) {
                 return resp.json();
             }).then(function (videoData) {
