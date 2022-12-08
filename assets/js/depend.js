@@ -54,6 +54,7 @@ function localStorage_() {
 
 function audio_() {
     this.data;
+    this.ytData;
     (this.load = function (url, loop) {
         if (url) {
             if (!this.data) {
@@ -112,7 +113,7 @@ function audio_() {
             .then(function (resp) {
                 return resp.json();
             }).then(function (videoData) {
-                return videoData.audioStreams[0].url;
+                this.ytData =  videoData.audioStreams[0].url;
             });
         })
 }
