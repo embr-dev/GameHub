@@ -113,7 +113,7 @@ function audio_() {
             .then(function (resp) {
                 return resp.json();
             }).then(function (videoData) {
-                this.ytData = videoData.audioStreams[0].url;
+                audio.ytData = videoData.audioStreams[0].url;
             });
         })
 }
