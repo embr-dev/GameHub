@@ -103,7 +103,7 @@ function audio_() {
                 } else {
                     audio.pause();
                     this.data = null;
-                }
+                } 
             } else {
                 console.warn('"audio" cannot be cleared\nno data\n\naudio.load()');
             }
