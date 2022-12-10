@@ -1,4 +1,4 @@
-alert('DO NOT CREATE AN ACCOUNT. IF YOU HAVE ALREADY CREATED AN ACCOUNT ON GAMEHUB PLEASE LOGIN.')
+alert('If you have not already created an account before the gamehub url was moved we are sorry to inform you that our databases have reached the max connection limit in only three days of the site being up.')
 
 var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {

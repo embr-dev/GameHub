@@ -1,3 +1,5 @@
+alert('If you have not already created an account before the gamehub url was moved we are sorry to inform you that our databases have reached the max connection limit in only three days of the site being up.');
+
 var fbjsLoader = setInterval(() => {
     if (fbjsLoaded === true) {
         clearInterval(fbjsLoader)
@@ -21,17 +23,17 @@ var fbjsLoader = setInterval(() => {
         }
 
         function f1() {
-            accountsDB.on('value', function (accounts) {
-                const data = accounts.val();
-                if (data) {
-                    for (let i = 0; i < data.length; i++) {
-                        const isUsername = username.value === data[i].username;
-                        const isPassword = pswrd.value === data[i].password;
+            accountsDB.on('value', function (data) {
+                const accounts = data.val();
+                if (accounts) {
+                    for (let i = 0; i < accounts.length; i++) {
+                        const isUsername = username.value === accounts[i].username;
+                        const isPassword = pswrd.value === accounts[i].password;
                         const isCorrect = isUsername && isPassword;
-                        const isLast = i + 1 === data.length;
+                        const isLast = i + 1 === accounts.length;
                         if (isCorrect) {
                             isValid = true;
-                            localStorage.setItem('userId', data[i].id)
+                            localStorage.setItem('userId', accounts[i].id)
                         } else {
                             if (isLast && isValid === false) {
                                 displayErr('The requested account does not exist.', 'usernameErr');
