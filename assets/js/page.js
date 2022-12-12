@@ -9,9 +9,11 @@ if (path === '/') {
     const database = firebase.database();
 
     const accountsDB = database.ref('accounts');
-    accountsDB.on('value', function (data) {
-        document.querySelector('.user-count').innerText = Math.ceil(data.val().length / 100) * 100 - 100;
-    });
+    fetch('https://api.retronetwork.ml/GameHub/userCount')
+        .then(obj => obj.json())
+        .then(count => {
+            document.querySelector('.user-count').innerText = Math.ceil(count.length / 100) * 100 - 100;
+        });
 }
 
 if (path === '/home') {

@@ -4,8 +4,6 @@ window.history.pushState({}, '', window.location.pathname);
 const urlParams = new URLSearchParams(queryString);
 const action = urlParams.get('action');
 
-var fbjsLoaded = false;
-
 function error(errCode) {
     fetch('/assets/JSON/errors.json')
         .then(resp => resp.json())

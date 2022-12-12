@@ -20,9 +20,6 @@
   <span class="closeModalPannel">
     <i class="fa-solid fa-xmark"></i>
   </span>
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
-  <script src="/assets/js/fb.js"></script>
   <div class="comments"></div>
   <div class="post-comment">
     <textarea class="textarea" placeholder="Add a comment..." data-attr="comment-subject"></textarea>
@@ -35,46 +32,51 @@
     const gameId = urlParams.get("id");
     const gamesDB = database.ref("games");
     const accountsDB = database.ref("accounts");
-    gamesDB.on("value", function (data) {
-      const games = data.val();
-      accountsDB.on("value", function (data2) {
-        const accounts = data2.val();
-        for (let i = games.gameComments[gameId].length - 1; i >= 0; i--) {
-          var comment = document.createElement("div");
-          comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${accounts[games.gameComments[gameId][i].author - 1].pfp}');"></div></figure><div class="media-content"><p><strong class="author">${accounts[games.gameComments[gameId][i].author - 1].username}</strong> <small class="author">@${accounts[games.gameComments[gameId][i].author - 1].username.toLowerCase()}</small></p><p class="comment-subject">${games.gameComments[gameId][i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
-          comment.classList = "comment";
-          document.querySelector(".comments").appendChild(comment);
-        }
-        const userId = localStorage.getItem("userId");
-        const subject = document.querySelector('[data-attr="comment-subject"]');
-        const commentSubmit = document.querySelector('[data-func="submit-comment"]');
-        commentSubmit.addEventListener("click", (e) => {
-          if (subject.value) {
-            var temp_db = games;
-            var comment = {
-              author: userId,
-              subject: subject.value,
-            };
-            temp_db.gameComments[gameId].push(comment);
-            //delete temp_db.gameComments[gameId][2];
-            subject.value = "";
-            gamesDB.set(temp_db);
-            document.querySelector(".comments").innerHTML = "";
-            for (let i = games.gameComments[gameId].length - 1; i >= 0; i--) {
-              var comment = document.createElement("div");
-              comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${accounts[games.gameComments[gameId][i].author - 1].pfp}');"></div></figure><div class="media-content"><p><strong class="author">${accounts[games.gameComments[gameId][i].author - 1].username}</strong> <small class="author">@${accounts[games.gameComments[gameId][i].author - 1].username.toLowerCase()}</small></p><p class="comment-subject">${games.gameComments[gameId][i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
-              comment.classList = "comment";
-              document.querySelector(".comments").appendChild(comment);
-            }
+    fetch(`https://api.retronetwork.ml/GameHub/games/${gameId}/comments`)
+      .then(obj => obj.json())
+      .then(comments => {
+        accountsDB.on("value", function (data2) {
+          const accounts = data2.val();
+          for (let i = comments.length - 1; i >= 0; i--) {
+            var comment = document.createElement("div");
+            comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${comments[i].profile}');"></div></figure><div class="media-content"><p><strong class="author">${comments[i].username}</strong> <small class="author">@${comments[i].username.toLowerCase()}</small></p><p class="comment-subject">${comments[i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
+            comment.classList = 'comment';
+            document.querySelector('.comments').appendChild(comment);
           }
-        });
-        document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
-          window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[0].classList.remove("hidden");
-          window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[1].classList.add("hidden");
-          window.parent.document.querySelector(".commentContainer").classList.add("hidden");
+          const userId = localStorage.getItem("userId");
+          const subject = document.querySelector('[data-attr="comment-subject"]');
+          const commentSubmit = document.querySelector('[data-func="submit-comment"]');
+          commentSubmit.addEventListener("click", (e) => {
+            if (subject.value) {
+              const comment = {
+                author: userId,
+                subject: subject.value,
+              };
+
+              let xhr = new XMLHttpRequest();
+              xhr.open("POST", `https://api.retronetwork.ml/GameHub/games/${gameId}/comments/post`);
+              xhr.setRequestHeader("Accept", "application/json");
+              xhr.setRequestHeader("Content-Type", "application/json");
+
+              xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                  console.log(xhr.status);
+                  console.log(xhr.responseText);
+                }
+              };
+
+              xhr.send(comment);
+
+              location.reload();
+            }
+          });
+          document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
+            window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[0].classList.remove("hidden");
+            window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[1].classList.add("hidden");
+            window.parent.document.querySelector(".commentContainer").classList.add("hidden");
+          });
         });
       });
-    });
   </script>
 </body>
 
