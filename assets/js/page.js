@@ -6,9 +6,7 @@ if (path === '/') {
         localStorage.removeItem('userId');
         localStorage.removeItem('username');
     }
-    const database = firebase.database();
-
-    const accountsDB = database.ref('accounts');
+    
     fetch('https://api.retronetwork.ml/GameHub/userCount')
         .then(obj => obj.text())
         .then(count => {

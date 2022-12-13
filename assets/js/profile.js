@@ -1,17 +1,15 @@
 //alert(codec.decode(codec.encode('hi')))
 const usernameDisplay = document.querySelector('#username');
 const userId = localStorage.getItem('userId');
-const accountsDB = database.ref('accounts');
-accountsDB.on('value', function (data) {
-    const accounts = data.val();
-
-    if (accounts[userId - 1]) {
+fetch(`https://api.retronetwork.ml/GameHub/users/${userId}`)
+    .then(obj => obj.json())
+    .then(account => {
         var pfpstyles = document.createElement("style");
-        pfpstyles.innerHTML = `.profile-icon{background-image:url("${accounts[userId - 1].pfp}");}`
+        pfpstyles.innerHTML = `.profile-icon{background-image:url("${account.profile}");}`
         document.head.appendChild(pfpstyles);
 
         if (window.location.pathname !== '/assets/pages/profile.html') {
-            usernameDisplay.innerText = accounts[userId - 1].username;
+            usernameDisplay.innerText = account.username;
             loaded++
         }
 
@@ -26,8 +24,8 @@ accountsDB.on('value', function (data) {
             const loader = document.querySelector('.lds-spinner');
             const overlay = document.querySelector('.uploadIcon');
             const inputBtn = document.querySelector('.button.is-rounded.is-danger.has-right-sharp');
-            pfp.style.backgroundImage = `url("${accounts[userId - 1].pfp}")`;
-            usernameInput.value = accounts[userId - 1].username;
+            pfp.style.backgroundImage = `url("${account.profile}")`;
+            usernameInput.value = account.username;
             idDisplay.innerText = '#' + userId;
             loader.classList.add('hidden');
             closeBtn.addEventListener('click', (event) => {
@@ -37,15 +35,15 @@ accountsDB.on('value', function (data) {
             });
 
             /*usernameInput.addEventListener('click', (event) => {
-                usernameInput.value = accounts[userId - 1].username;
-
+                usernameInput.value = account.username;
+ 
                 document.querySelector('.usernameForm').classList.remove('hidden');
                 edit.classList.add('hidden');
                 username.classList.add('hidden');
                 idDisplay.classList.add('hidden');
-
+ 
                 usernameInput.focus();
-            });*/
+            });
 
             document.querySelector('.usernameForm').addEventListener('submit', (event) => {
                 event.preventDefault();
@@ -63,7 +61,6 @@ accountsDB.on('value', function (data) {
                         } else {
                             if (usernames.includes(usernameInput.value) === false) {
                                 tempDB[userId - 1].username = usernameInput.value;
-                                //accountsDB.set(tempDB)
                             } else {
                                 alert('This username is already taken.');
                                 usernameInput.value = accounts[userId - 1].username;
@@ -78,7 +75,7 @@ accountsDB.on('value', function (data) {
                     usernameInput.readOnly = false;
                     usernameInput.focus();
                 }
-            });
+            });*/
 
             pfp.addEventListener('mouseover', (event) => {
                 overlay.classList.remove('hidden');
@@ -98,19 +95,16 @@ accountsDB.on('value', function (data) {
                 document.body.appendChild(frame);
 
                 window.onmessage = (e) => {
-                    if (e.data) {
+                    alert('You cannot change your profile picture at this time')
+                    /*if (e.data) {
                         tempDB[userId - 1].pfp = e.data;
-                        accountsDB.set(tempDB)
                         setTimeout(() => {
                             window.parent.location.reload();
                         }, 2000);
                     } else {
                         alert('Could not proccess your request. Please try again later.')
-                    }
+                    }*/
                 }
             });
         }
-    } else {
-        window.location.href = '/?action=logout';
-    }
-});
+    });

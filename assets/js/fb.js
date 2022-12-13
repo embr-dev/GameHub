@@ -1,1 +1,0 @@
-alert('The databases are are currently down because the free plan expired. Construction on a new database and api is under way and hopefuly be done by Wensday 12/14/22.')
