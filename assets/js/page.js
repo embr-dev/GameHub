@@ -10,7 +10,7 @@ if (path === '/') {
 
     const accountsDB = database.ref('accounts');
     fetch('https://api.retronetwork.ml/GameHub/userCount')
-        .then(obj => obj.json())
+        .then(obj => obj.text())
         .then(count => {
             document.querySelector('.user-count').innerText = Math.ceil(count.length / 100) * 100 - 100;
         });
