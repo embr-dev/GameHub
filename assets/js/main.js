@@ -4,6 +4,11 @@ window.history.pushState({}, '', window.location.pathname);
 const urlParams = new URLSearchParams(queryString);
 const action = urlParams.get('action');
 
+window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+    console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
+    return false;
+}
+
 function error(errCode) {
     fetch('/assets/JSON/errors.json')
         .then(resp => resp.json())
