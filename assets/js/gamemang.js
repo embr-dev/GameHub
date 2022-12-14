@@ -20,11 +20,7 @@ fetch('https://api.retronetwork.ml/GameHub/games')
 
                 for (let i = 0; i < document.querySelectorAll('.game').length; i++) {
                     const isSearch = document.querySelectorAll('.game')[i].title.toLowerCase().includes(searchBar.value.toLowerCase());
-                    if (!isSearch) {
-                        document.querySelectorAll('.game')[i].classList.add('hidden');
-                    } else {
-                        document.querySelectorAll('.game')[i].classList.remove('hidden');
-                    }
+                    document.querySelectorAll('.game')[i].classList.add('hidden');
                 }
             } else {
                 window.history.pushState({}, "", window.location.pathname);
@@ -61,7 +57,7 @@ function openGame(id) {
         .then(game => {
             var gameElement = document.createElement('iframe');
             gameElement.classList = 'innerGame';
-            gameElement.src = '/assets/public/gs/game';
+            gameElement.src = '/assets/public/gs/game.html';
             gameElement.title = game.name;
             nav.classList.add('hidden');
             document.body.classList.add('noscroll');
