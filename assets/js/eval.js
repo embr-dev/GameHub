@@ -1,4 +1,4 @@
-const logsDB = database.ref('logs');
+/*const logsDB = database.ref('logs');
 const macroScriptsDB = database.ref('snippets');
 
 var mainLogs;
@@ -77,4 +77,4 @@ setInterval(() => {
             mainLogs = logs;
         }
     });
-}, 5000);
+}, 5000);*/

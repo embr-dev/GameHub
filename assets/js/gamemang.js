@@ -1,6 +1,4 @@
 const nav = document.querySelector('.navbar');
-const gameDB = database.ref('games');
-const accountDB = database.ref('accounts');
 fetch('https://api.retronetwork.ml/GameHub/games')
     .then(obj => obj.json())
     .then(games => {
