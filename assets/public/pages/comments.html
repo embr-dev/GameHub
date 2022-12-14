@@ -58,12 +58,14 @@
               if (xhr.readyState === 4) {
                 console.log(xhr.status);
                 console.log(xhr.responseText);
+
+                setTimeout(() => {
+                  location.reload();
+                }, 1000);
               }
             };
 
             xhr.send(comment);
-
-            location.reload();
           }
         });
         document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
