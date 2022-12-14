@@ -60,7 +60,7 @@ function openGame(id) {
             var gameElement = document.createElement('iframe');
             gameElement.classList = 'innerGame';
             gameElement.src = '/assets/public/gs/game';
-            gameElement.title = games[id].name;
+            gameElement.title = game.name;
             nav.classList.add('hidden');
             document.body.classList.add('noscroll');
             gFrame.appendChild(gameElement);
@@ -81,9 +81,9 @@ function openGame(id) {
                 const upUnfilled = up.querySelectorAll('svg')[0];
                 const downUnfilled = down.querySelectorAll('svg')[0];
 
-                frame.querySelector('.mainGame').src = game[id].url;
-                frame.querySelector('.gameTitle').innerText = game[id].name;
-                up.querySelectorAll('p').innerText = game[id].rating;
+                frame.querySelector('.mainGame').src = game.url;
+                frame.querySelector('.gameTitle').innerText = game.name;
+                up.querySelectorAll('p').innerText = game.rating;
 
                 frame.querySelector('[data-attr="fullscreen"]').addEventListener('click', (e) => {
                     frame.querySelector('.mainGame').requestFullscreen();
@@ -148,7 +148,7 @@ function openGame(id) {
                     //alert(codec.encode('0'))
                 });
 
-                fetch(`https://api.retronetwork.ml/GameHub/games/${id}`)
+                fetch(`https://api.retronetwork.ml/GameHub/games/${id}/recomendations`)
                     .then(obj => obj.json())
                     .then(recomendations => {
                         const recomendedGames = frame.querySelectorAll('.gameThumb');
