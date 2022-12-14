@@ -150,7 +150,7 @@ function openGame(id) {
                     .then(obj => obj.json())
                     .then(recomendations => {
                         const recomendedGames = frame.querySelectorAll('.gameThumb');
-                        for (let i = 0; i < recomendedGames.length; i++) {
+                        for (let i = 0; i < recomendations.length; i++) {
                             recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}"></img>`;
 
                             recomendedGames[i].addEventListener('click', (e) => {
