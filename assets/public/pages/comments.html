@@ -49,6 +49,8 @@
               subject: subject.value,
             };
 
+            subject.value = '';
+
             let xhr = new XMLHttpRequest();
             xhr.open("POST", `https://api.retronetwork.ml/GameHub/games/${gameId}/comments/post`);
             xhr.setRequestHeader("Accept", "application/json");
@@ -56,12 +58,12 @@
 
             xhr.onreadystatechange = function () {
               if (xhr.readyState === 4) {
-                console.log(xhr.status);
-                console.log(xhr.responseText);
+                alert(xhr.status);
+                alert(xhr.responseText);
 
                 setTimeout(() => {
                   location.reload();
-                }, 1000);
+                }, 4000);
               }
             };
 
