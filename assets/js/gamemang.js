@@ -146,7 +146,7 @@ function openGame(id) {
                     //alert(codec.encode('0'))
                 });
 
-                fetch(`https://api.retronetwork.ml/GameHub/games/${id}/recomendations`)
+                fetch(`https://api.retronetwork.ml/GameHub/games/${id}/recomended`)
                     .then(obj => obj.json())
                     .then(recomendations => {
                         const recomendedGames = frame.querySelectorAll('.gameThumb');

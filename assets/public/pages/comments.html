@@ -30,51 +30,46 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const gameId = urlParams.get("id");
-    const gamesDB = database.ref("games");
-    const accountsDB = database.ref("accounts");
     fetch(`https://api.retronetwork.ml/GameHub/games/${gameId}/comments`)
       .then(obj => obj.json())
       .then(comments => {
-        accountsDB.on("value", function (data2) {
-          const accounts = data2.val();
-          for (let i = comments.length - 1; i >= 0; i--) {
-            var comment = document.createElement("div");
-            comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${comments[i].profile}');"></div></figure><div class="media-content"><p><strong class="author">${comments[i].username}</strong> <small class="author">@${comments[i].username.toLowerCase()}</small></p><p class="comment-subject">${comments[i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
-            comment.classList = 'comment';
-            document.querySelector('.comments').appendChild(comment);
+        for (let i = comments.length - 1; i >= 0; i--) {
+          var comment = document.createElement("div");
+          comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${comments[i].profile}');"></div></figure><div class="media-content"><p><strong class="author">${comments[i].username}</strong> <small class="author">@${comments[i].username.toLowerCase()}</small></p><p class="comment-subject">${comments[i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
+          comment.classList = 'comment';
+          document.querySelector('.comments').appendChild(comment);
+        }
+        const userId = localStorage.getItem("userId");
+        const subject = document.querySelector('[data-attr="comment-subject"]');
+        const commentSubmit = document.querySelector('[data-func="submit-comment"]');
+        commentSubmit.addEventListener("click", (e) => {
+          if (subject.value) {
+            const comment = {
+              author: userId,
+              subject: subject.value,
+            };
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", `https://api.retronetwork.ml/GameHub/games/${gameId}/comments/post`);
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onreadystatechange = function () {
+              if (xhr.readyState === 4) {
+                console.log(xhr.status);
+                console.log(xhr.responseText);
+              }
+            };
+
+            xhr.send(comment);
+
+            location.reload();
           }
-          const userId = localStorage.getItem("userId");
-          const subject = document.querySelector('[data-attr="comment-subject"]');
-          const commentSubmit = document.querySelector('[data-func="submit-comment"]');
-          commentSubmit.addEventListener("click", (e) => {
-            if (subject.value) {
-              const comment = {
-                author: userId,
-                subject: subject.value,
-              };
-
-              let xhr = new XMLHttpRequest();
-              xhr.open("POST", `https://api.retronetwork.ml/GameHub/games/${gameId}/comments/post`);
-              xhr.setRequestHeader("Accept", "application/json");
-              xhr.setRequestHeader("Content-Type", "application/json");
-
-              xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                  console.log(xhr.status);
-                  console.log(xhr.responseText);
-                }
-              };
-
-              xhr.send(comment);
-
-              location.reload();
-            }
-          });
-          document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
-            window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[0].classList.remove("hidden");
-            window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[1].classList.add("hidden");
-            window.parent.document.querySelector(".commentContainer").classList.add("hidden");
-          });
+        });
+        document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
+          window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[0].classList.remove("hidden");
+          window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[1].classList.add("hidden");
+          window.parent.document.querySelector(".commentContainer").classList.add("hidden");
         });
       });
   </script>
