@@ -50,7 +50,7 @@ function openGame(id) {
     gFrame.classList.remove('hidden');
     gameDatabase.classList.add('hidden');
     document.querySelector('.database_nav').classList.add('hidden');
-    fetch(`https://api.retronetwork.ml/GameHub/games/${id}`)
+    fetch(`https://api.retronetwork.ml/GameHub/games/${id}?hostname=${window.location.host}`)
         .then(obj => obj.json())
         .then(game => {
             var gameElement = document.createElement('iframe');
