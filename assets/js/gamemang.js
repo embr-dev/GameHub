@@ -53,6 +53,8 @@ function openGame(id) {
     fetch(`https://api.retronetwork.ml/GameHub/games/${id}?hostname=${window.location.host}`)
         .then(obj => obj.json())
         .then(game => {
+            alert(game.url)
+
             var gameElement = document.createElement('iframe');
             gameElement.classList = 'innerGame';
             gameElement.src = '/assets/public/gs/game.html';
