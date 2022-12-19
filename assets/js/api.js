@@ -16,11 +16,7 @@ async function api(route = '', data = {}, method, reqType, resType) {
                 },
                 redirect: 'follow',
                 referrerPolicy: 'no-referrer',
-                body: function () {
-                    if (resType == 'json') {
-                        JSON.stringify(data)
-                    }
-                }
+                body: JSON.stringify(data)
             });
 
             if (resType == 'json') {
@@ -43,13 +39,7 @@ async function api(route = '', data = {}, method, reqType, resType) {
                 },
                 redirect: 'follow',
                 referrerPolicy: 'no-referrer',
-                body: function () {
-                    if (resType == 'json') {
-                        return JSON.stringify(data);
-                    } else {
-                        return data;
-                    }
-                }
+                body: JSON.stringify(data)
             });
 
             if (resType == 'json') {

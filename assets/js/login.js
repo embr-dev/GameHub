@@ -31,7 +31,7 @@ form.addEventListener('submit', (event) => {
             username.focus();
         }
     } else {
-        api('/login', { username: username.value, password: pswrd.value }, 'post', 'application/json', 'text')
+        api('/login', { username: username.value, password: pswrd.value }, 'post', 'application/json', 'json')
             .then(response => {
                 alert(response);
                 if (response) {
