@@ -61,10 +61,14 @@
 
               apiPost(`/games/${gameId}/comments/post`, comment, 'json')
                 .then(res => {
-                  if (res.valid) {
-                    location.reload()
+                  alert(res.valid);
+                  alert(JSON.stringify(res))
+
+                  if (res.valid === true) {
+                    location.reload();
                   } else {
-                    alert('There was an error posting your comment')
+                    alert('There was an error posting your comment');
+                    location.reload();
                   }
                 });
             }
