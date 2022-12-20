@@ -32,19 +32,21 @@ form.addEventListener('submit', (event) => {
         }
     } else {
         apiPost('/login', { username: username.value, password: pswrd.value }, 'json')
-            .then(response => {
-                if (response.valid === true) {
+            .then(res => {
+                console.log(res.errorMsg)
+
+                if (res.valid === true) {
                     document.querySelector('.Loader').classList.remove('hidden');
                     document.querySelector('.form').classList.add('hidden');
                     localStorage.setItem('isLogin', true);
-                    localStorage.setItem('userId', response.id)
+                    localStorage.setItem('userId', res.id)
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
-                    window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${response.id}&uft=true`
-                } else if (response.errorMsg == 'missing credentials') {
+                    window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
+                } else if (res.errorMsg == 'missing credentials') {
                     username.focus();
                     displayErr('Please fill out this field', 'usernameErr');
                     displayErr('Please fill out this field', 'pswrdErr');
-                } else if (response.errorMsg == 'invalid credentials') {
+                } else if (res.errorMsg == 'invalid credentials') {
                     displayErr('The requested account does not exist', 'usernameErr');
                 } else {
                     displayErr('An internal error occoured please try again later', 'usernameErr');
