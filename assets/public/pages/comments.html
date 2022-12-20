@@ -61,9 +61,6 @@
 
               apiPost(`/games/${gameId}/comments/post`, comment, 'json')
                 .then(res => {
-                  alert(res.valid);
-                  alert(JSON.stringify(res))
-
                   if (res.valid === true) {
                     location.reload();
                   } else {
