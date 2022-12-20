@@ -40,7 +40,6 @@ form.addEventListener('submit', (event) => {
                     document.querySelector('.form').classList.add('hidden')
                     var interval = setInterval(() => {
                         if (isValid === true) {
-                            clearInterval(interval);
                             localStorage.setItem('isLogin', true);
                             localStorage.setItem('userId', response.id)
                             document.querySelector('#loadingText').innerText = 'Logging you in...';
