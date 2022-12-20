@@ -42,15 +42,8 @@ form.addEventListener('submit', (event) => {
                     localStorage.setItem('userId', res.id)
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
                     window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
-                } else if (res.errorMsg == 'invalid') {
-                    displayErr('The requested account does not exist', 'usernameErr');
-                } else if (res.errorMsg == 'nodata') {
-                    username.focus();
-                    displayErr('Please fill out this field', 'usernameErr');
-                    displayErr('Please fill out this field', 'pswrdErr');
                 } else {
-                    displayErr('An internal error occoured please try again later', 'usernameErr');
-                    alert(res.errorMsg)
+                    displayErr('The requested account does not exist', 'usernameErr');
                 }
             });
     }
