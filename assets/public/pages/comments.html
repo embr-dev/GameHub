@@ -17,54 +17,72 @@
 </head>
 
 <body>
-  <span class="closeModalPannel">
-    <i class="fa-solid fa-xmark"></i>
-  </span>
-  <div class="comments"></div>
-  <div class="post-comment">
-    <textarea class="textarea" placeholder="Add a comment..." data-attr="comment-subject"></textarea>
-    <br>
-    <button class="button is-info" data-func="submit-comment">Post</button>
-  </div>
-  <script src="/assets/js/api.js"></script>
-  <script>
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const gameId = urlParams.get("id");
-    fetch(`https://api.retronetwork.ml/GameHub/games/${gameId}/comments`)
-      .then(obj => obj.json())
-      .then(comments => {
-        for (let i = comments.length - 1; i >= 0; i--) {
-          var comment = document.createElement("div");
-          comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${comments[i].profile}');"></div></figure><div class="media-content"><p><strong class="author">${comments[i].username}</strong> <small class="author">@${comments[i].username.toLowerCase()}</small></p><p class="comment-subject">${comments[i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
-          comment.classList = 'comment';
-          document.querySelector('.comments').appendChild(comment);
-        }
-        const userId = localStorage.getItem("userId");
-        const subject = document.querySelector('[data-attr="comment-subject"]');
-        const commentSubmit = document.querySelector('[data-func="submit-comment"]');
-        commentSubmit.addEventListener("click", (e) => {
-          if (subject.value) {
-            const comment = {
-              author: userId,
-              subject: subject.value,
-            };
+  <div class="main hidden">
+    <span class="closeModalPannel">
+      <i class="fa-solid fa-xmark"></i>
+    </span>
+    <div class="comments"></div>
+    <div class="post-comment">
+      <textarea class="textarea" placeholder="Add a comment..." data-attr="comment-subject"></textarea>
+      <br>
+      <button class="button is-info" data-func="submit-comment">Post</button>
+    </div>
+    <script src="/assets/js/api.js"></script>
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const gameId = urlParams.get("id");
+      fetch(`https://api.retronetwork.ml/GameHub/games/${gameId}/comments`)
+        .then(obj => obj.json())
+        .then(comments => {
+          document.querySelector('.main').classList.remove('hidden');
+          document.querySelector('.square-loader').classList.add('hidden');
 
-            subject.value = '';
-
-            api('/games/1/comments/post', comment, 'post', 'application/json', 'json')
-              .then(response => {
-                console.log(response);
-              });
+          for (let i = comments.length - 1; i >= 0; i--) {
+            var comment = document.createElement("div");
+            comment.innerHTML = `<article class="media"><figure class="media-left"><div class="profile-image" style="background-image: url('${comments[i].profile}');"></div></figure><div class="media-content"><p><strong class="author">${comments[i].username}</strong> <small class="author">@${comments[i].username.toLowerCase()}</small></p><p class="comment-subject">${comments[i].subject}</p></div><div class="media-right"><!--<i class="fa-solid fa-share-from-square" data-func="share-comment"></i>--></div></article>`;
+            comment.classList = 'comment';
+            document.querySelector('.comments').appendChild(comment);
           }
+          const userId = localStorage.getItem("userId");
+          const subject = document.querySelector('[data-attr="comment-subject"]');
+          const commentSubmit = document.querySelector('[data-func="submit-comment"]');
+          commentSubmit.addEventListener("click", (e) => {
+            document.querySelector('.main').classList.add('hidden');
+            document.querySelector('.square-loader').classList.remove('hidden');
+
+            if (subject.value) {
+              const comment = {
+                author: userId,
+                subject: subject.value,
+              };
+
+              subject.value = '';
+
+              apiPost(`/games/${gameId}/comments/post`, comment, 'json')
+                .then(res => {
+                  if (res.valid) {
+                    location.reload()
+                  } else {
+                    alert('There was an error posting your comment')
+                  }
+                });
+            }
+          });
+          document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
+            window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[0].classList.remove("hidden");
+            winsdow.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[1].classList.add("hidden");
+            window.parent.document.querySelector(".commentContainer").classList.add("hidden");
+          });
         });
-        document.querySelector(".closeModalPannel").addEventListener("click", (e) => {
-          window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[0].classList.remove("hidden");
-          window.parent.document.querySelector('[data-func="open-comments"]').querySelectorAll("svg")[1].classList.add("hidden");
-          window.parent.document.querySelector(".commentContainer").classList.add("hidden");
-        });
-      });
-  </script>
+    </script>
+  </div>
+
+  <div class="square-loader">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </body>
 
 </html>
