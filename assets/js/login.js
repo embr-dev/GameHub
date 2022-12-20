@@ -42,7 +42,7 @@ form.addEventListener('submit', (event) => {
                     localStorage.setItem('userId', res.id)
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
                     window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
-                } else if (res.errorMsg == 'missing credentials') {
+                } else if (res.errorMsg == 'non-existent credentials') {
                     username.focus();
                     displayErr('Please fill out this field', 'usernameErr');
                     displayErr('Please fill out this field', 'pswrdErr');
