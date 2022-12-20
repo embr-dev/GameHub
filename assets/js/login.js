@@ -36,16 +36,12 @@ form.addEventListener('submit', (event) => {
                 alert(JSON.stringify(response))
 
                 if (response.valid === true) {
-                    document.querySelector('.Loader').classList.remove('hidden')
-                    document.querySelector('.form').classList.add('hidden')
-                    var interval = setInterval(() => {
-                        if (isValid === true) {
-                            localStorage.setItem('isLogin', true);
-                            localStorage.setItem('userId', response.id)
-                            document.querySelector('#loadingText').innerText = 'Logging you in...';
-                            window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${response.id}&uft=true`
-                        }
-                    }, 500);
+                    document.querySelector('.Loader').classList.remove('hidden');
+                    document.querySelector('.form').classList.add('hidden');
+                    localStorage.setItem('isLogin', true);
+                    localStorage.setItem('userId', response.id)
+                    document.querySelector('#loadingText').innerText = 'Logging you in...';
+                    window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${response.id}&uft=true`
                 } else if (response.error == 'missing credentials') {
                     username.focus();
                     displayErr('Please fill out this field', 'usernameErr');
