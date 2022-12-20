@@ -51,7 +51,7 @@ async function apiGet(route = '', data = {}, resType) {
             return response.text();
         } else {
             return 'invalid response type.';
-            console.error('invalid response type. api.js')
+            console.error('invalid response type')
         }
     }
 }
