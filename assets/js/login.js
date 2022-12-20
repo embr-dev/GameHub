@@ -35,7 +35,7 @@ form.addEventListener('submit', (event) => {
             .then(response => {
                 alert(JSON.stringify(response))
 
-                if (response.loginValid === true) {
+                if (response.valid === true) {
                     document.querySelector('.Loader').classList.remove('hidden')
                     document.querySelector('.form').classList.add('hidden')
                     var interval = setInterval(() => {
