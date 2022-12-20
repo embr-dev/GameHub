@@ -31,13 +31,14 @@ form.addEventListener('submit', (event) => {
             username.focus();
         }
     } else {
+        document.querySelector('.Loader').classList.remove('hidden');
+        document.querySelector('.form').classList.add('hidden');
+
         apiPost('/login', { username: username.value, password: pswrd.value }, 'json')
             .then(res => {
                 console.log(res.errorMsg)
 
                 if (res.valid === true) {
-                    document.querySelector('.Loader').classList.remove('hidden');
-                    document.querySelector('.form').classList.add('hidden');
                     localStorage.setItem('isLogin', true);
                     localStorage.setItem('userId', res.id)
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
