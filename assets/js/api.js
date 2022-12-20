@@ -3,54 +3,55 @@ window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
     return false;
 }
 
-async function api(route = '', data = {}, method, reqType, resType) {
-    if (method == 'get') {
-        if (route && method && resType) {
-            const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
-                method: method.toUpperCase(),
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': reqType
-                },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(data)
-            });
+async function apiPost(route = '', data = {}, resType) {
+    if (route && data && resType) {
+        const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data)
+        });
 
-            if (resType == 'json') {
-                return response.json();
-            } else if (resType == 'text') {
-                return response.json();
-            } else {
-                return 'invalid response type.';
-            }
-        }
-    } else if (method == 'post') {
-        if (route && data && method && reqType && resType) {
-            const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
-                method: method.toUpperCase(),
-                mode: 'cors',
-                cache: 'no-cache',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': reqType
-                },
-                redirect: 'follow',
-                referrerPolicy: 'no-referrer',
-                body: JSON.stringify(data)
-            });
-
-            if (resType == 'json') {
-                return response.json();
-            } else if (resType == 'text') {
-                return response.text();
-            } else {
-                return 'invalid response type.';
-            }
+        if (resType == 'json') {
+            return response.json();
+        } else if (resType == 'text') {
+            return response.text();
         } else {
-            return 'invalid parameters';
+            return 'invalid response type';
+        }
+    } else {
+        return 'invalid parameters';
+    }
+}
+
+async function apiGet(route = '', data = {}, resType) {
+    if (route && resType) {
+        const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
+            method: method.toUpperCase(),
+            mode: 'cors',
+            cache: 'no-cache',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            redirect: 'follow',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(data)
+        });
+
+        if (resType == 'json') {
+            return response.json();
+        } else if (resType == 'text') {
+            return response.text();
+        } else {
+            return 'invalid response type.';
+            console.error('invalid response type. api.js')
         }
     }
 }
