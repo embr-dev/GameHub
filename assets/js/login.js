@@ -33,6 +33,8 @@ form.addEventListener('submit', (event) => {
     } else {
         apiPost('/login', { username: username.value, password: pswrd.value }, 'json')
             .then(response => {
+                alert(JSON.stringify(response))
+
                 if (response.loginValid === true) {
                     document.querySelector('.Loader').classList.remove('hidden')
                     document.querySelector('.form').classList.add('hidden')
