@@ -30,7 +30,7 @@ async function apiPost(route = '', data = {}, resType) {
     }
 }
 
-async function apiGet(route = '', data = {}, resType) {
+async function apiGet(route = '', resType) {
     if (route && resType) {
         const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
             method: method.toUpperCase(),
