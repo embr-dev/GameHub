@@ -1,11 +1,10 @@
-<link rel="stylesheet" href="https://gh.retronetwork.ml/assets/css/email.css">
-<div class="content">
-    <div class="top"></div>
-    <img src="profile-image_replaceable" title="Profile Picture">
-    <div class="main">
+<div class="content" style="background: rgb(232, 221, 206);">
+    <div class="top" style="background-image: url('https://gh.retronetwork.ml/assets/img/background.jpeg'); height: 150px; width: 600px;"></div>
+    <img src="profile-image_replaceable" title="Profile Picture" style="width: 100px; height: 100px; position: absolute; left: 42%; top: 25%; background: #fff; padding: 8px; border-radius: 10%; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);">
+    <div class="main" style="position: absolute; left: 25%; top: 43%; width: 600px; height: 350px;">
         <h1>Email Verification</h1>
-        <p>Click the button below to verify your email or click this link <a href="forward-link_replaceable"
+        <p style="text-align: center; font-weight: 800;">Click the button below to verify your email or click this link <a href="forward-link_replaceable"
                 target="_blank">forward-link_replaceable</a>.</p>
-        <a href="forward-link_replaceable"><button>Verify your email</button></a>
+        <a href="forward-link_replaceable" target="_blank"><button style="border-radius: 9999px; padding-left: calc(1.25em); padding-right: calc(1.25em); text-align: center; background-color: #AC3CDE; border-color: transparent; color: #FFFFFF; cursor: pointer; justify-content: center; padding: calc(0.5em - 1px) 1em; white-space: nowrap; margin-left: 35%; font-size: 15px;">Verify your email</button></a>
     </div>
 </div>
