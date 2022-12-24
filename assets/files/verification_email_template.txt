@@ -1,0 +1,92 @@
+<html>
+
+<head>
+    <style>
+        body,
+        .email_body {
+            background: rgb(224, 206, 232);
+            margin: 0px;
+        }
+
+        .email_content {
+            margin-top: 20px;
+            width: 600px;
+            background: rgb(248, 251, 252);
+            height: 500px;
+            margin-left: 25%;
+            border-radius: 15px;
+        }
+
+        .email_userpfp {
+            margin-top: -50px;
+            margin-left: 40%;
+            width: 100px;
+            height: 100px;
+            background: rgb(255, 255, 255);
+            padding: 8px;
+            border-radius: 10%;
+        }
+
+        .email_head {
+            height: 150px;
+            width: 600px;
+            border-radius: 10%;
+        }
+
+        .email_head>img {
+            object-fit: cover;
+            width: 600px;
+            height: 150px;
+            border-radius: 15px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .email_main {
+            margin-top: 10px;
+            width: 600px;
+            height: 350px;
+        }
+
+        .email_title {
+            text-align: center;
+        }
+
+        .email_text {
+            padding: 20px;
+            margin: auto;
+            margin-left: 10%;
+        }
+
+        .email_verifybutton {
+            border-radius: 9999px;
+            text-align: center;
+            background-color: #AC3CDE;
+            border-color: transparent;
+            color: #FFFFFF;
+            padding: 10px;
+            white-space: nowrap;
+            margin-left: 35%;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email_body">
+        <div class="email_content">
+            <div class="email_head"><img src="https://base-url_replaceable/assets/img/background.jpeg" alt="banner">
+            </div>
+            <img class="email_userpfp" src="https://base-url_replaceable/assets/img/logo.png">
+            <div class="email_main">
+                <h1 class="email_title">Email Verification</h1>
+                <p class="email_text">Welcome username_replaceable! Click the button below to verify your email or click this link <a
+                        href="forward-link_replaceable" target="_blank">forward-link_replaceable</a>.</p>
+                <a href="forward-link_replaceable"><button class="email_verifybutton">Verify your email</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
