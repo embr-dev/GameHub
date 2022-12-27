@@ -18,13 +18,13 @@
         }
 
         .email_userpfp {
-            margin-top: -50px;
             margin-left: 40%;
             width: 100px;
             height: 100px;
             background: rgb(255, 255, 255);
             padding: 8px;
             border-radius: 10%;
+            margin-top: -50px;
         }
 
         .email_head {
