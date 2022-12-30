@@ -34,7 +34,7 @@ form.addEventListener('submit', (event) => {
         document.querySelector('.Loader').classList.remove('hidden');
         document.querySelector('.form').classList.add('hidden');
 
-        apiPost('/login', { username: username.value, password: pswrd.value }, 'json')
+        API.post('/login', { username: username.value, password: pswrd.value }, 'json')
             .then(res => {
                 console.log(res.errorMsg)
 

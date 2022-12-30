@@ -63,18 +63,18 @@ span.Icon {
 }
 
 button.button.is-rounded.is-danger.has-right-sharp {
-    -webkit-border-bottom-left-radius: 0px;
-    -webkit-border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 
 div.select.is-danger.is-rounded.sortSelect>select {
-    -webkit-border-bottom-left-radius: 0px;
-    -webkit-border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 
 input.is-danger.is-rounded.searchBar {
-    -webkit-border-bottom-right-radius: 0px;
-    -webkit-border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .usernameForm {
@@ -84,8 +84,8 @@ input.is-danger.is-rounded.searchBar {
 }
 
 input.input.is-danger.is-rounded[data-attr="username"] {
-    -webkit-border-bottom-right-radius: 0px;
-    -webkit-border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
 }
 
 .author {
