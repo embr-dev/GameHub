@@ -55,7 +55,7 @@ class api_ {
         }
         this.socket_ = class socket_ {
             constructor() {
-                this.socketBase = new WebSocket('ws://api.retronetwork.ml');
+                this.socketBase = new WebSocket('wss://api.retronetwork.ml');
                 this.send = (data) => {
                     if (api_.accessible === true) {
                         const reqToken = API.getToken();
@@ -90,7 +90,11 @@ const API = new api_();
 //Server reconnection
 setInterval(() => {
     if (API.socket.socketBase.readyState === 3) {
-        API.socket.socketBase = new WebSocket('ws://api.retronetwork.ml');
+        if (window.location.protocol === 'https:') {
+            API.socket.socketBase = new WebSocket('wss://api.retronetwork.ml');
+        } else {
+            alert('Protocol not supported.');
+        }
 
         api_.accessible = false;
         API.accessible = false;
