@@ -91,7 +91,7 @@ API.socket.worker.onmessage = (e) => {
     if (res.target === 'self') {
         alert(res.data);
     } else {
-        alert(res);
+        alert(JSON.stringify(res));
     }
 }
 
