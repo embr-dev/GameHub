@@ -56,4 +56,6 @@ setInterval(() => {
     if (socket.readyState === 3) {
         socket = new WebSocket('wss://api.retronetwork.ml');
     }
+
+    console.log(socket.readyState);
 }, 1000);
