@@ -4,13 +4,11 @@ onmessage = (e) => {
     const userId = e.data.suid;
 
     socket.addEventListener('open', (event) => {
-        API.get(`/users/${userId}`, 'json')
-            .then(data => {
-                socket.send(JSON.stringify({
-                    sessionId: sessionId,
-                    username: data.username
-                }))
-            });
+        socket.send(JSON.stringify({
+            sessionId: sessionId,
+            userId: userId
+        }))
+
     });
 
     socket.addEventListener('message', (event) => {
