@@ -81,7 +81,7 @@ const API = new api_();
 
 sessionStorage.setItem('session', API.getToken());
 
-API.socket.worker.postMessage(API.socket.socketBase);
+API.socket.worker.postMessage(new WebSocket('wss://api.retronetwork.ml/'));
 
 API.socket.worker.onmessage = (e) => {
     const res = e.data;
