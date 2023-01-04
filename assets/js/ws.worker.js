@@ -1,7 +1,7 @@
 onmessage = (e) => {
     const socket = new WebSocket('wss://api.retronetwork.ml');
 
-    if (socket.url === 'wss://api.retronetwork.ml/') {
+    if (socket) {
         socket.addEventListener('open', (event) => {
             socket.send(JSON.stringify({
                 sessionId: sessionStorage.getItem('session')
@@ -10,10 +10,11 @@ onmessage = (e) => {
 
         socket.addEventListener('message', (event) => {
             let msg;
+            
             try {
                 msg = JSON.parse(event.data);
             } catch (err) {
-                console.log('Server sent invalid data type')
+                console.log('Server sent invalid data type');
             }
 
             if (msg) {

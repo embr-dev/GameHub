@@ -89,9 +89,9 @@ API.socket.worker.onmessage = (e) => {
     const res = e.data;
 
     if (res.target === 'self') {
-        alert(res.data)
+        alert(res.data);
     } else {
-        console.log(res.data)
+        alert(res.data);
     }
 }
 
