@@ -82,7 +82,7 @@ const API = new api_();
 sessionStorage.setItem('session', API.getToken());
 
 API.socket.worker.postMessage({
-    websocket: API.socket.socketBase
+    error: false
 });
 
 API.socket.worker.onmessage = (e) => {

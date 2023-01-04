@@ -1,5 +1,5 @@
 onmessage = (e) => {
-    const socket = e.data.websocket;
+    const socket = new WebSocket('wss://api.retronetwork.ml');
 
     if (socket.url === 'wss://api.retronetwork.ml/') {
         socket.addEventListener('open', (event) => {
