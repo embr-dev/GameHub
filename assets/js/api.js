@@ -83,7 +83,8 @@ sessionStorage.setItem('session', API.getToken());
 
 API.socket.worker.postMessage({
     error: false,
-    ssid: sessionStorage.getItem('session')
+    ssid: sessionStorage.getItem('session'),
+    suid: localStorage.getItem('userId')
 });
 
 API.socket.worker.onmessage = (e) => {

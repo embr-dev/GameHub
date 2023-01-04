@@ -1,11 +1,16 @@
 onmessage = (e) => {
     const socket = new WebSocket('wss://api.retronetwork.ml');
     const sessionId = e.data.ssid;
+    const userId = e.data.suid;
 
     socket.addEventListener('open', (event) => {
-        socket.send(JSON.stringify({
-            sessionId: sessionId
-        }))
+        API.get(`/users/${userId}`, 'json')
+            .then(data => {
+                socket.send(JSON.stringify({
+                    sessionId: sessionId,
+                    username: data.username
+                }))
+            });
     });
 
     socket.addEventListener('message', (event) => {
