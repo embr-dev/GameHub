@@ -1,6 +1,6 @@
 onmessage = (e) => {
     const socket = new WebSocket('wss://api.retronetwork.ml');
-    const sessionId = sessionStorage.getItem('session');
+    const sessionId = e.data.ssid;
 
     socket.addEventListener('open', (event) => {
         socket.send(JSON.stringify({

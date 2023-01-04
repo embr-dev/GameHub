@@ -82,7 +82,8 @@ const API = new api_();
 sessionStorage.setItem('session', API.getToken());
 
 API.socket.worker.postMessage({
-    error: false
+    error: false,
+    ssid: sessionStorage.getItem('session')
 });
 
 API.socket.worker.onmessage = (e) => {
