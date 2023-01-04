@@ -70,22 +70,28 @@ class api_ {
                         return { error: true, errorMsg: 'Could not connect to websocket.' }
                     }
                 }
+                this.worker = new Worker('/assets/js/ws.worker.js')
             }
-
-            /*on(eventName, handler) {
-                if (eventName === 'open') {
-                    API.socket.socketBase.onopen = (event) => {
-                        return 'ok';
-                    }
-                }
-            }*/
         }
         this.socket = new this.socket_();
     }
 }
 
-
 const API = new api_();
+
+sessionStorage.setItem('session', API.getToken());
+
+API.socket.worker.postMessage(API.socket.socketBase);
+
+API.socket.worker.onmessage = (e) => {
+    const res = e.data;
+
+    if (res.target === 'self') {
+        alert(res.data)
+    } else {
+        console.log(res.data)
+    }
+}
 
 //Server reconnection
 setInterval(() => {
