@@ -1,9 +1,10 @@
 onmessage = (e) => {
     const socket = new WebSocket('wss://api.retronetwork.ml');
+    const sessionId = sessionStorage.getItem('session');
 
     socket.addEventListener('open', (event) => {
         socket.send(JSON.stringify({
-            sessionId: sessionStorage.getItem('session')
+            sessionId: sessionId
         }))
     });
 
@@ -18,7 +19,7 @@ onmessage = (e) => {
 
         if (msg) {
             if (msg.error === false) {
-                if (msg.targets.includes(sessionStorage.getItem('session'))) {
+                if (msg.targets.includes(sessionId)) {
                     postMessage({
                         type: 'self',
                         data: msg.data
