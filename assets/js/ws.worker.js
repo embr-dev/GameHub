@@ -1,7 +1,7 @@
 let socket = new WebSocket('wss://api.retronetwork.ml');
 
 onmessage = (e) => {
-    if (socket.readyState === 1) {
+    //if (socket.readyState === 1) {
         const sessionId = e.data.ssid;
         const userId = e.data.suid;
 
@@ -44,12 +44,12 @@ onmessage = (e) => {
                 }
             }
         });
-    } else {
+    /*} else {
         postMessage({
             error: true,
             errorMsg: 'Websocket not avalible'
         })
-    }
+    }*/
 }
 
 setInterval(() => {
