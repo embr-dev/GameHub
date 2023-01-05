@@ -18,7 +18,7 @@ onmessage = (e) => {
             try {
                 msg = JSON.parse(event.data);
             } catch (err) {
-                console.log('Server sent invalid data type');
+                throw err;
             }
 
             if (msg) {
@@ -40,7 +40,7 @@ onmessage = (e) => {
                         errorMsg: msg.errorMsg
                     })
 
-                    console.log(msg.errorMsg);
+                    throw msg.errorMsg;
                 }
             }
         });
@@ -49,6 +49,8 @@ onmessage = (e) => {
             error: true,
             errorMsg: 'Websocket not avalible'
         })
+
+        throw 'Websocket not avalible';
     }
 }
 
@@ -106,6 +108,4 @@ setInterval(() => {
             })
         }
     }
-
-    console.log(socket.readyState);
 }, 1000);

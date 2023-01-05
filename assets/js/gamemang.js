@@ -15,13 +15,12 @@ fetch('https://api.retronetwork.ml/GameHub/games')
             if (searchBar.value) {
                 //window.history.pushState({}, '', '?search_query=' + searchBar.value)
 
-
                 for (let i = 0; i < document.querySelectorAll('.game').length; i++) {
                     const isSearch = document.querySelectorAll('.game')[i].title.toLowerCase().includes(searchBar.value.toLowerCase());
                     document.querySelectorAll('.game')[i].classList.add('hidden');
                 }
             } else {
-                window.history.pushState({}, "", window.location.pathname);
+                //window.history.pushState({}, "", window.location.pathname);
                 for (let i = 0; i < document.querySelectorAll('.game').length; i++) {
                     document.querySelectorAll('.game')[i].classList.remove('hidden');
                 }

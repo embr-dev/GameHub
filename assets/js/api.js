@@ -81,11 +81,14 @@ const API = new api_();
 
 sessionStorage.setItem('session', API.getToken());
 
-API.socket.worker.postMessage({
-    error: false,
-    ssid: sessionStorage.getItem('session'),
-    suid: localStorage.getItem('userId')
-});
+
+if (localStorage.getItem('isLogin') === true && localStorage.getItem('userId')) {
+    API.socket.worker.postMessage({
+        error: false,
+        ssid: sessionStorage.getItem('session'),
+        suid: localStorage.getItem('userId')
+    });
+}
 
 API.socket.worker.onmessage = (e) => {
     const res = e.data;
