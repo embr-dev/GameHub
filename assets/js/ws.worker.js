@@ -56,8 +56,6 @@ onmessage = (e) => {
 
 setInterval(() => {
     if (socket.readyState === 3) {
-        socket = new WebSocket('wss://api.retronetwork.ml');
-
         if (socket.readyState === 1) {
             const sessionId = e.data.ssid;
             const userId = e.data.suid;
@@ -75,7 +73,7 @@ setInterval(() => {
                 try {
                     msg = JSON.parse(event.data);
                 } catch (err) {
-                    console.log('Server sent invalid data type');
+                    throw err;
                 }
 
                 if (msg) {
@@ -97,7 +95,7 @@ setInterval(() => {
                             errorMsg: msg.errorMsg
                         })
 
-                        console.log(msg.errorMsg);
+                        throw msg.errorMsg;
                     }
                 }
             });
@@ -106,6 +104,8 @@ setInterval(() => {
                 error: true,
                 errorMsg: 'Websocket not avalible'
             })
+
+            throw 'Websocket not avalible';
         }
     }
 }, 1000);
