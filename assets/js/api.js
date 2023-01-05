@@ -88,6 +88,8 @@ if (localStorage.getItem('isLogin') === true && localStorage.getItem('userId')) 
         ssid: sessionStorage.getItem('session'),
         suid: localStorage.getItem('userId')
     });
+} else {
+    alert('oh no')
 }
 
 API.socket.worker.onmessage = (e) => {
