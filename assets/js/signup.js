@@ -113,8 +113,10 @@ form.addEventListener('submit', (event) => {
                     }, 1000);
                 } else if (res.error === true) {
                     displayErr(res.errorMsg, errorTarget);
+                    throw res.errorMsg;
                 } else {
                     displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
+                    throw 'The server did not return an error value';
                 }
             }).catch(err => {
                 displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
