@@ -85,11 +85,11 @@ form.addEventListener('submit', (event) => {
             
         }
 
-        apiPost('/register', accountData, 'json')
+        API.post('/register', accountData, 'json')
             .then(res => {
                 if (res.error === false) {
                     setInterval(() => {
-                        apiGet(`/users/${res.id}/verified`, 'json')
+                        API.get(`/users/${res.id}/verified`, 'json')
                             .then(verified => {
                                 if (verified.verified === true) {
                                     localStorage.setItem('userId', res.id);
