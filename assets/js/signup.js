@@ -62,7 +62,7 @@ username.focus();
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     clearErrs();
-    if (!username.value || !pswrd.value) {
+    if (!username.value || !pswrd.value || !email.value) {
         if (!pswrd.value) {
             displayErr('Please fill out this field', 'pswrdErr');
             pswrd.focus();
@@ -76,24 +76,37 @@ form.addEventListener('submit', (event) => {
             email.focus();
         }
     } else {
+        document.querySelector('.Loader').classList.remove('hidden');
+        document.querySelector('.form').classList.add('hidden');
+
         const accountData = {
             username: username.value,
             password: pswrd.value,
             email: email.value,
             pfp: avatar,
             device: localStorage.getItem('devId'),
-            
+
         }
+
+        document.querySelector('.form').classList.add('hidden');
+        document.querySelector('.Loader').classList.add('hidden');
+        document.querySelector('.email_verification').classList.remove('hidden');
+        document.querySelector('#email_text').innerText = email.value;
 
         API.post('/register', accountData, 'json')
             .then(res => {
                 if (res.error === false) {
+                    document.querySelector('.form').classList.add('hidden');
+                    document.querySelector('.email_verification').classList.remove('hidden');
+                    document.querySelector('#email_text').innerText = email.value;
+
                     setInterval(() => {
                         API.get(`/users/${res.id}/verified`, 'json')
                             .then(verified => {
                                 if (verified.verified === true) {
                                     localStorage.setItem('userId', res.id);
                                     localStorage.setItem('isLogin', true);
+                                    document.querySelector('#loadingText').innerText = 'Logging you in...';
                                     window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
                                 }
                             });
@@ -106,15 +119,5 @@ form.addEventListener('submit', (event) => {
             }).catch(err => {
                 displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
             })
-
-        document.querySelector('.Loader').classList.remove('hidden')
-        document.querySelector('.form').classList.add('hidden')
-        var interval = setInterval(() => {
-            if (isCreated === true) {
-                clearInterval(interval)
-                document.querySelector('#loadingText').innerText = 'Logging you in...'
-                window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${localStorage.getItem('userId')}&uft=true`
-            }
-        }, 500);
     }
 });
