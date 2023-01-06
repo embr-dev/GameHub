@@ -120,6 +120,7 @@ form.addEventListener('submit', (event) => {
                 }
             }).catch(err => {
                 displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
+                throw err;
             })
     }
 });
