@@ -2,11 +2,8 @@ const form = document.querySelector('#signup');
 const username = document.querySelector('#username');
 const pswrd = document.querySelector('#pswrd');
 const email = document.querySelector('#email');
-var isTaken;
-var isCreated = false;
-var isLoaded = 0;
 var avatar;
-isLoaded++
+
 function newAvatar() {
     const word = username.value;
     let peer;
@@ -37,7 +34,6 @@ function connection(conn, parent) {
             if (parent === 'avatar') {
                 const message = decrypt('avatar', data)
                 avatar = message;
-                isLoaded++
             }
         });
     });
@@ -61,99 +57,8 @@ window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
     return false;
 }
 
-function f2(users, user) {
-    accountsDB.on('value', function (accounts) {
-        const data = accounts.val();
-
-        var interval = setInterval(() => {
-            if (isLoaded === 2) {
-                clearInterval(interval)
-                if (data) {
-                    user =
-                    {
-                        username: username.value,
-                        password: pswrd.value,
-                        pridevid: localStorage.getItem('devid'),
-                        history: [],
-                        friends: [],
-                        settings: 'default',
-                        pfp: avatar,
-                        id: data.length + 1
-                    };
-                    localStorage.setItem('isLogin', true);
-                    localStorage.setItem('userId', data.length + 1);
-                    isCreated = true;
-                    if (!data) {
-                        users.push(user);
-                        accountsDB.set(users);
-                    } else {
-                        users = data;
-                        users.push(user);
-                        accountsDB.set(users);
-                    }
-                    isCreated = true;
-                } else {
-                    user =
-                    {
-                        username: username.value,
-                        password: pswrd.value,
-                        pridevid: localStorage.getItem('devid'),
-                        history: [],
-                        friends: [],
-                        settings: 'default',
-                        pfp: avatar,
-                        id: 1
-                    };
-                    localStorage.setItem('isLogin', true);
-                    localStorage.setItem('userId', 1);
-                    isCreated = true;
-                    if (!data) {
-                        users.push(user);
-                        accountsDB.set(users);
-                    } else {
-                        users = data;
-                        users.push(user);
-                        accountsDB.set(users);
-                    }
-                    isCreated = true;
-                }
-            }
-        }, 20);
-    })
-}
-
-function f1() {
-    var accounts;
-    var dataLoaded = false;
-
-    accountsDB.on('value', function (data) {
-        accounts = data.val();
-        dataLoaded = true;
-    });
-
-    var interval = setInterval(() => {
-        if (dataLoaded === true) {
-            clearInterval(interval)
-            if (accounts) {
-                let usernames = [];
-                for (let i = 0; i < accounts.length; i++) {
-                    usernames.push(accounts[i].username);
-                }
-
-                if (usernames.includes(username.value) === false) {
-                    newAvatar()
-                    f2([], {})
-                } else {
-                    displayErr('This username has already been taken', 'usernameErr');
-                }
-            } else {
-                newAvatar()
-                f2([], {})
-            }
-        }
-    }, 1000);
-}
 username.focus();
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     clearErrs();
@@ -171,24 +76,37 @@ form.addEventListener('submit', (event) => {
             email.focus();
         }
     } else {
-        fetch(`https://emailvalidation.abstractapi.com/v1/?api_key=704e8b23f35845d59207732aae0a261a&email=${email.value}`)
-            .then(obj => obj.json())
-            .then(data => {
-                if (data.deliverability == 'deliverable' && data.is_disposable_email.value === false) {
-                    var interval = setInterval(() => {
-                        apiGet(`/users/${userData.id}/verified`, 'text')
-                            .then(res => {
-                                if (res.verified === true) {
-                                    clearInterval(interval)
+        const accountData = {
+            username: username.value,
+            password: pswrd.value,
+            email: email.value,
+            pfp: avatar,
+            device: localStorage.getItem('devId'),
+            
+        }
+
+        apiPost('/register', accountData, 'json')
+            .then(res => {
+                if (res.error === false) {
+                    setInterval(() => {
+                        apiGet(`/users/${res.id}/verified`, 'json')
+                            .then(verified => {
+                                if (verified.verified === true) {
+                                    localStorage.setItem('userId', res.id);
+                                    localStorage.setItem('isLogin', true);
+                                    window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
                                 }
                             });
-                    }, 100)
+                    }, 1000);
+                } else if (res.error === true) {
+                    displayErr(res.errorMsg, errorTarget);
                 } else {
-                    displayErr('Invalid email', 'emailErr');
+                    displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
                 }
-            });
+            }).catch(err => {
+                displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
+            })
 
-        f1();
         document.querySelector('.Loader').classList.remove('hidden')
         document.querySelector('.form').classList.add('hidden')
         var interval = setInterval(() => {
