@@ -20,3 +20,11 @@ An easily-deployable open-source gaming website.
 [![Deploy with Netlify](https://binbashbanana.github.io/deploy-buttons/buttons/remade/netlify.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/GameHub88/GameHub)
 [![Deploy to Render](https://binbashbanana.github.io/deploy-buttons/buttons/remade/render.svg)](https://render.com/deploy?repo=https://github.com/GameHub88/GameHub)
 [![Deploy to Cyclic](https://binbashbanana.github.io/deploy-buttons/buttons/remade/cyclic.svg)](https://app.cyclic.sh/api/app/deploy/GameHub88/GameHub)
+
+## Contributors
+
+![Contrib](https://contrib.rocks/image?repo=GameHub88/GameHub)
+
+## How to contribute
+
+see ![Contrib](./development/contribute.md)
