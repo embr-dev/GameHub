@@ -27,4 +27,4 @@ An easily-deployable open-source gaming website.
 
 ## How to contribute
 
-see ![Contrib](./development/contribute.md)
+see <a href="./development/contribute.md">contribute.md</a>
