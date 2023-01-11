@@ -45,6 +45,9 @@ form.addEventListener('submit', (event) => {
                 } else {
                     displayErr('The requested account does not exist', 'usernameErr');
                 }
-            }).catch(e => alert(e))
+            }).catch(e => {
+                displayErr('Failed to connect to the server', 'usernameErr');
+                console.log(e);
+            })
     }
 });
