@@ -1,6 +1,5 @@
 const nav = document.querySelector('.navbar');
-fetch('https://api.retronetwork.ml/GameHub/games')
-    .then(obj => obj.json())
+fetch('https://api.gh.retronetwork.ml/games')
     .then(games => {
         let gameList = [];
         const searchBar = document.querySelector('[data-func="search"]');
