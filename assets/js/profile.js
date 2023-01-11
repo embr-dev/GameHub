@@ -1,8 +1,7 @@
 //alert(codec.decode(codec.encode('hi')))
 const usernameDisplay = document.querySelector('#username');
 const userId = localStorage.getItem('userId');
-fetch(`https://api.retronetwork.ml/GameHub/users/${userId}`)
-    .then(obj => obj.json())
+API.get(`/users/${userId}`)
     .then(account => {
         var pfpstyles = document.createElement("style");
         pfpstyles.innerHTML = `.profile-icon{background-image:url("${account.profile}");}`

@@ -1,5 +1,5 @@
 const nav = document.querySelector('.navbar');
-fetch('https://api.gh.retronetwork.ml/games')
+API.get('/games')
     .then(games => {
         let gameList = [];
         const searchBar = document.querySelector('[data-func="search"]');
@@ -48,8 +48,7 @@ function openGame(id) {
     gFrame.classList.remove('hidden');
     gameDatabase.classList.add('hidden');
     document.querySelector('.database_nav').classList.add('hidden');
-    fetch(`https://api.retronetwork.ml/GameHub/games/${id}?hostname=${window.location.host}`)
-        .then(obj => obj.json())
+    API.get(`/games/${id}?hostname=${window.location.host}`)
         .then(game => {
             var gameElement = document.createElement('iframe');
             gameElement.classList = 'innerGame';
@@ -142,8 +141,7 @@ function openGame(id) {
                     //alert(codec.encode('0'))
                 });
 
-                fetch(`https://api.retronetwork.ml/GameHub/games/${id}/recomended`)
-                    .then(obj => obj.json())
+                API.get(`/games/${id}/recomended`)
                     .then(recomendations => {
                         const recomendedGames = frame.querySelectorAll('.gameThumb');
                         for (let i = 0; i < recomendations.length; i++) {
