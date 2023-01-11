@@ -4,7 +4,7 @@ class api_ {
         this.get = async function (route = '') {
             if (route) {
                 try {
-                    const response = await fetch('https://api.gh.ghretronetwork.ml' + route, {
+                    const response = await fetch('https://api.gh.retronetwork.ml' + route, {
                         method: 'GET',
                         mode: 'cors',
                         cache: 'no-cache',
@@ -52,7 +52,7 @@ class api_ {
                     var data;
 
                     if (typeof data == 'object') {
-                        response = await fetch('https://api.gh.ghretronetwork.ml' + route, {
+                        response = await fetch('https://api.gh.retronetwork.ml' + route, {
                             method: 'POST',
                             mode: 'cors',
                             cache: 'no-cache',
@@ -65,7 +65,7 @@ class api_ {
                             body: JSON.stringify(sendData)
                         });
                     } else {
-                        response = await fetch('https://api.gh.ghretronetwork.ml' + route, {
+                        response = await fetch('https://api.gh.retronetwork.ml' + route, {
                             method: 'POST',
                             mode: 'cors',
                             cache: 'no-cache',
