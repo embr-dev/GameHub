@@ -46,7 +46,7 @@ class api_ {
             }
         }
         this.post = async function (route = '', sendData = {}) {
-            if (route && data) {
+            if (route && sendData) {
                 try {
                     var response;
                     var data;
