@@ -3,7 +3,7 @@ class api_ {
         this.accessible = false
         this.get = async function (route = '', resType) {
             if (route && resType) {
-                const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
+                const response = await fetch('https://gamehubapi.onrender.com' + route, {
                     method: 'GET',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -26,7 +26,7 @@ class api_ {
         }
         this.post = async function (route = '', data = {}, resType) {
             if (route && data && resType) {
-                const response = await fetch('https://api.retronetwork.ml/GameHub' + route, {
+                const response = await fetch('https://gamehubapi.onrender.com' + route, {
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -73,7 +73,7 @@ class api_ {
                 this.worker = new Worker('/assets/js/ws.worker.js')
             }
         }
-        this.socket = new this.socket_();
+        //this.socket = new this.socket_();
     }
 }
 
@@ -82,17 +82,14 @@ const API = new api_();
 sessionStorage.setItem('session', API.getToken());
 
 
-//if (localStorage.getItem('isLogin') === true && localStorage.getItem('userId')) {
-    API.socket.worker.postMessage({
-        error: false,
-        ssid: sessionStorage.getItem('session'),
-        suid: localStorage.getItem('userId')
-    });
-/*} else {
-    alert('oh no')
-}*/
+/*API.socket.worker.postMessage({
+    error: false,
+    ssid: sessionStorage.getItem('session'),
+    suid: localStorage.getItem('userId')
+});*/
 
-API.socket.worker.onmessage = (e) => {
+
+/*API.socket.worker.onmessage = (e) => {
     const res = e.data;
 
     if (res.target === 'self') {
@@ -100,10 +97,10 @@ API.socket.worker.onmessage = (e) => {
     } else {
         console.log(JSON.stringify(res));
     }
-}
+}*/
 
 //Server reconnection
-setInterval(() => {
+/*setInterval(() => {
     if (API.socket.socketBase.readyState === 3) {
         if (window.location.protocol === 'https:') {
             API.socket.socketBase = new WebSocket('wss://api.retronetwork.ml');
@@ -121,4 +118,4 @@ setInterval(() => {
 
         return true;
     }
-}, 1000)
+}, 1000)*/
