@@ -1,3 +1,7 @@
+window.onerror = (errorMsg, url, lineNumber) => {
+    console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
+}
+
 class api_ {
     constructor() {
         this.accessible = false
