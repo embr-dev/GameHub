@@ -21,9 +21,9 @@ class api_ {
                     return response.text();
                 } else {
                     return 'invalid response type.';
-                }
+                } 
             }
-        }
+        } 
         this.post = async function (route = '', data = {}, resType) {
             if (route && data && resType) {
                 const response = await fetch('https://api..ghretronetwork.ml' + route, {
