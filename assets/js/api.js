@@ -42,7 +42,7 @@ class api_ {
                     }
                 } catch (e) {
                     return { error: true, errorMsg: 'Could not connect to the server' };
-                    throw e;
+                    alert(e)
                 }
             } else {
                 return { error: true, errorMsg: 'Missing function parameters' };
