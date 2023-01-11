@@ -30,3 +30,7 @@ An easily-deployable open-source gaming website.
 ## How to contribute
 
 see <a href="./development/contribute.md">contribute.md</a>
+
+## Host your own server
+
+Make a fork of <a href=".../Mirror">https://github.com/GameHub88/Mirror</a>. I would recomend hosting it with <a href="https://render.com" target="_blank">Render</a> or <a href="https://heroku.com" target="_blank">Heroku</a>, but any site that can host nodejs server appilcations will work.
