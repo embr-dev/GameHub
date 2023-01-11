@@ -2,7 +2,6 @@
 const form = document.getElementById('login');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');
-var isValid = false;
 
 function displayErr(err, elid) {
     document.querySelector('.form').classList.remove('hidden')
@@ -46,6 +45,6 @@ form.addEventListener('submit', (event) => {
                 } else {
                     displayErr('The requested account does not exist', 'usernameErr');
                 }
-            });
+            }).catch(e => alert(e))
     }
 });
