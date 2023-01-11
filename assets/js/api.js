@@ -3,7 +3,7 @@ class api_ {
         this.accessible = false
         this.get = async function (route = '', resType) {
             if (route && resType) {
-                const response = await fetch('https://api..ghretronetwork.ml' + route, {
+                const response = await fetch('https://api.gh.ghretronetwork.ml' + route, {
                     method: 'GET',
                     mode: 'cors',
                     cache: 'no-cache',
@@ -26,7 +26,7 @@ class api_ {
         } 
         this.post = async function (route = '', data = {}, resType) {
             if (route && data && resType) {
-                const response = await fetch('https://api..ghretronetwork.ml' + route, {
+                const response = await fetch('https://api.gh.ghretronetwork.ml' + route, {
                     method: 'POST',
                     mode: 'cors',
                     cache: 'no-cache',
