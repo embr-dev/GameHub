@@ -1,53 +1,114 @@
+window.onerror = (errorMsg, url, lineNumber) => {
+    console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
+}
+
 class api_ {
     constructor() {
         this.accessible = false
-        this.get = async function (route = '', resType) {
-            if (route && resType) {
-                const response = await fetch('https://gamehubapi.onrender.com' + route, {
-                    method: 'GET',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    redirect: 'follow',
-                    referrerPolicy: 'no-referrer',
-                });
+        this.get = async function (route = '') {
+            if (route) {
+                try {
+                    const response = await fetch('https://gamehubapi.onrender.com' + route, {
+                        method: 'GET',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        redirect: 'follow',
+                        referrerPolicy: 'no-referrer',
+                    });
+                    var data;
 
-                if (resType == 'json') {
-                    return response.json();
-                } else if (resType == 'text') {
-                    return response.text();
-                } else {
-                    return 'invalid response type.';
-                }
-            }
-        }
-        this.post = async function (route = '', data = {}, resType) {
-            if (route && data && resType) { 
-                const response = await fetch('https://gamehubapi.onrender.com' + route, {
-                    method: 'POST',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    redirect: 'follow',
-                    referrerPolicy: 'no-referrer',
-                    body: JSON.stringify(data)
-                });
+                    try {
+                        data = response.json();
+                    } catch (e) {
+                        data = response.text();
+                    }
 
-                if (resType == 'json') {
-                    return response.json();
-                } else if (resType == 'text') {
-                    return response.text();
-                } else {
-                    return 'invalid response type';
+                    if (typeof data == 'object') {
+                        try {
+                            if (data.error === true) {
+                                return { error: true, errorMsg: `The server sent the error: ${data.errorMsg}` };
+                            } else {
+                                return data;
+                            }
+                        } catch (e) {
+                            return data;
+                        }
+                    } else {
+                        return data;
+                    }
+                } catch (e) {
+                    return { error: true, errorMsg: 'Could not connect to the server' };
+                    alert(e)
                 }
             } else {
-                return 'invalid parameters';
+                return { error: true, errorMsg: 'Missing function parameters' };
+                throw 'Missing parameters for API.get';
+            }
+        }
+        this.post = async function (route = '', sendData = {}) {
+            if (route && sendData) {
+                try {
+                    var response;
+                    var data;
+
+                    if (typeof data == 'object') {
+                        response = await fetch('https://gamehubapi.onrender.com' + route, {
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            credentials: 'same-origin',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            redirect: 'follow',
+                            referrerPolicy: 'no-referrer',
+                            body: JSON.stringify(sendData)
+                        });
+                    } else {
+                        response = await fetch('https://gamehubapi.onrender.com' + route, {
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            credentials: 'same-origin',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            redirect: 'follow',
+                            referrerPolicy: 'no-referrer',
+                            body: sendData
+                        });
+                    }
+
+                    try {
+                        data = response.json();
+                    } catch (e) {
+                        data = response.text();
+                    }
+
+                    if (typeof data == 'object') {
+                        try {
+                            if (data.error === true) {
+                                return { error: true, errorMsg: `The server sent the error: ${data.errorMsg}` };
+                            } else {
+                                return data;
+                            }
+                        } catch (e) {
+                            return data;
+                        }
+                    } else {
+                        return data;
+                    }
+                } catch (e) {
+                    return { error: true, errorMsg: 'Could not connect to the server' };
+                    alert(e);
+                }
+            } else {
+                return { error: true, errorMsg: 'Missing function parameters' };
+                throw 'Missing parameters for API.post';
             }
         }
         this.getToken = () => {

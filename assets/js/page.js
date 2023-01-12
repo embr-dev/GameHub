@@ -7,8 +7,7 @@ if (path === '/') {
         localStorage.removeItem('username');
     }
     
-    fetch('https://api.retronetwork.ml/GameHub/userCount')
-        .then(obj => obj.text())
+    API.get('/userCount')
         .then(count => {
             document.querySelector('.user-count').innerText = Math.ceil(Number(count) / 100) * 100 - 100;
         });

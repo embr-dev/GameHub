@@ -2,7 +2,6 @@
 const form = document.getElementById('login');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');
-var isValid = false;
 
 function displayErr(err, elid) {
     document.querySelector('.form').classList.remove('hidden')
@@ -34,18 +33,23 @@ form.addEventListener('submit', (event) => {
         document.querySelector('.Loader').classList.remove('hidden');
         document.querySelector('.form').classList.add('hidden');
 
-        API.post('/login', { username: username.value, password: pswrd.value }, 'json')
+        API.post('/login', { username: username.value, password: pswrd.value })
             .then(res => {
                 console.log(res.errorMsg)
 
-                if (res.valid === true) {
+                if (res.error === false) {
                     localStorage.setItem('isLogin', true);
                     localStorage.setItem('userId', res.id)
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
                     window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
+                } else if (res.error === true) {
+                    displayErr(res.errorMsg, 'usernameErr');
                 } else {
                     displayErr('The requested account does not exist', 'usernameErr');
                 }
-            });
+            }).catch(e => {
+                displayErr('Failed to connect to the server', 'usernameErr');
+                console.log(e);
+            })
     }
 });
