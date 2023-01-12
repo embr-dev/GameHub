@@ -6,7 +6,8 @@ class api_ {
     constructor() {
         this.accessible = false
         this.get = async function (route) {
-            if (route) {
+            
+            /*if (route) {
                 try {
                     const response = await fetch('https://api.gh.retronetwork.ml' + route, {
                         method: 'GET',
@@ -47,10 +48,22 @@ class api_ {
             } else {
                 return { error: true, errorMsg: 'Missing function parameters' };
                 throw 'Missing parameters for API.get';
-            }
+            }*/
+            const response = await fetch('https://api.gh.retronetwork.ml' + route, {
+                        method: 'GET',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        redirect: 'follow',
+                        referrerPolicy: 'no-referrer',
+                    });
+            return response.json();
         }
         this.post = async function (route, sendData) {
-            if (route && sendData) {
+            /*if (route && sendData) {
                 try {
                     var response;
                     var data;
@@ -109,7 +122,21 @@ class api_ {
             } else {
                 return { error: true, errorMsg: 'Missing function parameters' };
                 throw 'Missing parameters for API.post';
-            }
+            }*/
+            
+            const response = await fetch('https://api.gh.retronetwork.ml' + route, {
+                            method: 'POST',
+                            mode: 'cors',
+                            cache: 'no-cache',
+                            credentials: 'same-origin',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            redirect: 'follow',
+                            referrerPolicy: 'no-referrer',
+                            body: JSON.stringify(sendData)
+                        });
+            return response.json();
         }
         this.getToken = () => {
             return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
