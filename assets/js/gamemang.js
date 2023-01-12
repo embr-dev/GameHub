@@ -1,6 +1,5 @@
 const nav = document.querySelector('.navbar');
-API.get('/games')
-    .then(games => {
+API.get('/games').then(games => {
         let gameList = [];
         const searchBar = document.querySelector('[data-func="search"]');
         var prev_value;
@@ -48,8 +47,7 @@ function openGame(id) {
     gFrame.classList.remove('hidden');
     gameDatabase.classList.add('hidden');
     document.querySelector('.database_nav').classList.add('hidden');
-    API.get(`/games/${id}?hostname=${window.location.host}`)
-        .then(game => {
+    API.get(`/games/${id}?hostname=${window.location.host}`).then(game => {
             var gameElement = document.createElement('iframe');
             gameElement.classList = 'innerGame';
             gameElement.src = '/assets/public/gs/game.html';
@@ -141,8 +139,7 @@ function openGame(id) {
                     //alert(codec.encode('0'))
                 });
 
-                API.get(`/games/${id}/recomended`)
-                    .then(recomendations => {
+                API.get(`/games/${id}/recomended`).then(recomendations => {
                         const recomendedGames = frame.querySelectorAll('.gameThumb');
                         for (let i = 0; i < recomendations.length; i++) {
                             recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}"></img>`;
