@@ -5,7 +5,7 @@ window.onerror = (errorMsg, url, lineNumber) => {
 class api_ {
     constructor() {
         this.accessible = false
-        this.get = async function (route = '') {
+        this.get = async function (route) {
             if (route) {
                 try {
                     const response = await fetch('https://api.gh.retronetwork.ml' + route, {
@@ -49,13 +49,13 @@ class api_ {
                 throw 'Missing parameters for API.get';
             }
         }
-        this.post = async function (route = '', sendData = {}) {
+        this.post = async function (route, sendData) {
             if (route && sendData) {
                 try {
                     var response;
                     var data;
 
-                    if (typeof data == 'object') {
+                    if (typeof sendData == 'object') {
                         response = await fetch('https://api.gh.retronetwork.ml' + route, {
                             method: 'POST',
                             mode: 'cors',
@@ -103,7 +103,7 @@ class api_ {
                         return data;
                     }
                 } catch (e) {
-                    return { error: true, errorMsg: 'Could not connect to the server' };
+                    //return { error: true, errorMsg: 'Could not connect to the server' };
                     alert(e);
                 }
             } else {
