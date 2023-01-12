@@ -25,7 +25,7 @@ class api_ {
             }
         }
         this.post = async function (route = '', data = {}, resType) {
-            if (route && data && resType) {
+            if (route && data && resType) { 
                 const response = await fetch('https://gamehubapi.onrender.com' + route, {
                     method: 'POST',
                     mode: 'cors',
