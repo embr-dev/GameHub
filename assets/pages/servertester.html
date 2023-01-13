@@ -18,23 +18,14 @@
                 .then(response => response.json())
                 .then(data => {
                     for (let i = 0; i < data.servers.length; i++) {
-                        fetch(`${data.servers.protocol}://${data.servers.domain}`).then(response => response.json())
+                        fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`)
+                        .then(response => response.json())
                             .then(server => {
                                 if (server.status === 'ready') {
-                                    servers.push(`${data.servers.protocol}://${data.servers.domain}`);
-                                }
-
-                                if (!servers.length) {
-                                    window.parent.contentWindow.document.querySelector('.main').classList.add('hidden');
-                                    var errorMsg = window.parent.contentWindow.document.createElement('div');
-                                    errorMsg.classList = 'modalstyle_error';
-                                    errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not to connect to server</h1><p>The servers your are client are trying to access appear to be unavalible. If you are using a private instance with a self hosted server you may need to contact the admin for ${window.location.host} to resolve the issue.</p></div>`;
-                                    window.parent.contentWindow.document.appendChild(errorMsg);
-                                } else if (servers.length) {
-                                    localStorage.setItem('accessible_servers', servers);
+                                    servers.push(`${data.servers[i].protocol}://${data.servers[i].domain}`);
                                 }
                             }).catch((e) => {
-                                console.log(`Could not connect to server ${data.servers.protocol}://${data.servers.domain}`);
+                                console.log(`Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`);
                             })
 
                         if (!servers.length) {
@@ -42,13 +33,13 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     for (let i = 0; i < data.servers.length; i++) {
-                                        fetch(`${data.servers.protocol}://${data.servers.domain}`).then(response => response.json())
+                                        fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`).then(response => response.json())
                                             .then(server => {
                                                 if (server.status === 'ready') {
-                                                    servers.push(`${data.servers.protocol}://${data.servers.domain}`);
+                                                    servers.push(`${data.servers[i].protocol}://${data.servers[i].domain}`);
                                                 }
                                             }).catch((e) => {
-                                                console.log(`Could not connect to server ${data.servers.protocol}://${data.servers.domain}`);
+                                                console.log(`Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`);
                                             })
                                     }
 
@@ -79,13 +70,13 @@
                         .then(response => response.json())
                         .then(data => {
                             for (let i = 0; i < data.servers.length; i++) {
-                                fetch(`${data.servers.protocol}://${data.servers.domain}`).then(response => response.json())
+                                fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`).then(response => response.json())
                                     .then(server => {
                                         if (server.status === 'ready') {
-                                            servers.push(`${data.servers.protocol}://${data.servers.domain}`);
+                                            servers.push(`${data.servers[i].protocol}://${data.servers[i].domain}`);
                                         }
                                     }).catch((e) => {
-                                        console.log(`Could not connect to server ${data.servers.protocol}://${data.servers.domain}`);
+                                        console.log(`Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`);
                                     })
                             }
 
