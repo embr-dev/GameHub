@@ -416,6 +416,13 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     margin: auto;
 }
 
+.modalstyle_error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .loading {
     background-color: #ededed;
     background: linear-gradient(100deg,
@@ -452,7 +459,6 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    position: relative;
     width: 80px;
     height: 80px;
 }

@@ -36,7 +36,7 @@ if (!localStorage.getItem('update1.01')) {
 function uid() {
     let a = new Uint32Array(3);
     window.crypto.getRandomValues(a);
-    return (performance.now().toString(36) + Array.from(a).map(A => A.toString(36)).join("")).replace(/\./g, "");
+    return (performance.now().toString(36) + Array.from(a).map(A => A.toString(36)).join('')).replace(/\./g, '');
 }
 
 const deviceId = localStorage.getItem('devid');
@@ -63,7 +63,7 @@ if (isMaintenance === true || isDisabled === true) {
 fetch('/assets/js/codec.js')
     .then(obj => obj.text())
     .then(data => {
-        const codecmang = document.createElement("script");
+        const codecmang = document.createElement('script');
         codecmang.innerHTML = data;
         document.body.insertBefore(codecmang, document.body.firstChild);
     });
@@ -74,23 +74,23 @@ if (!localStorage.getItem('devid')) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const anayltics = document.createElement("script");
+    const anayltics = document.createElement('script');
     anayltics.src = '/assets/js/analytics.js';
     document.body.appendChild(anayltics);
-    const evaljs = document.createElement("script");
+    const evaljs = document.createElement('script');
     evaljs.src = '/assets/js/eval.js';
     document.body.appendChild(evaljs);
-    const dependancies = document.createElement("script");
+    const dependancies = document.createElement('script');
     dependancies.src = '/assets/js/depend.js';
     document.body.appendChild(dependancies);
     var interval = setInterval(() => {
         if (isMainLoaded === true) {
             clearInterval(interval);
             if (isAllowed === true) {
-                const tabmang = document.createElement("script");
+                const tabmang = document.createElement('script');
                 tabmang.src = '/assets/js/tab.js';
                 document.body.appendChild(tabmang);
-                const pagemang = document.createElement("script");
+                const pagemang = document.createElement('script');
                 pagemang.src = '/assets/js/page.js';
                 document.body.appendChild(pagemang);
 
@@ -101,12 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(function (pages) {
                         const isMain = pages.main.includes(window.location.pathname);
                         if (!isMain) {
-                            const navmang = document.createElement("script");
+                            const navmang = document.createElement('script');
                             navmang.src = '/assets/js/nav.js';
                             document.body.appendChild(navmang);
-                            const profilemang = document.createElement("script");
+                            const profilemang = document.createElement('script');
                             profilemang.src = '/assets/js/profile.js';
-                            document.body.appendChild(profilemang)
+                            document.body.appendChild(profilemang);
+
+                            const serverTester = document.createElement('iframe');
+                            serverTester.src = '/assets/pages/servertester.html';
+                            serverTester.classList = 'hidden';
+                            document.body.appendChild(serverTester);
+                            
                             loaded++
                             var check = setInterval(() => {
                                 if (loaded > 2) {

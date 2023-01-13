@@ -1,0 +1,13 @@
+{
+    "updated": "1/12/23",
+    "servers": [
+        {
+            "domain": "api.gh.retronetwork.ml",
+            "protocol": "https"
+        },
+        {
+            "domain": "gamehubapi.onrender.com",
+            "protocol": "https"
+        }
+    ]
+}
