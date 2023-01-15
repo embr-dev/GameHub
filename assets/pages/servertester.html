@@ -13,96 +13,103 @@
 
         if (isFrame === true) {
             const servers = [];
+            let serverCount = 0;
+            let serverLists = 2;
 
             fetch('/assets/JSON/servers.json')
                 .then(response => response.json())
                 .then(data => {
+                    serverCount += data.servers.length;
                     for (let i = 0; i < data.servers.length; i++) {
                         fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`)
-                        .then(response => response.json())
+                            .then(response => response.json())
                             .then(server => {
                                 if (server.status === 'ready') {
-                                    servers.push(`${data.servers[i].protocol}://${data.servers[i].domain}`);
+                                    servers.push({
+                                        protocol: data.servers[i].protocol,
+                                        domain: data.servers[i].domain,
+                                        useable: true
+                                    });
                                 }
 
                                 alert(server.status);
                             }).catch((e) => {
-                                console.log(`Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`);
+                                servers.push({
+                                    protocol: data.servers[i].protocol,
+                                    domain: data.servers[i].domain,
+                                    useable: false
+                                });
+                                throw `Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`;
                             })
+                    }
+                }).catch(e => {
+                    serverLists -= 1;
+                })
 
-                        if (!servers.length) {
-                            fetch('https://raw.githubusercontent.com/GameHub88/GameHub/main/assets/JSON/servers.json')
-                                .then(response => response.json())
-                                .then(data => {
-                                    for (let i = 0; i < data.servers.length; i++) {
-                                        fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`).then(response => response.json())
-                                            .then(server => {
-                                                if (server.status === 'ready') {
-                                                    servers.push(`${data.servers[i].protocol}://${data.servers[i].domain}`);
-                                                }
+            fetch('https://raw.githubusercontent.com/GameHub88/GameHub/main/assets/JSON/servers.json')
+                .then(response => response.json())
+                .then(data => {
+                    serverCount += data.servers.length;
+                    for (let i = 0; i < data.servers.length; i++) {
+                        fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`)
+                            .then(response => response.json())
+                            .then(server => {
+                                if (server.status === 'ready') {
+                                    servers.push({
+                                        protocol: data.servers[i].protocol,
+                                        domain: data.servers[i].domain,
+                                        useable: true
+                                    });
+                                }
 
-                                                alert(server.status);
-                                            }).catch((e) => {
-                                                console.log(`Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`);
-                                            })
-                                    }
+                                alert(server.status);
+                            }).catch((e) => {
+                                servers.push({
+                                    protocol: data.servers[i].protocol,
+                                    domain: data.servers[i].domain,
+                                    useable: false
+                                });
+                                throw `Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`;
+                            })
+                    }
+                }).catch(e => {
+                    serverLists -= 1;
+                })
 
-                                    if (!servers.length) {
-                                        /*window.parent.document.querySelector('.main').classList.add('hidden');
-                                        var errorMsg = window.parent.document.createElement('div');
-                                        errorMsg.classList = 'modalstyle_error';
-                                        errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not to connect to server</h1><p>The servers your are client are trying to access appear to be unavalible. To get this issue resolved you may want to conact the admin responsible for hosting this instance of gamehub.</p></div>`;
-                                        window.parent.document.appendChild(errorMsg);*/
-                                    } else if (servers.length) {
-                                        localStorage.setItem('accessible_servers', servers);
-                                    }
-                                }).catch((e) => {
-                                    /*window.parent.document.querySelector('.main').classList.add('hidden');
-                                    var errorMsg = window.parent.document.createElement('div');
-                                    errorMsg.classList = 'modalstyle_error';
-                                    errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Cannot retrive server list</h1><p>Please contact the site admin for ${window.location.host} to fix the issue. Or you can use use the offical url at <a href="https://gh.retronetwork.ml">https://gh.retronetwork.ml</a>.</p></div>`;
-                                    window.parent.document.appendChild(errorMsg);*/
-                                })
-                        } else if (servers.length) {
-                            localStorage.setItem('accessible_servers', servers);
+            let interval = setInterval(() => {
+                if (serverLists !== 0) {
+                    console.log(interval);
+                    if (serverCount !== 0) {
+                        if (servers.length === serverCount) {
+                            const tempServerList = [];
+
+                            for (let i = 0; i < servers.length; i++) {
+                                if (servers[i].useable === true) {
+                                    tempServerList.push(`${servers[i].protocol}://${servers[i].domain}`);
+                                }
+                            }
+
+                            localStorage.setItem('servers', tempServerList);
                         }
                     }
-                }).catch((e) => {
-                    console.log('File not found at /assets/JSON/servers.json. You may need to update to a more recent version.');
+                } else {
+                    var errorMsg = window.parent.document.createElement('div');
+                    errorMsg.classList = 'modalstyle_error';
+                    errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not retrive server lists</h1><p>The server lists your are client are trying to access appear to be inaccessible. This could be due to the gamehub instance you are using being out of date. To get this issue resolved you may want to conact the admin responsible for hosting this instance of gamehub.</p></div>`;
+                    window.parent.document.appendChild(errorMsg);
+                    window.parent.document.querySelector('.main').classList.add('hidden');
+                }
+            }, 100);
 
-                    fetch('https://raw.githubusercontent.com/GameHub88/GameHub/main/assets/JSON/servers.json')
-                        .then(response => response.json())
-                        .then(data => {
-                            for (let i = 0; i < data.servers.length; i++) {
-                                fetch(`${data.servers[i].protocol}://${data.servers[i].domain}`).then(response => response.json())
-                                    .then(server => {
-                                        if (server.status === 'ready') {
-                                            servers.push(`${data.servers[i].protocol}://${data.servers[i].domain}`);
-                                        }
-
-                                        alert(server.status);
-                                    }).catch((e) => {
-                                        console.log(`Could not connect to server ${data.servers[i].protocol}://${data.servers[i].domain}`);
-                                    })
-                            }
-
-                            if (!servers.length) {
-                                /*window.parent.document.querySelector('.main').classList.add('hidden');
-                                var errorMsg = window.parent.document.createElement('div');
-                                errorMsg.classList = 'modalstyle_error';
-                                errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not to connect to server</h1><p>The servers your are client are trying to access appear to be unavalible. Your client tried to connect to public server url's that may blocked by your school or buisness firewall. If you want to host your own server you can see <a href="https://github.com/GameHub88/Mirror">here</a>.</p></div>`;
-                                window.parent.document.appendChild(errorMsg);*/
-                            } else if (servers.length) {
-                                localStorage.setItem('accessible_servers', servers);
-                            }
-                        }).catch((e) => {
-                            /*window.parent.document.querySelector('.main').classList.add('hidden');
-                            var errorMsg = window.parent.document.createElement('div');
-                            errorMsg.classList = 'modalstyle_error';
-                            errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Cannot retrive server list</h1><p>Please contact the site admin for ${window.location.host} to fix the issue. Or you can use use the offical url at <a href="https://gh.retronetwork.ml">https://gh.retronetwork.ml</a>.</p></div>`;
-                            window.parent.document.appendChild(errorMsg);*/
-                        })
-                })
+            /*if (!servers.length) {
+                window.parent.document.querySelector('.main').classList.add('hidden');
+                var errorMsg = window.parent.document.createElement('div');
+                errorMsg.classList = 'modalstyle_error';
+                errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not to connect to server</h1><p>The servers your are client are trying to access appear to be unavalible. To get this issue resolved you may want to conact the admin responsible for hosting this instance of gamehub.</p></div>`;
+                window.parent.document.appendChild(errorMsg);
+            } else if (servers.length) {
+                localStorage.setItem('accessible_servers', servers);
+            }*/
         } else {
             window.location.href = '/';
         }

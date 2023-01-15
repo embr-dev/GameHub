@@ -5,7 +5,7 @@ window.onerror = (errorMsg, url, lineNumber) => {
 class api_ {
     constructor() {
         this.accessible = false;
-        this.servers = localStorage.getItem('accessible_servers');
+        this.servers = localStorage.getItem('servers');
         this.get = async function (route) {
             if (this.servers) {
                 if (route) {
@@ -151,7 +151,7 @@ sessionStorage.setItem('session', API.getToken());
 
 if (!API.servers) {
     setInterval(() => {
-        if (localStorage.getItem('accessible_servers')) {
+        if (localStorage.getItem('servers')) {
             location.reload();
         }
     }, 1000);
