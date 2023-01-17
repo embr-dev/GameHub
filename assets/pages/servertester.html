@@ -11,7 +11,7 @@
     <script>
         const isFrame = (window === window.parent) ? false : true;
 
-        if (isFrame === true) {
+        if (isFrame === true && !localStorage.getItem('servers')) {
             const servers = [];
             let serverCount = 0;
             let serverLists = 2;
@@ -31,8 +31,6 @@
                                         useable: true
                                     });
                                 }
-
-                                alert(server.status);
                             }).catch((e) => {
                                 servers.push({
                                     protocol: data.servers[i].protocol,
@@ -61,8 +59,6 @@
                                         useable: true
                                     });
                                 }
-
-                                alert(server.status);
                             }).catch((e) => {
                                 servers.push({
                                     protocol: data.servers[i].protocol,
@@ -90,17 +86,16 @@
                             }
 
                             localStorage.setItem('servers', tempServerList);
-
-                            alert(tempServerList);
+                            clearInterval(interval);
                         }
                     }
-                } else {
+                }/* else {
                     var errorMsg = window.parent.document.createElement('div');
                     errorMsg.classList = 'modalstyle_error';
                     errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not retrive server lists</h1><p>The server lists your are client are trying to access appear to be inaccessible. This could be due to the gamehub instance you are using being out of date. To get this issue resolved you may want to conact the admin responsible for hosting this instance of gamehub.</p></div>`;
                     window.parent.document.appendChild(errorMsg);
                     window.parent.document.querySelector('.main').classList.add('hidden');
-                }
+                }*/
             }, 100);
 
             /*if (!servers.length) {
