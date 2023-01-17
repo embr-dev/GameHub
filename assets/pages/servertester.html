@@ -85,12 +85,12 @@
 
                             for (let i = 0; i < servers.length; i++) {
                                 if (servers[i].useable === true) {
-                                    tempServerList.push(`${servers[i].protocol}://${servers[i].domain}`);
+                                    tempServerList.push({ url: `${servers[i].protocol}://${servers[i].domain}` });
                                 }
                             }
 
                             localStorage.setItem('servers', tempServerList);
-                            
+
                             alert(tempServerList);
                         }
                     }

@@ -10,7 +10,7 @@ class api_ {
             if (this.servers) {
                 if (route) {
                     try {
-                        const response = await fetch(`${this.servers[0]}${route}`, {
+                        const response = await fetch(`${this.servers[0].url}${route}`, {
                             method: 'GET',
                             mode: 'cors',
                             cache: 'no-cache',
@@ -61,7 +61,7 @@ class api_ {
                         var data;
 
                         if (typeof sendData == 'object') {
-                            response = await fetch(`${this.servers[0]}${route}`, {
+                            response = await fetch(`${this.servers[0].url}${route}`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 cache: 'no-cache',
