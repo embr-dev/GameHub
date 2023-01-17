@@ -9,6 +9,7 @@ class api_ {
         this.get = async function (route) {
             if (this.servers) {
                 if (route) {
+                    alert(this.servers[0].url);
                     try {
                         const response = await fetch(`${this.servers[0].url}${route}`, {
                             method: 'GET',
