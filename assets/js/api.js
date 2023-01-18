@@ -7,11 +7,10 @@ class api_ {
         this.accessible = false;
         this.servers = localStorage.getItem('servers');
         this.get = async function (route) {
-            if (this.servers) {
+            //if (this.servers) {
                 if (route) {
-                    alert(this.servers[0].url);
                     try {
-                        const response = await fetch(`${this.servers[0].url}${route}`, {
+                        const response = await fetch(`https://api.gh.retronetwork.ml${route}`, {
                             method: 'GET',
                             mode: 'cors',
                             cache: 'no-cache',
@@ -50,19 +49,19 @@ class api_ {
                 } else {
                     return { error: true, errorMsg: 'Missing function parameters' };
                 }
-            } else {
+            /*} else {
                 return { error: true, errorMsg: 'Waiting for the serverlist to be created' };
-            }
+            }*/
         }
         this.post = async function (route, sendData) {
-            if (this.servers) {
+            //if (this.servers) {
                 if (route && sendData) {
                     try {
                         var response;
                         var data;
 
                         if (typeof sendData == 'object') {
-                            response = await fetch(`${this.servers[0].url}${route}`, {
+                            response = await fetch(`https://api.gh.retronetwork.ml${route}`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 cache: 'no-cache',
@@ -116,9 +115,9 @@ class api_ {
                     return { error: true, errorMsg: 'Missing function parameters' };
                     throw 'Missing parameters for API.post';
                 }
-            } else {
+            /*} else {
                 return { error: true, errorMsg: 'Waiting for the serverlist to be created' };
-            }
+            }*/
         }
         this.getToken = () => {
             return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
@@ -151,13 +150,13 @@ const API = new api_();
 
 sessionStorage.setItem('session', API.getToken());
 
-if (!API.servers) {
+/*if (!API.servers) {
     setInterval(() => {
         if (localStorage.getItem('servers')) {
             location.reload();
         }
     }, 1000);
-}
+}*/
 
 /*API.socket.worker.postMessage({
     error: false,
