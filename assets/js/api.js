@@ -43,8 +43,8 @@ class api_ {
                             return data;
                         }
                     } catch (e) {
-                        //return { error: true, errorMsg: 'Could not connect to the server' };
-                        alert(e)
+                        return { error: true, errorMsg: 'Could not connect to the server' };
+                        //alert(e)
                     }
                 } else {
                     return { error: true, errorMsg: 'Missing function parameters' };
@@ -108,8 +108,8 @@ class api_ {
                             return data;
                         }
                     } catch (e) {
-                        //return { error: true, errorMsg: 'Could not connect to the server' };
-                        alert(e);
+                        return { error: true, errorMsg: 'Could not connect to the server' };
+                        //alert(e);
                     }
                 } else {
                     return { error: true, errorMsg: 'Missing function parameters' };
