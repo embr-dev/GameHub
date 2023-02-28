@@ -7,6 +7,7 @@ An easily-deployable open-source gaming website.
 ## Public instances
 
 <ul>
+    <li><a href="https://gamehub.dev"></a>https://gamehub.dev</li>
     <li><a href="https://gh.retronetwork.ml"></a>https://gh.retronetwork.ml</li>
     <li><a href="https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.cf"></a>https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.cf</li>
     <li><a href="https://gamehub88.gq"></a>https://gamehub88.gq</li>
