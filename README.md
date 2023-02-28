@@ -1,10 +1,10 @@
-# GameHub
+<h1 align="center">GameHub</h1>
 
-![GameHub](https://socialify.git.ci/GameHub88/GameHub/image?description=1&descriptionEditable=Your%20unblocked%20game%20stop&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FGameHub88%2FGameHub%2Fmain%2Fassets%2Fimg%2Flogo.png&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Dark)
+<img src="https://socialify.git.ci/GameHub88/GameHub/image?description=1&descriptionEditable=Your%20unblocked%20game%20stop&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FGameHub88%2FGameHub%2Fmain%2Fassets%2Fimg%2Flogo.png&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Dark"/>
 
-An easily-deployable open-source gaming website.
+<p align="center">An easily-deployable open-source gaming website.</p>
 
-## Public instances
+<h2 align="center">Public instances</h2>
 
 <ul>
     <li><a href="https://gamehub.dev"></a>https://gamehub.dev</li>
@@ -13,24 +13,30 @@ An easily-deployable open-source gaming website.
     <li><a href="https://gamehub88.gq"></a>https://gamehub88.gq</li>
 </ul>
 
-## Deploy it yourself
+<h2 align="center">Deploy it yourself</h2>
 
-[![Deploy to Heroku](https://binbashbanana.github.io/deploy-buttons/buttons/remade/heroku.svg)](https://heroku.com/deploy/?template=https://github.com/GameHub88/GameHub)
-[![Run on Replit](https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg)](https://replit.com/github/GameHub88/GameHub)
-[![Deploy to IBM Cloud](https://binbashbanana.github.io/deploy-buttons/buttons/remade/ibmcloud.svg)](https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/GameHub88/GameHub)
-[![Deploy to Amplify Console](https://binbashbanana.github.io/deploy-buttons/buttons/remade/amplifyconsole.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/GameHub88/GameHub)
-[![Deploy with Vercel](https://binbashbanana.github.io/deploy-buttons/buttons/remade/vercel.svg)](https://vercel.com/new/clone?repository-url=https://github.com/GameHub88/GameHub) 
-[![Deploy with Netlify](https://binbashbanana.github.io/deploy-buttons/buttons/remade/netlify.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/GameHub88/GameHub)
-[![Deploy to Render](https://binbashbanana.github.io/deploy-buttons/buttons/remade/render.svg)](https://render.com/deploy?repo=https://github.com/GameHub88/GameHub)
+<p align="center">
+<a href="https://heroku.com/deploy/?template=https://github.com/GameHub88/GameHub"><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/heroku.svg" /></a>
+<a href="https://replit.com/github/GameHub88/GameHub"><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/replit.svg" /></a>
+<a href="https://cloud.ibm.com/devops/setup/deploy?repository=https://github.com/GameHub88/GameHub"><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/ibmcloud.svg" /></a>
+<a href="https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/GameHub88/GameHub"><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/amplifyconsole.svg" /></a>
+<a href="https://vercel.com/new/clone?repository-url=https://github.com/GameHub88/GameHub"><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/vercel.svg" /></a>
+<a href=""><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/netlify.svg" /></a>
+<a href="https://render.com/deploy?repo=https://github.com/GameHub88/GameHub"><img src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/render.svg"/></a>
+</p>
 
-## Contributors
+<h2 align="center">Contributors</h2>
 
-![Contrib](https://contrib.rocks/image?repo=GameHub88/GameHub)
+<p align="center">
+<img src="https://contrib.rocks/image?repo=GameHub88/GameHub"/>
+</p>
 
-## How to contribute
+<h2 align="center">How to contribute</h2>
 
+<p align="center">
 see <a href="./development/contribute.md">contribute.md</a>
+</p>
 
-## Host your own server mirror
+<h2 align="center">Host your own server mirror</h2>
 
 You can find the open source code for the server mirror at <a href=".../Mirror">https://github.com/GameHub88/Mirror</a>.
