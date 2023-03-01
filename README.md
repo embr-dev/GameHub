@@ -4,13 +4,14 @@
 
 <p align="center">An easily-deployable open-source gaming website.</p>
 
-<h2 align="center">Public instances</h2>
+<h2 align="center">Offical instances</h2>
 
 <ul>
     <li><a href="https://gamehub.dev"></a>https://gamehub.dev</li>
     <li><a href="https://gh.retronetwork.ml"></a>https://gh.retronetwork.ml</li>
     <li><a href="https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.cf"></a>https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.cf</li>
     <li><a href="https://gamehub88.gq"></a>https://gamehub88.gq</li>
+    <li><a href="https://gamehub.onrender.com"></a>https://gamehub.onrender.com</li>
 </ul>
 
 <h2 align="center">Deploy it yourself</h2>
@@ -39,4 +40,6 @@ see <a href="./development/contribute.md">contribute.md</a>
 
 <h2 align="center">Host your own server mirror</h2>
 
+<p align="center">
 You can find the open source code for the server mirror at <a href=".../Mirror">https://github.com/GameHub88/Mirror</a>.
+</p>
