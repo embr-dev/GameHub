@@ -41,5 +41,5 @@ see <a href="./development/contribute.md">contribute.md</a>
 <h2 align="center">Host your own server mirror</h2>
 
 <p align="center">
-You can find the open source code for the server mirror at <a href=".../Mirror">https://github.com/GameHub88/Mirror</a>.
+You can find the open source code for the server mirror at <a href="https://github.com/GameHub88/Mirror">https://github.com/GameHub88/Mirror</a>.
 </p>
