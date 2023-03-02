@@ -32,12 +32,6 @@
 <img src="https://contrib.rocks/image?repo=GameHub88/GameHub"/>
 </p>
 
-<h2 align="center">How to contribute</h2>
-
-<p align="center">
-see <a href="./development/contribute.md">contribute.md</a>
-</p>
-
 <h2 align="center">Host your own server mirror</h2>
 
 <p align="center">
