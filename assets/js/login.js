@@ -35,13 +35,12 @@ form.addEventListener('submit', (event) => {
 
         API.post('/login', { username: username.value, password: pswrd.value })
             .then(res => {
-                console.log(res.errorMsg)
-
                 if (res.error === false) {
                     localStorage.setItem('isLogin', true);
-                    localStorage.setItem('userId', res.id)
+                    localStorage.setItem('userId', res.id);
+
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
-                    window.location.href = `/home?ref=${window.location.href}&did=${localStorage.getItem('devid')}&uid=${res.id}&uft=true`
+                    window.location.href = `/home?ref=${window.location.pathname}&uid=${res.id}&uft=true`;
                 } else if (res.error === true) {
                     displayErr(res.errorMsg, 'usernameErr');
                 } else {

@@ -1,20 +1,18 @@
 * {
-	font-family: montserrat;
+    font-family: montserrat;
 }
 
-.imageBox
-{
+.imageBox {
     position: relative;
     height: 400px;
     width: 400px;
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
     overflow: hidden;
     background-repeat: no-repeat;
     cursor: move;
 }
 
-.imageBox .thumbBox
-{
+.imageBox .thumbBox {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,12 +23,10 @@
     box-sizing: border-box;
     border: 1px solid rgb(102, 102, 102);
     box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
-    /*background: none repeat scroll 0% 0% transparent;*/
 }
 
-.imageBox .spinner
-{
-	 color: #000;
+.imageBox .spinner {
+    color: #000;
     position: absolute;
     top: 0;
     left: 0;
@@ -45,18 +41,18 @@
     -o-user-select: none;
 }
 
-        @font-face {
-            font-family: 'montserrat';
-            src: url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Regular.woff2') format('woff2'),
-                url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+@font-face {
+    font-family: 'montserrat';
+    src: url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Regular.woff2') format('woff2'),
+        url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-        @font-face {
-            font-family: 'montserrat-black';
-            src: url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Black.woff2') format('woff2'),
-                url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Black.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
+@font-face {
+    font-family: 'montserrat-black';
+    src: url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Black.woff2') format('woff2'),
+        url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

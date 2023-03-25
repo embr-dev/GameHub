@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://gamehub88.github.io/assets/css/bulma.css" />
     <link rel="stylesheet" href="https://gamehub88.github.io/assets/css/main.css" />
     <link id="favicon" rel="icon" href="https://gamehub88.github.io/favicon.ico">
-    <title>Error 404 | Game Hub</title>
+    <title>Error 404 | GameHub</title>
     <style>
         * {
             overflow: hidden;
@@ -29,17 +29,8 @@
     <body class="modalpage">
         <div class="box">
             <h1 class="subtitle is-4">Error 404</h1>
-            <p>The page you tried to access could not be found. <a href="gh.retronetwork.ml">Home</a></p>
+            <p>The page you tried to access could not be found. <a href="/">Home</a></p>
         </div>
-        <script>
-            if (window.location.host !== 'gh.retronetwork.ml') {
-                document.body.style = `background-image: url("https://${window.location.host.replace(window.location.host.split('.')[0], '').replace('.', '')}/assets/img/background.jpeg");`;
-
-                for (let i = 0; i < document.querySelectorAll('link').length; i++) {
-                    document.querySelectorAll('link')[i].src = `https://${window.location.host.replace(window.location.host.split('.')[0], '').replace('.', '')}` + document.querySelectorAll('link')[i];
-                }
-            }
-        </script>
     </body>
 
 </html>

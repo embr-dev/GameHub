@@ -86,7 +86,7 @@
             document.querySelector('[data-func="submit_pfp"]').disabled = true;
             document.querySelector('[data-func="zoomin_cropper"]').disabled = true;
             document.querySelector('[data-func="zoomout_cropper"]').disabled = true;
-            window.parent.postMessage(cropped, `https://${window.location.hostname}`);
+            window.parent.postMessage(cropped, `${window.location.protocol}//${window.location.hostname}`);
         })
         document.querySelector('[data-func="zoomin_cropper"]').addEventListener('click', function () {
             cropper.zoomIn();

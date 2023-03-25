@@ -1,6 +1,7 @@
-//alert(codec.decode(codec.encode('hi')))
 const usernameDisplay = document.querySelector('#username');
 const userId = localStorage.getItem('userId');
+const content = document.querySelector('.main.profile');
+
 API.get(`/users/${userId}`)
     .then(account => {
         var pfpstyles = document.createElement("style");
@@ -9,13 +10,73 @@ API.get(`/users/${userId}`)
 
         if (window.location.pathname !== '/assets/pages/profile.html') {
             usernameDisplay.innerText = account.username;
+
+            if (!account.verified) {
+                const emailModal = document.createElement('div');
+                emailModal.classList = 'modal is-active';
+                emailModal.innerHTML = `
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="card">
+                        <div style="padding: 50px; text-align: center;" id="verifycontent">
+                            <h1 class="title is-center">Please verify your email</h1>
+                            <p class="err" id="emailerror"></p>
+                            <form id="emailform">
+                                <input class="input is-danger is-rounded" placeholder="you@example.com" type="email" id="emailinput" />
+                                <br>
+                                <br>
+                                <button class="button is-danger is-rounded" type="submit">Verify</button>
+                            </form>    
+                        </div>
+                    </div>
+                </div>`;
+                document.querySelector('.main').appendChild(emailModal);
+                document.body.classList.add('noscroll');
+
+                const emailForm = emailModal.querySelector('#emailform');
+                const emailInput = emailForm.querySelector('#emailinput');
+                emailForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    if (emailInput.value) {
+                        document.querySelector('#emailerror').textContent = '';
+
+                        API.post(`/users/${userId}/verify`, { email: emailInput.value })
+                        .then(res => {
+                            console.log(res);
+
+                            if (res.error === false) {
+                                emailModal.querySelector('#verifycontent').innerHTML = `
+                                <i class="fa-solid fa-envelope" style="font-size: 50px; text-align: center;"></i>
+                                <h1 class="subtitle is-4">Email Verification</h1>
+                                <p>We just sent an email to ${emailInput.value}.<br><br> Didn't get the email? <br>Check your spam folder.</p>`;
+
+                                let emailChecker = setInterval(() => {
+                                    API.get(`/users/${userId}/verified`)
+                                        .then(verified => {
+                                            if (verified.verified === true) {
+                                                clearTimeout(emailChecker);
+                                                location.reload();
+                                            }
+                                        });
+                                }, 3000)
+                            } else if (res.error === true) {
+                                document.querySelector('#emailerror').textContent = res.errorMsg;
+                            } else {
+                                document.querySelector('#emailerror').textContent = 'The server did not provide a valid response';
+                            }
+                        })
+                    } else {
+                        document.querySelector('#emailerror').textContent = 'Please enter an email';
+                    }
+                })
+            }
+
             loaded++
         }
 
         if (window.location.pathname === '/assets/pages/profile.html') {
-            const parentstyles = document.createElement("style");
-            parentstyles.innerHTML = 'html,body {overflow: hidden;}';
-            window.parent.document.head.appendChild(parentstyles);
+            window.parent.document.body.classList.add('noscroll');
             const pfp = document.querySelector('.pfp');
             const closeBtn = window.parent.document.querySelector('.modal-close');
             const usernameInput = document.querySelector('[data-attr="username"]');
@@ -76,6 +137,9 @@ API.get(`/users/${userId}`)
                 }
             });*/
 
+            /*
+            @Russell2259 removed this because the server can't handle it
+
             pfp.addEventListener('mouseover', (event) => {
                 overlay.classList.remove('hidden');
             });
@@ -85,25 +149,36 @@ API.get(`/users/${userId}`)
             });
 
             pfp.addEventListener('click', (event) => {
-                let tempDB = accounts;
-                document.querySelector('.main.profile').classList.add('hidden');
-                var frame = document.createElement('iframe');
+                content.classList.add('hidden');
+
+                const frame = document.createElement('iframe');
                 frame.src = '/assets/pages/cropper.html';
                 frame.classList = 'frame_500x500';
-                frame.scrolling = 'no';
+                frame.setAttribute('scrolling', 'no');
                 document.body.appendChild(frame);
 
                 window.onmessage = (e) => {
-                    alert('You cannot change your profile picture at this time')
-                    /*if (e.data) {
-                        tempDB[userId - 1].pfp = e.data;
-                        setTimeout(() => {
-                            window.parent.location.reload();
-                        }, 2000);
+                    if (e.data) {
+                        frame.remove();
+                        content.classList.remove('hidden');
+
+                        content.innerHTML = `<h1 class="title is-5 is-center">Please Confirm Your Password</h1><input placeholder="Password" type="password" class="input is-danger is-rounded" id="confirm_password" />`;
+
+                        const confirm = content.querySelector('#confirm_password');
+                        confirm.focus();
+
+                        confirm.addEventListener('keydown', (event) => {
+                            if (event.key === 'Enter') {
+                                API.post(`/users/${userId}/change/profile`, { username: account.username, password: confirm.value, picture: e.data })
+                                    .then(res => {
+                                        
+                                    });
+                            }
+                        });
                     } else {
                         alert('Could not proccess your request. Please try again later.')
-                    }*/
+                    }
                 }
-            });
+            });*/
         }
     });

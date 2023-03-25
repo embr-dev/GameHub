@@ -1,28 +1,41 @@
 body,
 html {
-    margin: 0px;
     font-family: montserrat;
-    height: 100vh;
-    width: 100vw;
 }
 
 * {
     font-family: montserrat;
+    user-select: none;
+}
+
+:disabled {
+    cursor: not-allowed;
 }
 
 body.noscroll {
     overflow: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ac3cde;
+    border: 4px solid transparent;
+    background-clip: content-box;
+    border-radius: 8px;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 .modalpage {
     text-align: center;
 }
 
-.hero {
-    user-select: none;
-}
-
-.navbar.sticky {
+.navbar {
     width: 100vw;
     position: fixed;
     top: 0px;
@@ -33,13 +46,19 @@ body.noscroll {
     background-size: cover;
 }
 
-.footer {
+footer {
     background-image: url("/assets/img/background.jpeg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     user-select: none;
+    padding: 2%;
+    color: #fff;
+    text-align: center;
+}
+
+footer>p>a {
     color: #fff;
 }
 
@@ -112,9 +131,6 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     position: fixed;
     cursor: pointer;
     left: 80%;
-    /*background: #fff;
-    border-radius: 99%;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);*/
 }
 
 .closeModalPannel>i {
@@ -155,15 +171,6 @@ input.input.is-danger.is-rounded[data-attr="username"] {
 
 .card {
     margin: auto;
-}
-
-.game_row {
-    margin: 4px, 4px;
-    padding: 4px;
-    background-color: #08c708;
-    width: 300px;
-    overflow: auto;
-    white-space: nowrap;
 }
 
 .username-container>i {
@@ -380,6 +387,7 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 .username {
@@ -421,6 +429,10 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.is-center {
+    text-align: center;
 }
 
 .loading {

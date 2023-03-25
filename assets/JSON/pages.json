@@ -1,7 +1,5 @@
 {
     "main": ["/", "/login", "/signup"],
     "secondary": ["/home", "/games"],
-    "all": ["/", "/login", "/signup", "/home", "/games"],
-    "third_party": ["http://retronetwork.codehs.me/"],
-    "generated": ["/games"]
+    "all": ["/", "/login", "/signup", "/home", "/games"]
 }

@@ -1,26 +1,11 @@
-function log_() {
-    (this.push = function (data, logPath) {
-        var path = logPath.split("/").join(".");
-        alert(path);
-        return data;
-    }),
-        (this.get = function (logPath) {
-            var path = logPath
-                .split("/")
-                .join(".")
-                .replace(/[0-9]/g, logPath.match(/(\d+)/)[0] - 1);
-            return eval("mainLogs" + path);
-        });
-}
-
 function tab_() {
     (this.reload = function () {
         location.reload();
-        
+
     }),
         (this.redirect = function (url) {
             window.location.href = url;
-            
+
         }),
         (this.open = function (url, width, height) {
             if (url) {
@@ -37,9 +22,9 @@ function tab_() {
 
 function localStorage_() {
     for (let [key, value] of Object.entries(localStorage)) {
-        //eval('(this.${key.replace(/[^a-zA-Z ]/g, "_")} = ${value})')
+        eval(`(this.${key.replace(/[^a-zA-Z ]/g, "_")} = ${value})`)
     }
-    
+
     (this.clear = function () {
         localStorage.clear();
     }),
@@ -103,18 +88,18 @@ function audio_() {
                 } else {
                     audio.pause();
                     this.data = null;
-                } 
+                }
             } else {
                 console.warn('"audio" cannot be cleared\nno data\n\naudio.load()');
             }
         }),
         (this.getYt = function (videoId) {
             fetch(`https://pipedapi.adminforge.de/streams/${videoId}?hl=en&region=us`)
-            .then(function (resp) {
-                return resp.json();
-            }).then(function (videoData) {
-                audio.ytData = videoData.audioStreams[0].url;
-            });
+                .then(function (resp) {
+                    return resp.json();
+                }).then(function (videoData) {
+                    audio.ytData = videoData.audioStreams[0].url;
+                });
         })
 }
 
@@ -168,8 +153,9 @@ function err(text) {
     console.error(text);
 }
 
-const logs = new log_();
 const tab = new tab_();
 const audio = new audio_();
 const page = new page_();
 const ls = new localStorage_();
+
+export default { tab, audio, page, ls, log, warn, err, ask, say };

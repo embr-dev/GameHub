@@ -1,45 +1,46 @@
 const nav = document.querySelector('.navbar');
 API.get('/games').then(games => {
-        let gameList = [];
-        const searchBar = document.querySelector('[data-func="search"]');
-        var prev_value;
-        const search_query = urlParams.get('search_query');
+    const searchBar = document.querySelector('[data-func="search"]');
 
-        /*if (search_query) {
-            window.history.pushState({}, '', '?search_query=' + search_query)
-        }*/
-
-        searchBar.addEventListener('input', (e) => {
-            if (searchBar.value) {
-                //window.history.pushState({}, '', '?search_query=' + searchBar.value)
-
-                for (let i = 0; i < document.querySelectorAll('.game').length; i++) {
-                    const isSearch = document.querySelectorAll('.game')[i].title.toLowerCase().includes(searchBar.value.toLowerCase());
-                    document.querySelectorAll('.game')[i].classList.add('hidden');
-                }
-            } else {
-                //window.history.pushState({}, "", window.location.pathname);
-                for (let i = 0; i < document.querySelectorAll('.game').length; i++) {
-                    document.querySelectorAll('.game')[i].classList.remove('hidden');
-                }
-            }
-        });
-
-        document.querySelector('.games').innerHTML = '';
-        for (let i = 0; i < games.length; i++) {
-            gameList.push(games[i].name)
-            var game = document.createElement('div');
-            game.classList = 'game';
-            game.title = games[i].name;
-            game.innerHTML = `<img src="${games[i].thumbnail}"/><p>${games[i].name}</p>`;
-            document.querySelector('.games').appendChild(game);
-            game.addEventListener('click', (e) => {
-                openGame(games[i].id);
+    searchBar.addEventListener('input', (e) => {
+        if (searchBar.value) {
+            const gameNames = [];
+            document.querySelectorAll('.game').forEach(gameEl => {
+                gameNames.push(gameEl.title.toLowerCase());
             });
-        }
 
-        searchBar.focus();
+            if (gameNames.includes(searchBar.value.toLowerCase())) {
+                document.querySelectorAll('.game').forEach(gameEl => {
+                    const isSearch = gameEl.title.toLowerCase().includes(searchBar.value.toLowerCase());
+                    if (!isSearch) {
+                        gameEl.classList.add('hidden');
+                    } else {
+                        gameEl.classList.remove('hidden');
+                    }
+                })
+            }
+        } else {
+            document.querySelectorAll('.game').forEach(gameEl => {
+                gameEl.classList.remove('hidden');
+            })
+        }
     });
+
+    document.querySelector('.games').innerHTML = '';
+    games.forEach(game => {
+        const gameEl = document.createElement('div');
+        gameEl.classList = 'game';
+        gameEl.title = game.name;
+        gameEl.innerHTML = `<img src="${game.thumbnail}" onerror="this.src='/assets/img/logo.png';"/><p>${game.name}</p>`;
+        document.querySelector('.games').appendChild(gameEl);
+
+        gameEl.addEventListener('click', (e) => {
+            openGame(game.id);
+        });
+    })
+
+    searchBar.focus();
+});
 
 function openGame(id) {
     const gFrame = document.querySelector('.gameFrame');
@@ -47,114 +48,67 @@ function openGame(id) {
     gFrame.classList.remove('hidden');
     gameDatabase.classList.add('hidden');
     document.querySelector('.database_nav').classList.add('hidden');
-    API.get(`/games/${id}?hostname=${window.location.host}`).then(game => {
-            var gameElement = document.createElement('iframe');
-            gameElement.classList = 'innerGame';
-            gameElement.src = '/assets/public/gs/game.html';
-            gameElement.title = game.name;
-            nav.classList.add('hidden');
-            document.body.classList.add('noscroll');
-            gFrame.appendChild(gameElement);
-            gameElement.scrollIntoView();
-            isGameOpen = true;
-            gameElement.onload = function () {
-                const frame = gameElement.contentWindow.document;
-                const commentContainer = frame.querySelector('.commentContainer');
-                const down = frame.querySelector('[data-attr="thumbs-down"]');
-                const up = frame.querySelector('[data-attr="thumbs-up"]');
-                const commentsToggle = frame.querySelector('[data-func="open-comments"]');
+    API.get(`/games/${id}`).then(game => {
+        nav.classList.add('hidden');
+        document.body.classList.add('noscroll');
 
-                const commentUnfilled = commentsToggle.querySelectorAll('svg')[0];
-                const commentFilled = commentsToggle.querySelectorAll('svg')[1];
+        const gameEl = document.createElement('iframe');
+        gameEl.classList = 'innerGame';
+        gameEl.src = '/assets/public/gs/game.html';
+        gameEl.title = game.name;
+        gFrame.appendChild(gameEl);
 
-                const upFilled = up.querySelectorAll('svg')[1];
-                const downFilled = down.querySelectorAll('svg')[1];
-                const upUnfilled = up.querySelectorAll('svg')[0];
-                const downUnfilled = down.querySelectorAll('svg')[0];
+        gameEl.scrollIntoView();
 
-                frame.querySelector('.mainGame').src = game.url;
-                frame.querySelector('.gameTitle').innerText = game.name;
-                up.querySelectorAll('p').innerText = game.rating;
+        isGameOpen = true;
 
-                frame.querySelector('[data-attr="fullscreen"]').addEventListener('click', (e) => {
-                    frame.querySelector('.mainGame').requestFullscreen();
-                });
+        gameEl.onload = function () {
+            const frame = gameEl.contentWindow.document;
+            const commentContainer = frame.querySelector('.commentContainer');
+            const commentsToggle = frame.querySelector('[data-func="open-comments"]');
 
-                var commentFrame = frame.createElement('iframe');
-                commentFrame.src = `/assets/public/pages/comments.html?id=${id}`;
-                commentFrame.classList = 'commentFrame';
-                commentFrame.frameBorder = 0;
-                commentContainer.appendChild(commentFrame);
+            const commentUnfilled = commentsToggle.querySelectorAll('svg')[0];
+            const commentFilled = commentsToggle.querySelectorAll('svg')[1];
 
-                commentsToggle.addEventListener('click', (e) => {
-                    if (commentUnfilled.dataset.val === 'false') {
-                        commentUnfilled.classList.add('hidden');
-                        commentFilled.classList.remove('hidden');
+            frame.querySelector('.mainGame').src = game.url;
+            frame.querySelector('.gameTitle').innerText = game.name;
 
-                        commentContainer.classList.remove('hidden');
-                    }
-                });
+            frame.querySelector('[data-attr="fullscreen"]').addEventListener('click', (e) => {
+                frame.querySelector('.mainGame').requestFullscreen();
+            });
 
-                up.addEventListener('click', (e) => {
-                    if (upFilled.dataset.val === 'false') {
-                        upUnfilled.classList.add('hidden');
-                        upFilled.classList.remove('hidden');
-                        upFilled.dataset.val = 'true';
-                        //rating++
-                        //up.querySelector('p').innerText = rating;
-                    } else if (upFilled.dataset.val === 'true') {
-                        upUnfilled.classList.remove('hidden');
-                        upFilled.classList.add('hidden');
-                        upFilled.dataset.val = 'false';
-                        //rating--
-                        //up.querySelector('p').innerText = rating;
-                    }
+            var commentFrame = frame.createElement('iframe');
+            commentFrame.src = `/assets/public/pages/comments.html?id=${id}`;
+            commentFrame.classList = 'commentFrame';
+            commentFrame.setAttribute('frameborder', '0');
+            commentContainer.appendChild(commentFrame);
 
-                    if (downFilled.dataset.val === 'true') {
-                        down.querySelectorAll('svg')[0].classList.remove('hidden');
-                        downFilled.classList.add('hidden');
-                        downFilled.dataset.val = 'false';
-                    }
-                });
-                down.addEventListener('click', (e) => {
-                    if (downFilled.dataset.val === 'false') {
-                        down.querySelectorAll('svg')[0].classList.add('hidden');
-                        downFilled.classList.remove('hidden');
-                        downFilled.dataset.val = 'true';
-                    } else if (downFilled.dataset.val === 'true') {
-                        down.querySelectorAll('svg')[0].classList.remove('hidden');
-                        downFilled.classList.add('hidden');
-                        downFilled.dataset.val = 'false';
-                    }
+            commentsToggle.addEventListener('click', (e) => {
+                if (commentUnfilled.dataset.val === 'false') {
+                    commentUnfilled.classList.add('hidden');
+                    commentFilled.classList.remove('hidden');
 
-                    if (upFilled.dataset.val === 'true') {
-                        upUnfilled.classList.remove('hidden');
-                        upFilled.classList.add('hidden');
-                        upFilled.dataset.val = 'false';
-                        //rating--
-                        //up.querySelector('p').innerText = rating;
-                    }
+                    commentContainer.classList.remove('hidden');
+                }
+            });
 
-                    //gameRating[id].rating = -1
-                    //alert(codec.encode('0'))
-                });
+            API.get(`/games/${id}/recomended`).then(recomendations => {
+                const recomendedGames = frame.querySelectorAll('.gameThumb');
+                for (let i = 0; i < recomendations.length; i++) {
+                    recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}"></img>`;
 
-                API.get(`/games/${id}/recomended`).then(recomendations => {
-                        const recomendedGames = frame.querySelectorAll('.gameThumb');
-                        for (let i = 0; i < recomendations.length; i++) {
-                            recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}"></img>`;
-
-                            recomendedGames[i].addEventListener('click', (e) => {
-                                document.querySelector('.innerGame').remove();
-                                openGame(recomendations[i].id);
-                            });
-                        }
+                    recomendedGames[i].addEventListener('click', (e) => {
+                        document.querySelector('.innerGame').remove();
+                        openGame(recomendations[i].id);
                     });
-                frame.querySelector('.logo').addEventListener('click', (e) => {
-                    closeGame();
-                });
-            }
-        });
+                }
+            });
+
+            frame.querySelector('.logo').addEventListener('click', (e) => {
+                closeGame();
+            });
+        }
+    });
 }
 
 function closeGame() {

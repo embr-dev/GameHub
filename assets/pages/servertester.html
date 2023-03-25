@@ -9,7 +9,7 @@
 
 <body>
     <script>
-        const isFrame = (window === window.parent) ? false : true;
+        /*const isFrame = (window === window.parent) ? false : true;
 
         if (isFrame === true && !localStorage.getItem('servers')) {
             const servers = [];
@@ -95,7 +95,7 @@
                     errorMsg.innerHTML = `<div class="box" style="text-align: center;"><i class="fa-solid fa-circle-exclamation"  style="font-size: 50px; text-align: center;"></i><h1 class="subtitle is-4">Could not retrive server lists</h1><p>The server lists your are client are trying to access appear to be inaccessible. This could be due to the gamehub instance you are using being out of date. To get this issue resolved you may want to conact the admin responsible for hosting this instance of gamehub.</p></div>`;
                     window.parent.document.appendChild(errorMsg);
                     window.parent.document.querySelector('.main').classList.add('hidden');
-                }*/
+                }
             }, 100);
 
             /*if (!servers.length) {
@@ -106,10 +106,10 @@
                 window.parent.document.appendChild(errorMsg);
             } else if (servers.length) {
                 localStorage.setItem('accessible_servers', servers);
-            }*/
+            }
         } else {
             window.location.href = '/';
-        }
+        }*/
     </script>
 </body>
 

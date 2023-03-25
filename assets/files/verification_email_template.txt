@@ -76,13 +76,13 @@
 <body>
     <div class="email_body">
         <div class="email_content">
-            <div class="email_head"><img src="https://base-url_replaceable/assets/img/background.jpeg" alt="banner">
+            <div class="email_head"><img src="base-url_replaceable/assets/img/background.jpeg" alt="banner">
             </div>
-            <img class="email_userpfp" src="https://base-url_replaceable/assets/img/logo.png">
+            <img class="email_userpfp" src="base-url_replaceable/assets/img/logo.png">
             <div class="email_main">
                 <h1 class="email_title">Email Verification</h1>
                 <p class="email_text">Welcome username_replaceable! Click the button below to verify your email or click this link <a
-                        href="forward-link_replaceable" target="_blank">forward-link_replaceable</a>.</p>
+                        href="forward-link_replaceable" target="_blank">forward-link_replaceable</a></p>
                 <a href="forward-link_replaceable"><button class="email_verifybutton">Verify your email</button></a>
             </div>
         </div>

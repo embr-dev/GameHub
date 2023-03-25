@@ -2,12 +2,22 @@
 <html lang="en">
 
 <head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3LWXSKDCB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-Z3LWXSKDCB');
+  </script>
+
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/assets/css/bulma.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <link rel="stylesheet" href="/assets/css/main.css" />
+
   <style>
     body {
       width: 100vw;
@@ -16,24 +26,26 @@
   </style>
 </head>
 
-<body>
+<body class="noscroll">
   <div class="main hidden">
     <span class="closeModalPannel">
       <i class="fa-solid fa-xmark"></i>
     </span>
+
     <div class="comments"></div>
+
     <div class="post-comment">
       <textarea class="textarea" placeholder="Add a comment..." data-attr="comment-subject"></textarea>
       <br>
       <button class="button is-info" data-func="submit-comment">Post</button>
     </div>
+
     <script src="/assets/js/api.js"></script>
     <script>
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       const gameId = urlParams.get("id");
-      fetch(`https://api.retronetwork.ml/GameHub/games/${gameId}/comments`)
-        .then(obj => obj.json())
+      API.get(`/games/${gameId}/comments`)
         .then(comments => {
           document.querySelector('.main').classList.remove('hidden');
           document.querySelector('.square-loader').classList.add('hidden');
@@ -59,7 +71,7 @@
 
               subject.value = '';
 
-              apiPost(`/games/${gameId}/comments/post`, comment, 'json')
+              API.post(`/games/${gameId}/comments/post`, comment)
                 .then(res => {
                   if (res.valid === true) {
                     location.reload();

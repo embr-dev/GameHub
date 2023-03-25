@@ -2,9 +2,16 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3LWXSKDCB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z3LWXSKDCB');
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://unpkg.com/peerjs@1.4.5/dist/peerjs.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -73,15 +80,17 @@
                 <p>We just sent an email to <span id="email_text"></span>.<br><br> Didn't get the email? <br>Check your spam folder.</p>
             </div>
         </div>
-        <script src="/assets/js/main.js"></script>
-        <script src="/assets/js/signup.js"></script>
-        <script src="/assets/js/api.js"></script>
     </div>
+
     <div class="square-loader">
         <div></div>
         <div></div>
         <div></div>
     </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/signup.js"></script>
 </body>
 
 </html>
