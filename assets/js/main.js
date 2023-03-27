@@ -57,27 +57,37 @@ fetch('/assets/JSON/pages.json')
             document.body.appendChild(profilemang);
 
             loaded++
+
+            var timeout = setTimeout(() => {
+                if (loaded < 4) {
+                    error('500');
+                }
+            }, 30000)
+
             var check = setInterval(() => {
                 if (loaded > 3) {
                     clearInterval(check);
+                    clearTimeout(timeout);
                     document.querySelector('.hidden').classList.remove('hidden');
                     document.querySelector('.square-loader').classList.add('hidden');
                 }
             }, 1000);
         } else {
             loaded++
+
+            var timeout = setTimeout(() => {
+                if (loaded < 4) {
+                    error('500');
+                }
+            }, 30000)
+
             var check = setInterval(() => {
-                if (loaded > 0) {
+                if (loaded > 2) {
                     clearInterval(check);
+                    clearTimeout(timeout);
                     document.querySelector('.hidden').classList.remove('hidden');
                     document.querySelector('.square-loader').classList.add('hidden');
                 }
             }, 1000);
         }
     });
-
-setTimeout(() => {
-    if (loaded < 4) {
-        error('500');
-    }
-}, 30000)

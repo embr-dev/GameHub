@@ -5,7 +5,7 @@ class api_ {
         this.get = async (route) => {
             if (route) {
                 try {
-                    const response = await fetch(`http://10.82.7.62:2000${route}?hostname=${window.location.hostname}`, {
+                    const response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
                         method: 'GET',
                         mode: 'cors',
                         cache: 'no-cache',
@@ -52,7 +52,7 @@ class api_ {
                     var data;
 
                     if (typeof sendData == 'object') {
-                        response = await fetch(`http://10.82.7.62:2000${route}?hostname=${window.location.hostname}`, {
+                        response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
                             method: 'POST',
                             mode: 'cors',
                             cache: 'no-cache',
@@ -65,7 +65,7 @@ class api_ {
                             body: JSON.stringify(sendData)
                         });
                     } else {
-                        response = await fetch(`http://10.82.7.62:2000${route}?hostname=${window.location.hostname}`, {
+                        response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
                             method: 'POST',
                             mode: 'cors',
                             cache: 'no-cache',

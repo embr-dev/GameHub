@@ -5,6 +5,10 @@ const content = document.querySelector('.main.profile');
 API.get(`/users/${userId}`)
     .then(account => {
         if (window.location.pathname !== '/assets/pages/profile.html') {
+            const profileCSS = document.createElement("style");
+            profileCSS.innerHTML = `.profile-icon{background-image:url("${account.profile}");}`
+            document.head.appendChild(profileCSS);
+
             usernameDisplay.innerText = account.username;
 
             if (!account.verified) {
