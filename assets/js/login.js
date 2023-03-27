@@ -48,7 +48,6 @@ form.addEventListener('submit', (event) => {
                 }
             }).catch(e => {
                 displayErr('Failed to connect to the server', 'usernameErr');
-                console.log(e);
             })
     }
 });

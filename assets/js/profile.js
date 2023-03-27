@@ -4,10 +4,6 @@ const content = document.querySelector('.main.profile');
 
 API.get(`/users/${userId}`)
     .then(account => {
-        var pfpstyles = document.createElement("style");
-        pfpstyles.innerHTML = `.profile-icon{background-image:url("${account.profile}");}`
-        document.head.appendChild(pfpstyles);
-
         if (window.location.pathname !== '/assets/pages/profile.html') {
             usernameDisplay.innerText = account.username;
 
@@ -32,6 +28,7 @@ API.get(`/users/${userId}`)
                 </div>`;
                 document.querySelector('.main').appendChild(emailModal);
                 document.body.classList.add('noscroll');
+                document.documentElement.classList.add('noscroll');
 
                 const emailForm = emailModal.querySelector('#emailform');
                 const emailInput = emailForm.querySelector('#emailinput');
@@ -42,30 +39,28 @@ API.get(`/users/${userId}`)
                         document.querySelector('#emailerror').textContent = '';
 
                         API.post(`/users/${userId}/verify`, { email: emailInput.value })
-                        .then(res => {
-                            console.log(res);
-
-                            if (res.error === false) {
-                                emailModal.querySelector('#verifycontent').innerHTML = `
+                            .then(res => {
+                                if (res.error === false) {
+                                    emailModal.querySelector('#verifycontent').innerHTML = `
                                 <i class="fa-solid fa-envelope" style="font-size: 50px; text-align: center;"></i>
                                 <h1 class="subtitle is-4">Email Verification</h1>
                                 <p>We just sent an email to ${emailInput.value}.<br><br> Didn't get the email? <br>Check your spam folder.</p>`;
 
-                                let emailChecker = setInterval(() => {
-                                    API.get(`/users/${userId}/verified`)
-                                        .then(verified => {
-                                            if (verified.verified === true) {
-                                                clearTimeout(emailChecker);
-                                                location.reload();
-                                            }
-                                        });
-                                }, 3000)
-                            } else if (res.error === true) {
-                                document.querySelector('#emailerror').textContent = res.errorMsg;
-                            } else {
-                                document.querySelector('#emailerror').textContent = 'The server did not provide a valid response';
-                            }
-                        })
+                                    let emailChecker = setInterval(() => {
+                                        API.get(`/users/${userId}/verified`)
+                                            .then(verified => {
+                                                if (verified.verified === true) {
+                                                    clearTimeout(emailChecker);
+                                                    location.reload();
+                                                }
+                                            });
+                                    }, 3000)
+                                } else if (res.error === true) {
+                                    document.querySelector('#emailerror').textContent = res.errorMsg;
+                                } else {
+                                    document.querySelector('#emailerror').textContent = 'The server did not provide a valid response';
+                                }
+                            })
                     } else {
                         document.querySelector('#emailerror').textContent = 'Please enter an email';
                     }
@@ -73,10 +68,9 @@ API.get(`/users/${userId}`)
             }
 
             loaded++
-        }
-
-        if (window.location.pathname === '/assets/pages/profile.html') {
+        } else {
             window.parent.document.body.classList.add('noscroll');
+            window.parent.document.documentElement.classList.add('noscroll');
             const pfp = document.querySelector('.pfp');
             const closeBtn = window.parent.document.querySelector('.modal-close');
             const usernameInput = document.querySelector('[data-attr="username"]');
@@ -89,6 +83,8 @@ API.get(`/users/${userId}`)
             idDisplay.innerText = '#' + userId;
             loader.classList.add('hidden');
             closeBtn.addEventListener('click', (event) => {
+                window.parent.document.documentElement.classList.remove('noscroll');
+                window.parent.document.body.classList.remove('noscroll');
                 window.parent.history.pushState({}, '', window.parent.location.pathname);
                 window.parent.document.querySelector('.modal.is-active').remove();
                 parentstyles.remove();
@@ -137,9 +133,6 @@ API.get(`/users/${userId}`)
                 }
             });*/
 
-            /*
-            @Russell2259 removed this because the server can't handle it
-
             pfp.addEventListener('mouseover', (event) => {
                 overlay.classList.remove('hidden');
             });
@@ -171,7 +164,7 @@ API.get(`/users/${userId}`)
                             if (event.key === 'Enter') {
                                 API.post(`/users/${userId}/change/profile`, { username: account.username, password: confirm.value, picture: e.data })
                                     .then(res => {
-                                        
+                                        alert(res);
                                     });
                             }
                         });
@@ -179,6 +172,6 @@ API.get(`/users/${userId}`)
                         alert('Could not proccess your request. Please try again later.')
                     }
                 }
-            });*/
+            });
         }
-    });
+    })

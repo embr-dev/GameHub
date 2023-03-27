@@ -1,3 +1,5 @@
+@import url('/assets/css/fonts.css');
+
 * {
     font-family: montserrat;
 }
@@ -39,20 +41,4 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
-}
-
-@font-face {
-    font-family: 'montserrat';
-    src: url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Regular.woff2') format('woff2'),
-        url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'montserrat-black';
-    src: url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Black.woff2') format('woff2'),
-        url('https://raw.githubusercontent.com/Russell2259/barbackend/main/Montserrat-Black.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }

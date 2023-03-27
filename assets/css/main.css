@@ -1,6 +1,11 @@
+@import url('/assets/css/bulma.css');
+@import url('/assets/css/cropbox.css');
+@import url('/assets/css/fonts.css');
+
 body,
 html {
     font-family: montserrat;
+    width: 100vw;
 }
 
 * {
@@ -8,12 +13,39 @@ html {
     user-select: none;
 }
 
+body.modalpage {
+    background-image: url('/assets/img/background.jpeg');
+    background-position: 0;
+    text-align: center;
+    overflow: hidden;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+body.modalpage::-webkit-scrollbar {
+    display: none;
+}
+
+.title {
+    font-family: montserrat-black;
+}
+
 :disabled {
     cursor: not-allowed;
 }
 
+html.noscroll {
+    overflow: hidden;
+}
+
 body.noscroll {
     overflow: hidden;
+}
+
+body.noscroll::-webkit-scrollbar {
+    display: none;
 }
 
 ::-webkit-scrollbar {
@@ -31,23 +63,21 @@ body.noscroll {
     background: transparent;
 }
 
-.modalpage {
-    text-align: center;
-}
-
 .navbar {
     width: 100vw;
     position: fixed;
     top: 0px;
-    background-image: url("/assets/img/background.jpeg");
+    background-image: url('/assets/img/background.jpeg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 
 footer {
-    background-image: url("/assets/img/background.jpeg");
+    margin-top: 80px;
+    background-image: url('/assets/img/background.jpeg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -102,7 +132,7 @@ input.is-danger.is-rounded.searchBar {
     width: 400px;
 }
 
-input.input.is-danger.is-rounded[data-attr="username"] {
+input.input.is-danger.is-rounded[data-attr='username'] {
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
 }
@@ -148,7 +178,7 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
 }
 
-[data-attr="comment-subject"] {
+[data-attr='comment-subject'] {
     resize: none;
 }
 
@@ -291,11 +321,9 @@ input.input.is-danger.is-rounded[data-attr="username"] {
 .box {
     color: #000;
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin: auto;
-    margin: 50px;
     width: 400px;
 }
 
@@ -338,6 +366,7 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     transition: 0.5s;
     object-fit: cover;
     object-position: center;
+    border-radius: 20px;
 }
 
 .game>p {
@@ -349,12 +378,12 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     right: 0px;
     position: absolute;
     width: 100%;
-    background-color: rgb(0, 0, 0, 0.9);
+    background-color: rgb(0, 0, 0, 0.7);
     color: white;
 }
 
 .game:hover {
-    background-color: rgb(0, 0, 0, 0.7);
+    background-color: rgb(0, 0, 0, 0.5);
 }
 
 .gameFrame {
@@ -372,10 +401,6 @@ input.input.is-danger.is-rounded[data-attr="username"] {
 
 .content {
     width: 100%;
-}
-
-.navbar-item.is-dropdown {
-    color: #000;
 }
 
 .pfp {
@@ -527,7 +552,7 @@ input.input.is-danger.is-rounded[data-attr="username"] {
 }
 
 .lds-spinner div:after {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     top: 3px;
@@ -606,20 +631,4 @@ input.input.is-danger.is-rounded[data-attr="username"] {
     100% {
         opacity: 0;
     }
-}
-
-@font-face {
-    font-family: 'montserrat';
-    src: url('https://codehs.com/uploads/806ee7489702cee172c0c9d956910040') format('woff2'),
-        url('https://codehs.com/uploads/6869f071e73ab4d66fd54613c802867d') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'montserrat-black';
-    src: url('https://codehs.com/uploads/e91c40e3c726252fb8c0673dc10c3300') format('woff2'),
-        url('https://codehs.com/uploads/6fbeaa552e94d7f5eb1629d6140ce62c') format('woff');
-    font-weight: normal;
-    font-style: normal;
 }

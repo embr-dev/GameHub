@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'montserrat';
+    src: url('/assets/fonts/Montserrat-Light.woff2') format('woff2'),
+        url('/assets/fonts/Montserrat-Light.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat-black';
+    src: url('/assets/fonts/Montserrat-Black.woff2') format('woff2'),
+        url('/assets/fonts/Montserrat-Black.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

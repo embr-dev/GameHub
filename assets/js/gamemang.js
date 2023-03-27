@@ -31,8 +31,12 @@ API.get('/games').then(games => {
         const gameEl = document.createElement('div');
         gameEl.classList = 'game';
         gameEl.title = game.name;
-        gameEl.innerHTML = `<img src="${game.thumbnail}" onerror="this.src='/assets/img/logo.png';"/><p>${game.name}</p>`;
+        gameEl.innerHTML = `<img src="${game.thumbnail}"/><p>${game.name}</p>`;
         document.querySelector('.games').appendChild(gameEl);
+
+        gameEl.querySelector('img').onerror = (e) => {
+            e.target.src='/assets/img/logo.png';
+        }
 
         gameEl.addEventListener('click', (e) => {
             openGame(game.id);
@@ -51,6 +55,7 @@ function openGame(id) {
     API.get(`/games/${id}`).then(game => {
         nav.classList.add('hidden');
         document.body.classList.add('noscroll');
+        document.documentElement.classList.add('noscroll');
 
         const gameEl = document.createElement('iframe');
         gameEl.classList = 'innerGame';
@@ -97,6 +102,10 @@ function openGame(id) {
                 for (let i = 0; i < recomendations.length; i++) {
                     recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}"></img>`;
 
+                    recomendedGames[i].querySelector('img').onerror = (e) => {
+                        e.target.src='/assets/img/logo.png';
+                    }
+
                     recomendedGames[i].addEventListener('click', (e) => {
                         document.querySelector('.innerGame').remove();
                         openGame(recomendations[i].id);
@@ -114,6 +123,7 @@ function openGame(id) {
 function closeGame() {
     nav.classList.remove('hidden');
     document.body.classList.remove('noscroll');
+    document.documentElement.classList.remove('noscroll');
     const gFrame = document.querySelector('.gameFrame');
     const gameDatabase = document.querySelector('.games');
     gFrame.classList.add('hidden');

@@ -10,10 +10,8 @@ if (isIndex) {
 }
 
 fetch('/assets/JSON/pages.json')
-    .then(function(resp) {
-        return resp.json();
-    })
-    .then(function(pages) {
+    .then(res => res.json())
+    .then((pages) => {
         const isLogin = localStorage.getItem('isLogin');
         const isMain = pages.main.includes(window.location.pathname);
         
@@ -21,10 +19,12 @@ fetch('/assets/JSON/pages.json')
             window.location.href = '/login';
             loaded++
         }
+
         if (isMain && isLogin) {
             window.location.href = '/home';
             loaded++
         }
+
         if (isMain && !isLogin) {
             loaded++
         }

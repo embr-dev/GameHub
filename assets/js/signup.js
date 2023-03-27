@@ -50,11 +50,6 @@ function clearErrs() {
     }
 }
 
-window.onerror = (errorMsg, url, lineNumber) => {
-    console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
-    return false;
-}
-
 username.focus();
 
 form.addEventListener('submit', (event) => {
@@ -109,8 +104,6 @@ form.addEventListener('submit', (event) => {
                     } else {
                         displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
                     }
-
-                    console.log(res);
                 }).catch(e => {
                     displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
                     throw e;

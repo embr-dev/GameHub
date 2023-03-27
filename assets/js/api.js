@@ -1,11 +1,5 @@
-window.onerror = (errorMsg, url, lineNumber) => {
-    console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
-}
-
 class api_ {
     constructor() {
-        this.accessible = false;
-
         this.servers = localStorage.getItem('servers');
 
         this.get = async (route) => {
@@ -93,7 +87,6 @@ class api_ {
 
                     return await data;
                 } catch (e) {
-                    console.log(e);
                     return { error: true, errorMsg: 'Could not connect to the server' };
                 }
             } else {
@@ -118,3 +111,5 @@ fetch('/auth')
 if (!sessionStorage.getItem('session')) {
     sessionStorage.setItem('session', API.getToken());
 }
+
+const session = sessionStorage.getItem('session');
