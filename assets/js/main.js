@@ -42,6 +42,17 @@ const analyticsmang = document.createElement('script');
 analyticsmang.src = '/assets/js/analytics.js';
 document.body.appendChild(analyticsmang);
 
+const codec = document.createAttribute('script');
+codec.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
+document.body.appendChild(codec);
+
+const devtools = document.createElement('script');
+devtools.src = "https://cdnjs.cloudflare.com/ajax/libs/eruda/2.11.3/eruda.js";
+document.body.appendChild(devtools);
+devtools.onload = () => {
+    eruda.init();
+}
+
 fetch('/assets/JSON/pages.json')
     .then(res => res.json())
     .then((pages) => {
