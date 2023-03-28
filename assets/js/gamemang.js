@@ -1,4 +1,14 @@
 const nav = document.querySelector('.navbar');
+const searchContainer = document.querySelector('.database_nav');
+
+window.onscroll = () => {
+    if (window.pageYOffset > document.querySelector('.hero').offsetHeight) {
+        searchContainer.classList.add('shadowed');
+    } else {
+        searchContainer.classList.remove('shadowed');
+    }
+}
+
 API.get('/games').then(games => {
     const searchBar = document.querySelector('[data-func="search"]');
 

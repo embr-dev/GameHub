@@ -1,4 +1,3 @@
-const path = window.location.pathname;
 const queryString = window.location.search;
 const hash = window.location.hash.replace('#', '');
 window.history.pushState({}, '', window.location.pathname);
@@ -60,9 +59,9 @@ fetch('/assets/JSON/pages.json')
 
             var timeout = setTimeout(() => {
                 if (loaded < 4) {
-                    error('500');
+                    error('408');
                 }
-            }, 30000)
+            }, 60000)
 
             var check = setInterval(() => {
                 if (loaded > 3) {
@@ -77,9 +76,9 @@ fetch('/assets/JSON/pages.json')
 
             var timeout = setTimeout(() => {
                 if (loaded < 4) {
-                    error('500');
+                    error('408');
                 }
-            }, 30000)
+            }, 60000)
 
             var check = setInterval(() => {
                 if (loaded > 2) {

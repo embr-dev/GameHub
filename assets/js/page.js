@@ -1,3 +1,5 @@
+const path = window.location.pathname;
+
 if (path === '/') {
     if (action == 'logout') {
         localStorage.removeItem('isLogin');
@@ -61,21 +63,23 @@ if (path === '/home') {
             document.querySelector('[data-action="open_profile"]').click();
         }
     }
-    const profileTrigger = document.querySelector('[data-action="open_profile"]');
+    const profileTriggers = document.querySelectorAll('[data-action="open_profile"]');
 
-    profileTrigger.addEventListener('click', (e) => {
-        window.history.pushState({}, '', '#profile');
-        const modalEl = document.createElement("div");
-        modalEl.innerHTML = `<div class="modal" id="profile_page">
-                <div class="modal-background"></div>
-                <div class="modal-content">
-                    <div class="card">
-                        <iframe src="/assets/pages/profile.html" scrolling="no" class="frame_500x500"></iframe>
+    profileTriggers.forEach(profileTrigger => {
+        profileTrigger.addEventListener('click', (e) => {
+            window.history.pushState({}, '', '#profile');
+            const modalEl = document.createElement("div");
+            modalEl.innerHTML = `<div class="modal" id="profile_page">
+                    <div class="modal-background"></div>
+                    <div class="modal-content">
+                        <div class="card">
+                            <iframe src="/assets/pages/profile.html" scrolling="no" class="frame_500x500"></iframe>
+                        </div>
                     </div>
-                </div>
-                <button class="modal-close is-large" aria-label="close"></button>
-            </div>`;
-        document.querySelector('.main').appendChild(modalEl);
-        modalEl.firstChild.classList.add('is-active')
-    });
+                    <button class="modal-close is-large" aria-label="close"></button>
+                </div>`;
+            document.querySelector('.main').appendChild(modalEl);
+            modalEl.firstChild.classList.add('is-active')
+        });
+    })
 }

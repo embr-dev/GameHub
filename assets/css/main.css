@@ -119,6 +119,7 @@ button.button.is-rounded.is-danger.has-right-sharp {
 div.select.is-danger.is-rounded.sortSelect>select {
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
+    border-left: none;
 }
 
 input.is-danger.is-rounded.searchBar {
@@ -253,6 +254,11 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     display: flex;
     flex-direction: row;
     margin: auto;
+    transition: .3s;
+}
+
+.database_nav.shadowed {
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.616);
 }
 
 .sort {
@@ -277,11 +283,7 @@ input.input.is-danger.is-rounded[data-attr='username'] {
 .search i {
     position: absolute;
     z-index: 1;
-    padding: 10px;
-}
-
-.demoGame {
-    user-select: none;
+    padding: 12px;
 }
 
 .content {
@@ -325,6 +327,7 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616)
 }
 
 .innerGame {
@@ -498,6 +501,7 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
+    border-radius: 6px;
 }
 
 .square-loader div {
@@ -506,6 +510,7 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     left: 8px;
     width: 16px;
     background: #000;
+    border-radius: 3px;
     animation: square-loader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
 }
 
