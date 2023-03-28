@@ -6,6 +6,7 @@ const action = urlParams.get('action');
 
 window.onerror = (errorMsg, url, lineNumber) => {
     console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
+    alert('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
 }
 
 function error(errCode) {
@@ -42,9 +43,9 @@ const analyticsmang = document.createElement('script');
 analyticsmang.src = '/assets/js/analytics.js';
 document.body.appendChild(analyticsmang);
 
-const codec = document.createAttribute('script');
+/*const codec = document.createAttribute('script');
 codec.src = 'https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js';
-document.body.appendChild(codec);
+document.body.appendChild(codec);*/
 
 const devtools = document.createElement('script');
 devtools.src = "https://cdnjs.cloudflare.com/ajax/libs/eruda/2.11.3/eruda.js";
