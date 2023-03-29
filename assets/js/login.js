@@ -40,7 +40,7 @@ form.addEventListener('submit', (event) => {
                     localStorage.setItem('userId', res.id);
 
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
-                    window.location.href = `/home?ref=${window.location.pathname}&uid=${res.id}&uft=true`;
+                    window.location.href = `/home?ref=${window.location.pathname}&uid=${res.id}`;
                 } else if (res.error === true) {
                     displayErr(res.errorMsg, 'usernameErr');
                 } else {
