@@ -55,7 +55,7 @@ class RegisterGamehubError {
             }, 500);
         }, 8000);
 
-        //throw new Error(e);
+        console.log(e);
     }
 }
 
