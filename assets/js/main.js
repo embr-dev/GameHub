@@ -99,12 +99,12 @@ Object.keys(scripts).forEach(key => {
     document.body.appendChild(script);
 })
 
-/*const devtools = document.createElement('script');
+const devtools = document.createElement('script');
 devtools.src = "https://cdnjs.cloudflare.com/ajax/libs/eruda/2.11.3/eruda.js";
 document.body.appendChild(devtools);
 devtools.onload = () => {
     eruda.init();
-}*/
+}
 
 fetch('/assets/JSON/pages.json')
     .then(res => res.json())
