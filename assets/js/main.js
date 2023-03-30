@@ -29,7 +29,7 @@ class RegisterGamehubError {
         if (e.message) {
             error.innerHTML = `<span>${e.message.toString()}</span>`;
         } else {
-            error.innerHTML = `<span>An error occurred: ${e}</span>`;
+            error.innerHTML = `<span>An error occurred: ${e.toString()}</span>`;
         }
         notificationContainer.appendChild(error);
 

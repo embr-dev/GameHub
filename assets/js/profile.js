@@ -185,5 +185,5 @@ API.get(`/users/${userId}`)
             });*/
         }
     }).catch(e => {
-
+        new RegisterGamehubError('Could not load profile data');
     })

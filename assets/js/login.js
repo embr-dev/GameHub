@@ -46,7 +46,7 @@ form.addEventListener('submit', (event) => {
                     displayErr('The requested account does not exist', 'usernameErr');
                 }
             }).catch(e => {
-                console.log(e);
+                new RegisterGamehubError(e);
                 displayErr('Failed to connect to the server', 'usernameErr');
             })
     }

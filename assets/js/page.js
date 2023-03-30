@@ -10,7 +10,7 @@ if (path === '/') {
         .then(count => {
             document.querySelector('.user-count').innerText = Math.ceil(Number(count) / 100) * 100 - 100;
         }).catch(e => {
-        
+            new RegisterGamehubError('Could not load gamehub usercount');
         })
 }
 

@@ -106,6 +106,7 @@ form.addEventListener('submit', (event) => {
                         displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
                     }
                 }).catch(e => {
+                    new RegisterGamehubError(e);
                     displayErr('The server encountered an error while trying to proccess your request', 'emailErr');
                     throw e;
                 });
