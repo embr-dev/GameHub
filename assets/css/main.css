@@ -24,6 +24,14 @@ body.modalpage {
     height: 100vh;
 }
 
+body>div.main.hidden + body::-webkit-scrollbar-track {
+    display: none;
+}
+
+body>div.main.hidden + body::-webkit-scrollbar {
+    display: none;
+}
+
 body.modalpage::-webkit-scrollbar {
     display: none;
 }
