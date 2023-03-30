@@ -12,7 +12,7 @@ if (isIndex) {
 fetch('/assets/JSON/pages.json')
     .then(res => res.json())
     .then((pages) => {
-        const isLogin = localStorage.getItem('isLogin');
+        const isLogin = cookie.get('loginsession') === 'true';
         const isMain = pages.main.includes(window.location.pathname);
         
         if (!isMain && !isLogin) {

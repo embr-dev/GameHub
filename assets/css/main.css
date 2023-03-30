@@ -28,6 +28,10 @@ body.modalpage::-webkit-scrollbar {
     display: none;
 }
 
+body.modalpage::-webkit-scrollbar-track {
+    display: none;
+}
+
 .title {
     font-family: montserrat-black;
 }
@@ -48,12 +52,20 @@ body.noscroll::-webkit-scrollbar {
     display: none;
 }
 
+body.noscroll::-webkit-scrollbar-track {
+    display: none;
+}
+
 ::-webkit-scrollbar {
     width: 16px;
 }
 
+::-webkit-scrollbar-track {
+    background: rgba(171, 61, 222, 0.2);
+}
+
 ::-webkit-scrollbar-thumb {
-    background: #ac3cde;
+    background: #ab3dde;
     border: 4px solid transparent;
     background-clip: content-box;
     border-radius: 8px;
@@ -61,6 +73,33 @@ body.noscroll::-webkit-scrollbar {
 
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+.notifications {
+    top: 1%;
+    width: 20%;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .5s;
+    height: 2%;
+}
+
+.notifications>.notification {
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.notifications>.notification.error {
+    background: rgba(171, 61, 222, 0.801);
+    color: #fff;
+    transition: .5s;
+    inline-size: 100%;
+    overflow-wrap: break-word;
 }
 
 .navbar {
@@ -415,7 +454,6 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    cursor: pointer;
 }
 
 .username {

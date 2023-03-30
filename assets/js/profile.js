@@ -1,5 +1,5 @@
 const usernameDisplay = document.querySelector('#username');
-const userId = localStorage.getItem('userId');
+const userId = cookie.get('userid');
 const content = document.querySelector('.main.profile');
 
 API.get(`/users/${userId}`)
@@ -11,7 +11,7 @@ API.get(`/users/${userId}`)
 
             usernameDisplay.innerText = account.username;
 
-            if (!account.verified) {
+            if (account.verified === false) {
                 const emailModal = document.createElement('div');
                 emailModal.classList = 'modal is-active';
                 emailModal.innerHTML = `
@@ -57,13 +57,17 @@ API.get(`/users/${userId}`)
                                                     clearTimeout(emailChecker);
                                                     location.reload();
                                                 }
-                                            });
+                                            }).catch(e => {
+        
+                                            })
                                     }, 3000)
                                 } else if (res.error === true) {
                                     document.querySelector('#emailerror').textContent = res.errorMsg;
                                 } else {
                                     document.querySelector('#emailerror').textContent = 'The server did not provide a valid response';
                                 }
+                            }).catch(e => {
+        
                             })
                     } else {
                         document.querySelector('#emailerror').textContent = 'Please enter an email';
@@ -135,7 +139,7 @@ API.get(`/users/${userId}`)
                     usernameInput.readOnly = false;
                     usernameInput.focus();
                 }
-            });*/
+            });
 
             pfp.addEventListener('mouseover', (event) => {
                 overlay.classList.remove('hidden');
@@ -169,13 +173,17 @@ API.get(`/users/${userId}`)
                                 API.post(`/users/${userId}/change/profile`, { username: account.username, password: confirm.value, picture: e.data })
                                     .then(res => {
                                         alert(res);
-                                    });
+                                    }).catch(e => {
+        
+                                    })
                             }
                         });
                     } else {
                         alert('Could not proccess your request. Please try again later.')
                     }
                 }
-            });
+            });*/
         }
+    }).catch(e => {
+
     })

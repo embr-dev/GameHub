@@ -46,6 +46,7 @@ ongamehub = () => {
             document.querySelector('.games').appendChild(gameEl);
 
             gameEl.querySelector('img').onerror = (e) => {
+                new RegisterGamehubError(`Could not load splash image for ${e.target.parentElement.title}`);
                 e.target.src = '/assets/img/logo.png';
             }
 
@@ -55,7 +56,9 @@ ongamehub = () => {
         })
 
         searchBar.focus();
-    });
+    }).catch(e => {
+        new RegisterGamehubError('Could not load games');
+    })
 
     function openGame(id) {
         const gFrame = document.querySelector('.gameFrame');
@@ -122,13 +125,17 @@ ongamehub = () => {
                             openGame(recomendations[i].id);
                         });
                     }
-                });
+                }).catch(e => {
+                    new RegisterGamehubError('Could not load recomended games');
+                })
 
                 frame.querySelector('.logo').addEventListener('click', (e) => {
                     closeGame();
                 });
             }
-        });
+        }).catch(e => {
+            new RegisterGamehubError(`Could not game #${id}`);
+        })
     }
 
     function closeGame() {

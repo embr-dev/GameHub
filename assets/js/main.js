@@ -14,8 +14,61 @@ const scripts = {
 
 var ongamehub;
 
-window.onerror = (errorMsg, url, lineNumber) => {
-    console.log('Error: ' + errorMsg + '\n\nUrl: ' + url + '\n\nLine:' + lineNumber);
+class RegisterGamehubError {
+    constructor(e) {
+        let notificationContainer = document.querySelector('.notifications');
+
+        if (!notificationContainer) {
+            notificationContainer = document.createElement('div');
+            notificationContainer.classList = 'notifications';
+            document.body.appendChild(notificationContainer);
+        }
+
+        const error = document.createElement('div');
+        error.classList = 'notification error';
+        if (e.message) {
+            error.innerHTML = `<span>${e.message.toString()}</span>`;
+        } else {
+            error.innerHTML = `<span>An error occurred: ${e}</span>`;
+        }
+        notificationContainer.appendChild(error);
+
+        error.onclick = () => {
+            error.style.height = '0px';
+            error.style.opacity = 0;
+            error.style.padding = '0px';
+            error.firstElementChild.style.fontSize = '0px';
+
+            setTimeout(() => {
+                error.remove();
+            }, 500);
+        }
+
+        setTimeout(() => {
+            error.style.height = '0px';
+            error.style.opacity = 0;
+            error.style.padding = '0px';
+            error.firstElementChild.style.fontSize = '0px';
+
+            setTimeout(() => {
+                error.remove();
+            }, 500);
+        }, 8000);
+
+        //throw new Error(e);
+    }
+}
+
+window.onerror = (e) => {
+    new RegisterGamehubError(e);
+}
+
+window.console.error = (e) => {
+    new RegisterGamehubError(e);
+}
+
+window.onmessageerror = (e) => {
+    new RegisterGamehubError(e);
 }
 
 function error(errCode) {
@@ -59,8 +112,8 @@ fetch('/assets/JSON/pages.json')
         const isMain = pages.main.includes(window.location.pathname);
 
         try {
-            ongamehub()
-        } catch (e) {}
+            ongamehub();
+        } catch (e) { }
 
         if (!isMain) {
             const navmang = document.createElement('script');

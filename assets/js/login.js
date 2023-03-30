@@ -1,4 +1,3 @@
-
 const form = document.getElementById('login');
 const username = document.getElementById('username');
 const pswrd = document.getElementById('pswrd');
@@ -36,8 +35,8 @@ form.addEventListener('submit', (event) => {
         API.post('/login', { username: username.value, password: pswrd.value })
             .then(res => {
                 if (res.error === false) {
-                    localStorage.setItem('isLogin', true);
-                    localStorage.setItem('userId', res.id);
+                    cookie.set('userid', res.id);
+                    cookie.set('loginsession', true);
 
                     document.querySelector('#loadingText').innerText = 'Logging you in...';
                     window.location.href = `/home?ref=${window.location.pathname}&uid=${res.id}`;
@@ -47,6 +46,7 @@ form.addEventListener('submit', (event) => {
                     displayErr('The requested account does not exist', 'usernameErr');
                 }
             }).catch(e => {
+                console.log(e);
                 displayErr('Failed to connect to the server', 'usernameErr');
             })
     }

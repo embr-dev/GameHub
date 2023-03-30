@@ -29,14 +29,13 @@
         return keys;
       },
   
-      encode: function (value) {
-        return String(value).replace(/[,;"\\=\s%]/g, function (character) {
-          return encodeURIComponent(character);
-        });
+      encode: (value) => {
+        console.log(btoa(value.toString()));
+        return btoa(value.toString());
       },
   
-      decode: function (value) {
-        return decodeURIComponent(value);
+      decode: (value) => {
+        return atob(value.toString());
       },
   
       retrieve: function (value, fallback) {
@@ -79,7 +78,7 @@
         sameSite = sameSite ? ';SameSite=' + sameSite : '';
         if (options.sameSite === null) sameSite = '';
   
-        document.cookie = utils.encode(key) + '=' + utils.encode(value) + expires + path + domain + secure + sameSite;
+        document.cookie = key + '=' + utils.encode(value) + expires + path + domain + secure + sameSite;
       }
   
       return this;
@@ -147,7 +146,7 @@
   
       for (var i = 0, l = cookies.length; i < l; i++) {
         var item = cookies[i].split('=');
-        var key = utils.decode(item.shift());
+        var key = item.shift();
         var value = utils.decode(item.join('='));
         result[key] = value;
       }

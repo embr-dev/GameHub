@@ -88,12 +88,13 @@ form.addEventListener('submit', (event) => {
                         document.querySelector('.email_verification').classList.remove('hidden');
                         document.querySelector('#email_text').innerText = email.value;
 
+                        cookie.set('userid', res.id);
+                        cookie.set('loginsession', true);
+
                         setInterval(() => {
                             API.get(`/users/${res.id}/verified`)
                                 .then(verified => {
                                     if (verified.verified === true) {
-                                        localStorage.setItem('userId', res.id);
-                                        localStorage.setItem('isLogin', true);
                                         document.querySelector('#loadingText').innerText = 'Logging you in...';
                                         window.location.href = `/home?ref=${window.location.pathname}&uid=${res.id}&uft=true&newuser=true&username=${username.value}`
                                     }

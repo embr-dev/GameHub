@@ -2,15 +2,16 @@ const path = window.location.pathname;
 
 if (path === '/') {
     if (action == 'logout') {
-        localStorage.removeItem('isLogin');
-        localStorage.removeItem('userId');
-        localStorage.removeItem('username');
+        cookie.remove('loginsession');
+        cookie.remove('userid');
     }
 
     API.get('/userCount')
         .then(count => {
             document.querySelector('.user-count').innerText = Math.ceil(Number(count) / 100) * 100 - 100;
-        });
+        }).catch(e => {
+        
+        })
 }
 
 if (path === '/home') {
