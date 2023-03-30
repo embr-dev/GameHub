@@ -8,7 +8,12 @@ if (path === '/') {
 
     API.get('/userCount')
         .then(count => {
-            document.querySelector('.user-count').innerText = Math.ceil(Number(count) / 100) * 100 - 100;
+            if (isNaN(count)) {
+                document.querySelector('.user-count').innerText = Math.ceil(Number(count) / 100) * 100 - 100;
+            } else {
+                document.querySelector('.user-count').parentElement.remove();
+                new RegisterGamehubError('Could not load gamehub usercount');
+            }
         }).catch(e => {
             new RegisterGamehubError('Could not load gamehub usercount');
         })
