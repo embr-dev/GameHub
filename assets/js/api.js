@@ -24,24 +24,12 @@ class api_ {
                         data = response.text();
                     }
 
-                    if (typeof data == 'object') {
-                        try {
-                            if (data.error === true) {
-                                return { error: true, errorMsg: `The server sent the error: ${data.errorMsg}` };
-                            } else {
-                                return data;
-                            }
-                        } catch (e) {
-                            return data;
-                        }
-                    } else {
-                        return data;
-                    }
+                    return await data;
                 } catch (e) {
-                    return { error: true, errorMsg: 'Could not connect to the server' };
+                    throw new Error('Could not connect to the server');
                 }
             } else {
-                return { error: true, errorMsg: 'Missing function parameters' };
+                throw new Error('Missing parameters for API.get');
             }
         };
 
@@ -87,7 +75,7 @@ class api_ {
 
                     return await data;
                 } catch (e) {
-                    return { error: true, errorMsg: 'Could not connect to the server' };
+                    throw new Error('Could not connect to the server');
                 }
             } else {
                 throw new Error('Missing parameters for API.post');

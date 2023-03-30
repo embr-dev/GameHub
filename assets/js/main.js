@@ -54,8 +54,6 @@ class RegisterGamehubError {
                 error.remove();
             }, 500);
         }, 8000);
-
-        alert(e);
     }
 }
 
