@@ -135,6 +135,7 @@ fetch('/assets/JSON/pages.json')
                     clearTimeout(timeout);
                     document.querySelector('.hidden').classList.remove('hidden');
                     document.querySelector('.square-loader').classList.add('hidden');
+                    document.documentElement.classList.remove('noscroll');
                 }
             }, 1000);
         } else {
@@ -152,6 +153,7 @@ fetch('/assets/JSON/pages.json')
                     clearTimeout(timeout);
                     document.querySelector('.hidden').classList.remove('hidden');
                     document.querySelector('.square-loader').classList.add('hidden');
+                    document.documentElement.classList.remove('noscroll');
                 }
             }, 1000);
         }

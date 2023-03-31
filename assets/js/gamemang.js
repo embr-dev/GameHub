@@ -81,7 +81,7 @@ ongamehub = () => {
 
             isGameOpen = true;
 
-            gameEl.onload = function () {
+            gameEl.onload = () => {
                 const frame = gameEl.contentWindow.document;
                 const commentContainer = frame.querySelector('.commentContainer');
                 const commentsToggle = frame.querySelector('[data-func="open-comments"]');
@@ -114,7 +114,7 @@ ongamehub = () => {
                 API.get(`/games/${id}/recomended`).then(recomendations => {
                     const recomendedGames = frame.querySelectorAll('.gameThumb');
                     for (let i = 0; i < recomendations.length; i++) {
-                        recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}"></img>`;
+                        recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}" />`;
 
                         recomendedGames[i].querySelector('img').onerror = (e) => {
                             e.target.src = '/assets/img/logo.png';
