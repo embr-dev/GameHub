@@ -1,6 +1,6 @@
 const form = document.getElementById('login');
 const username = document.getElementById('username');
-const pswrd = document.getElementById('pswrd');
+const password = document.getElementById('password');
 
 function displayErr(err, elid) {
     document.querySelector('.form').classList.remove('hidden')
@@ -19,10 +19,10 @@ username.focus();
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     clearErrs();
-    if (!username.value || !pswrd.value) {
-        if (!pswrd.value) {
-            displayErr('Please fill out this field', 'pswrdErr');
-            pswrd.focus();
+    if (!username.value || !password.value) {
+        if (!password.value) {
+            displayErr('Please fill out this field', 'passwordErr');
+            password.focus();
         }
         if (!username.value) {
             displayErr('Please fill out this field', 'usernameErr');
@@ -32,7 +32,7 @@ form.addEventListener('submit', (event) => {
         document.querySelector('.Loader').classList.remove('hidden');
         document.querySelector('.form').classList.add('hidden');
 
-        API.post('/login', { username: username.value, password: pswrd.value })
+        API.post('/login', { username: username.value, password: password.value }, true)
             .then(res => {
                 if (res.error === false) {
                     cookie.set('userid', res.id);

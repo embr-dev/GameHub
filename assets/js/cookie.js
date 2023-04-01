@@ -31,7 +31,6 @@
     },
 
     encode: (value) => {
-      console.log(btoa(value.toString()));
       return btoa(value.toString());
     },
 

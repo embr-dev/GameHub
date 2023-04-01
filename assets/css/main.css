@@ -395,7 +395,6 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     display: inline-block;
     vertical-align: middle;
     margin: 10px;
-    cursor: pointer;
     position: relative;
     border-radius: 10px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
@@ -406,6 +405,7 @@ input.input.is-danger.is-rounded[data-attr='username'] {
     object-position: center;
     width: 200px;
     height: 200px;
+    cursor: pointer;
 }
 
 .game>img {

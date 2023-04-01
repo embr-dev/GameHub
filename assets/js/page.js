@@ -8,7 +8,7 @@ if (path === '/') {
 
     API.get('/userCount')
         .then(count => {
-            if (isNaN(count)) {
+            if (!isNaN(Number(count))) {
                 document.querySelector('.user-count').innerText = Math.ceil(Number(count) / 100) * 100 - 100;
             } else {
                 document.querySelector('.user-count').parentElement.remove();

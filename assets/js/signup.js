@@ -1,6 +1,6 @@
 const form = document.querySelector('#signup');
 const username = document.querySelector('#username');
-const pswrd = document.querySelector('#pswrd');
+const password = document.querySelector('#password');
 const email = document.querySelector('#email');
 
 function generateAvatar(word, callback) {
@@ -36,11 +36,11 @@ function generateAvatar(word, callback) {
     });
 }
 
-function displayErr(err, elid) {
+function displayErr(e, id) {
     document.querySelector('.form').classList.remove('hidden');
     document.querySelector('.Loader').classList.add('hidden');
     document.querySelector('.email_verification').classList.add('hidden');
-    document.getElementById(elid).innerText = err
+    document.getElementById(id).innerText = e;
 }
 
 function clearErrs() {
@@ -55,10 +55,10 @@ username.focus();
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     clearErrs();
-    if (!username.value || !pswrd.value || !email.value) {
-        if (!pswrd.value) {
-            displayErr('Please fill out this field', 'pswrdErr');
-            pswrd.focus();
+    if (!username.value || !password.value || !email.value) {
+        if (!password.value) {
+            displayErr('Please fill out this field', 'passwordErr');
+            password.focus();
         }
         if (!username.value) {
             displayErr('Please fill out this field', 'usernameErr');
@@ -75,12 +75,12 @@ form.addEventListener('submit', (event) => {
         generateAvatar(username.value, (avatar) => {
             const accountData = {
                 username: username.value,
-                password: pswrd.value,
+                password: password.value,
                 email: email.value,
                 pfp: avatar
             }
 
-            API.post(`/register?hostname=${window.location.hostname}`, accountData)
+            API.post(`/register?hostname=${window.location.hostname}`, accountData, true)
                 .then(res => {
                     if (res.error === false) {
                         document.querySelector('.form').classList.add('hidden');

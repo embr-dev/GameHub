@@ -27,7 +27,7 @@ class RegisterGamehubError {
         const error = document.createElement('div');
         error.classList = 'notification error';
         if (e.message) {
-            error.innerHTML = `<span>${e.message.toString()}</span>`;
+            error.innerHTML = `<span>An error occurred: ${e.message.toString()}</span>`;
         } else {
             error.innerHTML = `<span>An error occurred: ${e.toString()}</span>`;
         }
@@ -54,10 +54,16 @@ class RegisterGamehubError {
                 error.remove();
             }, 500);
         }, 8000);
+
+        if (e.stack) {
+            console.log('An error occurred:\n\n' + e.stack);
+        } else {
+            console.log('An error occurred:\n\n' + e);
+        }
     }
 }
 
-window.onerror = (e) => {
+window.onerror = (a, b, c, d, e) => {
     new RegisterGamehubError(e);
 }
 
