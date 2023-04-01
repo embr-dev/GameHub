@@ -1,11 +1,15 @@
 class api_ {
     constructor() {
-        this.servers = localStorage.getItem('servers');
+        try {
+            this.servers = JSON.parse(cookie.get('servers'));
+        } catch (e) {
+            console.error('Could not get serverlist');
+        }
 
         this.get = async (route) => {
             if (route) {
                 try {
-                    const response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
+                    const response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
                         method: 'GET',
                         mode: 'cors',
                         cache: 'no-cache',
@@ -43,7 +47,7 @@ class api_ {
                         if (typeof data == 'object') {
                             const encodingData = await API.encrypt(JSON.stringify(data));
 
-                            response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
+                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 cache: 'no-cache',
@@ -59,7 +63,7 @@ class api_ {
                         } else {
                             const encodingData = await API.encrypt(data);
 
-                            response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
+                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 cache: 'no-cache',
@@ -75,7 +79,7 @@ class api_ {
                         }
                     } else {
                         if (typeof data == 'object') {
-                            response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
+                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 cache: 'no-cache',
@@ -88,7 +92,7 @@ class api_ {
                                 body: JSON.stringify(data)
                             });
                         } else {
-                            response = await fetch(`http://rklab:2000${route}?hostname=${window.location.hostname}`, {
+                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
                                 method: 'POST',
                                 mode: 'cors',
                                 cache: 'no-cache',
@@ -118,10 +122,6 @@ class api_ {
             }
         };
 
-        this.decrypt = () => {
-
-        }
-
         this.encrypt = async (data) => {
             const token = await this.token();
 
@@ -144,10 +144,62 @@ class api_ {
 
 const API = new api_();
 
-fetch('/auth')
-    .then(res => res.text())
-    .then(data => {
-        API.auth = data;
+fetch('/config.json')
+    .then(res => res.json())
+    .then(config => {
+        API.auth = config.auth;
+
+        if (!cookie.get('servers')) {
+            if (config.server === 'auto') {
+                fetch('https://raw.githubusercontent.com/GameHub88/GameHub-Assets/main/servers.json')
+                    .then(res => res.json())
+                    .then(servers => {
+                        if (servers) {
+                            const serverList = [];
+
+                            servers.forEach(server => {
+                                fetch(server)
+                                    .then(res => res.json())
+                                    .then(serverData => {
+                                        if (serverData) {
+                                            if (serverData.status == 'ready') {
+                                                serverList.push(server);
+                                            }
+                                        }
+                                    });
+                            });
+
+                            if (serverList.length == 0) {
+                                console.error('No available server was found');
+                            } else {
+                                cookie.set('servers', JSON.stringify(serverList));
+                                location.reload();
+                            }
+                        } else {
+                            console.error('Could not fetch server list');
+                        }
+                    }).catch(e => {
+                        console.error('Could not fetch server list');
+                    })
+            } else {
+                fetch(config.server)
+                    .then(res => res.json())
+                    .then(serverData => {
+                        if (serverData) {
+                            if (serverData.status == 'ready') {
+                                cookie.set('servers', JSON.stringify(new Array(config.server)));
+                                location.reload();
+                            } else {
+                                console.error('Could not connect to default server');
+                            }
+                        } else {
+                            console.error('Could not connect to default server');
+                        }
+                    }).catch(e => {
+                        console.error('Could not connect to default server');
+                    })
+            }
+        }
     })
 
 if (!sessionStorage.getItem('session')) {
