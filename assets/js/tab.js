@@ -14,18 +14,28 @@ fetch('/assets/JSON/pages.json')
     .then((pages) => {
         const isLogin = cookie.get('loginsession') === 'true';
         const isMain = pages.main.includes(window.location.pathname);
+        const isOther = pages.other.includes(window.location.pathname);
         
-        if (!isMain && !isLogin) {
+        if (!isMain && !isLogin ) {
             window.location.href = '/login';
             loaded++
         }
 
-        if (isMain && isLogin) {
+        if (isMain && isLogin && !isOther) {
             window.location.href = '/home';
             loaded++
         }
 
         if (isMain && !isLogin) {
+            loaded++
+        }
+
+        if (!pages.all.includes(window.location.pathname)) {
+            error('404');
+            loaded++
+        }
+
+        if (isOther) {
             loaded++
         }
     });

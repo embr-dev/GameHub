@@ -7664,7 +7664,7 @@ label.panel-block:hover {
 }
 
 .tabs a:hover {
-  border-bottom-color: #363636;
+  border-bottom-color: #ac3cde;
   color: #363636;
 }
 
@@ -7673,8 +7673,8 @@ label.panel-block:hover {
 }
 
 .tabs li.is-active a {
-  border-bottom-color: #485fc7;
-  color: #485fc7;
+  border-bottom-color: #ac3cde;
+  color: #363636;
 }
 
 .tabs ul {

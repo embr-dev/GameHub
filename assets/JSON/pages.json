@@ -1,5 +1,6 @@
 {
     "main": ["/", "/login", "/signup"],
-    "secondary": ["/home", "/games"],
-    "all": ["/", "/login", "/signup", "/home", "/games"]
+    "authenticated": ["/home"],
+    "other": ["/terms", "/privacy"],
+    "all": ["/", "/login", "/signup", "/home", "/terms", "/privacy"]
 }
