@@ -12,6 +12,7 @@
     <li><a href="https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.cf"></a>https://f9928793-06ce-4c41-ad0a-5558a1cd061a-4606328.cf</li>
     <li><a href="https://gamehub88.gq"></a>https://gamehub88.gq</li>
     <li><a href="https://gamehub.onrender.com"></a>https://gamehub.onrender.com</li>
+    <li><a href="https://gamehub.idek29879890.repl.co/"></a>https://gamehub.idek29879890.repl.co/</li>
 </ul>
 
 <h2 align="center">Deploy it yourself</h2>
