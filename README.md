@@ -1,3 +1,6 @@
+> ### Notice
+> This project is not being maintained as of 6/22/23. The servers are not being maintained and the site will remain down for now. We plan to restart development or make a new site around september of 2023
+
 <h1 align="center">GameHub</h1>
 
 <img src="https://socialify.git.ci/GameHub88/GameHub/image?description=1&descriptionEditable=Your%20unblocked%20game%20stop&font=Inter&forks=1&issues=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FGameHub88%2FGameHub%2Fmain%2Fassets%2Fimg%2Flogo.png&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Dark"/>
