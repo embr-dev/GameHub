@@ -1,14 +1,9 @@
-const gtagJS = document.createElement('script');
-gtagJS.src = 'https://www.googletagmanager.com/gtag/js?id=G-Z3LWXSKDCB';
-gtagJS.setAttribute('async', true);
-document.head.insertBefore(gtagJS, document.head.firstChild);
-
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-    dataLayer.push(arguments);
+if (location.hostname === 'gamehub.dev') {
+const analytics = document.createElement('script');
+analytics.setAttribute('data-domain', 'gamehub.dev');
+analytics.setAttribute('defer', '');
+analytics.src = 'https://analytics.embernet.work/js/script.js';
+document.head.insertBefore(analytics, document.head.firstChild);
 }
-gtag('js', new Date());
-
-gtag('config', 'G-Z3LWXSKDCB');
 
 loaded++
