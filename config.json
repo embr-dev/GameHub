@@ -1,4 +1,4 @@
 {
     "auth": "public",
-    "server": "auto"
+    "server": "https://api.gamehub.dev"
 }

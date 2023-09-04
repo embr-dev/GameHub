@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" class="noscroll">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <title>GameHub</title>
+</head>
+
+<body>
+    <div id="app" class="hidden">
+        <div class="navbar is-link is-fixed-top">
+            <div class="container">
+                <div class="navbar-brand is-dark">
+                    <a class="heroIcon" href="/app">
+                        <img src="/assets/img/logo.png" alt="Logo">
+                    </a>
+                    <a class="navTitle" href="/app">GameHub</a>
+
+                    <span class="navbar-burger" data-target="navbarMenuHeroC">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+
+                <div id="navbarMenuHeroC" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item is-active" href="/app">
+                            Home
+                        </a>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <p id="username" class="navbar-item" data-action="open_profile">Loading...</p>
+                            <span class="avatar-small" data-action="open_profile"></span>
+
+                            <div class="navbar-dropdown">
+                                <a data-action="open_profile" class="navbar-item is-dropdown">
+                                    Profile
+                                </a>
+                                <a href="#settings" class="navbar-item is-dropdown">
+                                    Settings
+                                </a>
+                                <hr class="navbar-divider">
+                                <a href="/logout" class="navbar-item is-dropdown">
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero is-link is-halfheight">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="heroTitle">
+                        Games
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="database_nav">
+            <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input class="input is-link is-rounded searchBar" data-func="search" placeholder="Search">
+            </div>
+
+            <div class="control has-icons-left sort">
+                <div class="select is-link is-rounded sortSelect">
+                    <select>
+                        <option selected>Default</option>
+                        <option disabled>Game Type</option>
+                        <option disabled>A-Z</option>
+                        <option disabled>Z-A</option>
+                    </select>
+                </div>
+
+                <span class="icon is-left">
+                    <i class="fa-solid fa-arrow-up-short-wide"></i>
+                </span>
+            </div>
+        </div>
+
+        <div class="searchErr hidden">
+            <h1>¯\(°_o)/¯</h1>
+            <br>
+            <p>Oops, we couldn't find the game you were looking for. Join our <a href="https://discord.gg/RXBbxQ4wuJ" target="_blank" rel="noopener noreferrer">discord</a> to suggest a game.</p>
+        </div>
+
+        <div class="games"></div>
+        <div class="gameFrame hidden"></div>
+
+        <footer>
+            <div class="title">
+                <h1>GameHub</h1><img src="/assets/img/logo.png">
+            </div>
+
+            <div class="socials">
+                <a href="https://discord.gg/RXBbxQ4wuJ" target="_blank" rel="noopener noreferrer"
+                    title="EmberNetwork Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+
+                <a href="https://github.com/EmberNetwork/GameHub" target="_blank" rel="noopener noreferrer"
+                    title="Our Github">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a href="mailto:support@gamehub.dev" target="_blank" title="Contact Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+
+                <a href="http://status.embernet.work/status/gamehub" target="_blank" rel="noopener noreferrer"
+                    title="Server Status">
+                    <i class="fa-solid fa-square-rss"></i>
+                </a>
+            </div>
+
+            <br>
+
+            <p>©2022-2023 EmberNetwork. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script src="/assets/js/main.js" type="module"></script>
+    <script src="/assets/js/gamemanger.js" type="module"></script>
+    <script src="/assets/js/profile.js" type="module"></script>
+</body>
+
+</html>

@@ -1,99 +1,43 @@
+import { registerError } from './notification.js';
+import loadPageScripts from './page.js';
+import API from './api.js';
+
+if (window.location.pathname === '/assets/pages/profile.html') {
+    if (!window.frameElement) window.location.replace('/app#profile');
+
+    loadPageScripts(new URLSearchParams(window.location.search), window.location.hash.replace('#', ''));
+}
+
 const usernameDisplay = document.querySelector('#username');
-const userId = cookie.get('userid');
-const content = document.querySelector('.main.profile');
 
-API.get(`/users/${userId}`)
-    .then(account => {
-        if (!account.error) {
+API.get(`/me`)
+    .then(user => {
+        if (!user.error) {
             if (window.location.pathname !== '/assets/pages/profile.html') {
-                const profileCSS = document.createElement("style");
-                profileCSS.innerHTML = `.profile-icon{background-image:url("${account.profile}");}`
-                document.head.appendChild(profileCSS);
+                document.querySelector('.avatar-small').style.backgroundImage = `url('${API.servers[0]}${user.avatar}')`;
 
-                usernameDisplay.innerText = account.username;
-
-                if (account.verified === false) {
-                    const emailModal = document.createElement('div');
-                    emailModal.classList = 'modal is-active';
-                    emailModal.innerHTML = `
-                    <div class="modal-background">
-                    </div>
-
-                    <div class="modal-content">
-                        <div class="card">
-                            <div style="padding: 50px; text-align: center;" id="verifycontent">
-                                <h1 class="title is-center">Please verify your email</h1>
-                                <p class="err" id="emailerror"></p>
-                                <form id="emailform">
-                                    <input class="input is-danger is-rounded" placeholder="you@example.com" type="email" id="emailinput" />
-                                    <br>
-                                    <br>
-                                    <button class="button is-danger is-rounded" type="submit">Verify</button>
-                                </form>    
-                            </div>
-                        </div>
-                    </div>`;
-                    document.querySelector('.main').appendChild(emailModal);
-                    document.body.classList.add('noscroll');
-                    document.documentElement.classList.add('noscroll');
-
-                    const emailForm = emailModal.querySelector('#emailform');
-                    const emailInput = emailForm.querySelector('#emailinput');
-                    emailForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-
-                        if (emailInput.value) {
-                            document.querySelector('#emailerror').textContent = '';
-
-                            API.post(`/users/${userId}/verify`, { email: emailInput.value })
-                                .then(res => {
-                                    if (res.error === false) {
-                                        emailModal.querySelector('#verifycontent').innerHTML = `
-                                <i class="fa-solid fa-envelope" style="font-size: 50px; text-align: center;"></i>
-                                <h1 class="subtitle is-4">Email Verification</h1>
-                                <p>We just sent an email to ${emailInput.value}.<br><br> Didn't get the email? <br>Check your spam folder.</p>`;
-
-                                        let emailChecker = setInterval(() => {
-                                            API.get(`/users/${userId}/verified`)
-                                                .then(verified => {
-                                                    if (verified.verified === true) {
-                                                        clearTimeout(emailChecker);
-                                                        location.reload();
-                                                    }
-                                                }).catch(e => {
-
-                                                })
-                                        }, 3000)
-                                    } else if (res.error === true) {
-                                        document.querySelector('#emailerror').textContent = res.errorMsg;
-                                    } else {
-                                        document.querySelector('#emailerror').textContent = 'The server did not provide a valid response';
-                                    }
-                                }).catch(e => {
-                                    new RegisterGamehubError('Could not load verification');
-                                })
-                        } else {
-                            document.querySelector('#emailerror').textContent = 'Please enter an email';
-                        }
-                    })
-                }
-
-                loaded++
+                usernameDisplay.innerText = user.username;
             } else {
                 window.parent.document.body.classList.add('noscroll');
                 window.parent.document.documentElement.classList.add('noscroll');
-                const pfp = document.querySelector('.pfp');
-                const closeBtn = window.parent.document.querySelector('.modal-close');
-                const usernameInput = document.querySelector('[data-attr="username"]');
-                const idDisplay = document.querySelector('.userid');
-                const loader = document.querySelector('.lds-spinner');
                 const overlay = document.querySelector('.uploadIcon');
                 const inputBtn = document.querySelector('.button.is-rounded.is-danger.has-right-sharp');
-                pfp.style.backgroundImage = `url("${account.profile}")`;
-                usernameInput.value = account.username;
-                idDisplay.innerText = '#' + userId;
-                loader.classList.add('hidden');
-                closeBtn.addEventListener('click', (event) => {
+                document.querySelector('.avatar').style.backgroundImage = `url("${API.servers[0]}${user.avatar}")`;
+                document.querySelector('[data-attr="username"]').value = user.username;
+                document.querySelector('.userid').innerText = '#' + user.id;
+
+                document.querySelector('#app').classList.remove('hidden');
+                document.querySelector('#loader').classList.add('hidden');
+
+                window.parent.document.querySelector('.modal-close').addEventListener('click', (event) => {
+                    window.parent.document.documentElement.classList.remove('noscroll');
+                    window.parent.document.body.classList.remove('noscroll');
+                    window.parent.history.pushState({}, '', window.parent.location.pathname);
+                    window.parent.document.querySelector('.modal.is-active').remove();
+                    parentstyles.remove();
+                });
+
+                window.parent.document.querySelector('.modal-background').addEventListener('click', (event) => {
                     window.parent.document.documentElement.classList.remove('noscroll');
                     window.parent.document.body.classList.remove('noscroll');
                     window.parent.history.pushState({}, '', window.parent.location.pathname);
@@ -102,7 +46,7 @@ API.get(`/users/${userId}`)
                 });
 
                 /*usernameInput.addEventListener('click', (event) => {
-                    usernameInput.value = account.username;
+                    usernameInput.value = user.username;
      
                     document.querySelector('.usernameForm').classList.remove('hidden');
                     edit.classList.add('hidden');
@@ -144,15 +88,15 @@ API.get(`/users/${userId}`)
                     }
                 });
     
-                pfp.addEventListener('mouseover', (event) => {
+                avatar.addEventListener('mouseover', (event) => {
                     overlay.classList.remove('hidden');
                 });
     
-                pfp.addEventListener('mouseout', (event) => {
+                avatar.addEventListener('mouseout', (event) => {
                     overlay.classList.add('hidden');
                 });
     
-                pfp.addEventListener('click', (event) => {
+                avatar.addEventListener('click', (event) => {
                     content.classList.add('hidden');
     
                     const frame = document.createElement('iframe');
@@ -187,9 +131,5 @@ API.get(`/users/${userId}`)
                     }
                 });*/
             }
-        } else {
-            new RegisterGamehubError('Could not load profile data');
-        }
-    }).catch(e => {
-        new RegisterGamehubError('Could not load profile data');
-    })
+        } else registerError('Could not load profile data');
+    }).catch(e => registerError('Could not load profile data'));

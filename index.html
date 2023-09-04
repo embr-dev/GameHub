@@ -6,70 +6,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link id="favicon" rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <title>GameHub</title>
 </head>
 
 <body>
-    <div class="main hidden">
-        <section class="hero is-danger is-fullheight">
-            <div class="hero-head">
-                <header class="navbar">
-                    <div class="container">
-                        <div class="navbar-brand is-dark">
-                            <a class="heroIcon" href="/">
-                                <img src="/assets/img/logo.png" alt="Logo">
-                            </a>
-                            <a class="navTitle" href="/">Game Hub</a>
-                            <span class="navbar-burger" data-target="navbarMenuHeroC">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                        <div id="navbarMenuHeroC" class="navbar-menu">
-                            <div class="navbar-end">
-                                <span class="navbar-item">
-                                    <a class="button is-danger is-inverted" href="/login">
-                                        <span>Login</span>
-                                    </a>
-                                </span>
-                                <span class="navbar-item">
-                                    <a class="button is-danger" href="/signup">
-                                        <span>Sign Up</span>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-            </div>
+    <div id="app" class="hidden">
+        <div class="shadow"></div>
 
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <h1 class="heroTitle">
-                        GameHub
-                    </h1>
+        <div class="navbar is-link is-fixed-top">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="heroIcon" href="/">
+                        <img src="/assets/img/logo.png" alt="Logo">
+                    </a>
+                    <a class="navTitle" href="/">GameHub</a>
+
+                    <span class="navbar-burger" data-target="navbarMenuHeroC">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+
+                <div id="navbarMenuHeroC" class="navbar-menu">
+                    <div class="navbar-end">
+                        <span class="navbar-item">
+                            <a class="button is-link is-inverted" href="/auth?type=signin">Login</a>
+                        </span>
+                        <span class="navbar-item">
+                            <a class="button is-link" href="/auth?type=signup">Sign Up</a>
+                        </span>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <div class="hero is-link is-fullheight">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <h1 class="heroTitle">GameHub</h1>
+                    <br>
+                    <a class="button is-link is-inverted" style="box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.616);"
+                        href="/auth?type=signup" id="launchbtn">Join GameHub</a>
+                </div>
+            </div>
+        </div>
+
         <div class="content">
+            <h1>What is GameHub?</h1>
+
+            <p>GameHub is an <a href="https://github.com/EmberNetwork/GameHub" target="_blank">open-source</a> and
+                privacy-respecting gaming site. We have a large variety of 80+ games, and we're always open for
+                suggestions!</p>
         </div>
 
         <footer>
-            <p>©2023 GameHub LLC</p>
-            <p>Contact Us: <a href="mailto:support@gamehub.dev" target="_blank" style="color: #fff;">support@gamehub.dev</a></p>
+            <div class="title">
+                <h1>GameHub</h1><img src="/assets/img/logo.png">
+            </div>
+
+            <div class="socials">
+                <a href="https://discord.gg/RXBbxQ4wuJ" target="_blank" rel="noopener noreferrer"
+                    title="EmberNetwork Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+
+                <a href="https://github.com/EmberNetwork/GameHub" target="_blank" rel="noopener noreferrer"
+                    title="Our Github">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+
+                <a href="mailto:support@gamehub.dev" target="_blank" title="Contact Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+
+                <a href="http://status.embernet.work/status/gamehub" target="_blank" rel="noopener noreferrer"
+                    title="Server Status">
+                    <i class="fa-solid fa-square-rss"></i>
+                </a>
+            </div>
+
+            <br>
+
+            <p>©2022-2023 EmberNetwork. All rights reserved.</p>
         </footer>
     </div>
 
-    <div class="square-loader">
+    <div id="loader">
         <div></div>
         <div></div>
         <div></div>
     </div>
 
-    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/main.js" type="module"></script>
 </body>
 
 </html>

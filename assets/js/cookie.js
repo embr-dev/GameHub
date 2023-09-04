@@ -1,8 +1,4 @@
-(function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-      (global = global || self, global.cookie = factory());
-}(this, function () {
+const cookie = (this, function () {
   'use strict';
   var cookie = function () {
     return cookie.get.apply(cookie, arguments);
@@ -82,7 +78,7 @@
       sameSite = sameSite ? ';SameSite=' + sameSite : '';
       if (options.sameSite === null) sameSite = '';
 
-      document.cookie = key + '=' + utils.encode(value) + expires + path + domain + secure + sameSite;
+      document.cookie = key + '=' + value + expires + path + domain + secure + sameSite;
     }
 
     return this;
@@ -151,7 +147,7 @@
     for (var i = 0, l = cookies.length; i < l; i++) {
       var item = cookies[i].split('=');
       var key = item.shift();
-      var value = utils.decode(item.join('='));
+      var value = item.join('=');
       result[key] = value;
     }
 
@@ -167,5 +163,6 @@
   };
 
   return cookie;
+});
 
-}));
+export default cookie();

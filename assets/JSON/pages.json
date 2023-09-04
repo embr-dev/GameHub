@@ -1,6 +1,6 @@
 {
     "main": ["/", "/login", "/signup"],
-    "authenticated": ["/home"],
+    "authenticated": ["/app"],
     "other": ["/terms", "/privacy"],
-    "all": ["/", "/login", "/signup", "/home", "/terms", "/privacy"]
+    "all": ["/", "/login", "/signup", "/app", "/auth"]
 }

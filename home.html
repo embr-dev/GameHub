@@ -1,110 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="noscroll">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/main.css" />
-    <link id="favicon" rel="icon" href="/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
-    <title>GameHub</title>
+    <title>Redirecting...</title>
 </head>
 
 <body>
-    <div class="main hidden">
-        <section class="hero is-danger is-halfheight">
-            <div class="hero-head">
-                <header class="navbar">
-                    <div class="container">
-                        <div class="navbar-brand is-dark">
-                            <a class="heroIcon" href="/home">
-                                <img src="/assets/img/logo.png" alt="Logo">
-                            </a>
-                            <a class="navTitle" href="/home">Game Hub</a>
-                            <span class="navbar-burger" data-target="navbarMenuHeroC">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </div>
-                        <div id="navbarMenuHeroC" class="navbar-menu">
-                            <div class="navbar-end">
-                                <a class="navbar-item is-active" href="/home">
-                                    Home
-                                </a>
-                                <div class="navbar-item has-dropdown is-hoverable">
-                                    <p id="username" class="navbar-item" data-action="open_profile">Loading...</p>
-                                    <span class="profile-icon" data-action="open_profile"></span>
+    <script type="module">
+        import analytics from '/assets/js/analytics.js';
 
-                                    <div class="navbar-dropdown">
-                                        <a data-action="open_profile" class="navbar-item is-dropdown">
-                                            Profile
-                                        </a>
-                                        <a href="/settings" class="navbar-item is-dropdown">
-                                            Settings
-                                        </a>
-                                        <hr class="navbar-divider">
-                                        <a href="/?action=logout" class="navbar-item is-dropdown">
-                                            Logout
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-            </div>
+        analytics();
 
-            <div class="hero-body">
-                <div class="container has-text-centered">
-                    <h1 class="heroTitle">
-                        Games
-                    </h1>
-                </div>
-            </div>
-        </section>
-        <div class="database_nav">
-            <div class="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input class="input is-danger is-rounded searchBar" type="text" placeholder="Search GameHub"
-                    data-func="search">
-            </div>
-            <p class="searchErr hidden">Sorry we couldn't find that game =(</p>
-            <div class="control has-icons-left sort">
-                <div class="select is-danger is-rounded sortSelect">
-                    <select>
-                        <option selected>Default</option>
-                        <option disabled>Game Type</option>
-                        <option disabled>A-Z</option>
-                        <option disabled>Z-A</option>
-                    </select>
-                </div>
-                <span class="icon is-left">
-                    <i class="fa-solid fa-arrow-up-short-wide" style="color: #000;"></i>
-                </span>
-            </div>
-        </div>
-        <div class="games"></div>
-        <div class="gameFrame hidden"></div>
-
-        <footer>
-            <p>©2023 GameHub LLC</p>
-            <p>
-                Contact us: <a href="mailto:support@gamehub.dev" target="_blank">support@gamehub.dev</a>
-            </p>
-        </footer>
-    </div>
-
-    <div class="square-loader">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
-    
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/gamemang.js"></script>
+        window.location.replace('/app');
+    </script>
 </body>
 
 </html>

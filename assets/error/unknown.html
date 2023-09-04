@@ -7,15 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/main.css" />
     <link id="favicon" rel="icon" href="/favicon.ico">
+
     <title>Error | GameHub</title>
 </head>
 
-<body>
-    <body class="modalpage">
-        <div class="box">
-            <h1 class="subtitle is-4">Unknown</h1>
-            <p>An unknown error occoured. Please try again later. <br><br><a href="/">Home</a></p>
-        </div>
-    </body>
+
+<body class="modalpage">
+    <div class="box">
+        <h1 class="subtitle is-4">Unknown</h1>
+        <p>An unknown error occoured. Please try again later. <br><br><a href="/">Home</a></p>
+    </div>
+
+    <script type="module">
+        import analytics from '/assets/js/analytics.js';
+
+        analytics();
+    </script>
+</body>
 
 </html>

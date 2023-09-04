@@ -6,16 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/main.css" />
-    <link id="favicon" rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
     <title>Error 404 | GameHub</title>
 </head>
 
-<body>
-    <body class="modalpage">
-        <div class="box">
-            <h1 class="subtitle is-4">Error 404</h1>
-            <p>The page you tried to access could not be found. <br><br><a href="/">Home</a></p>
-        </div>
-    </body>
+
+<body class="modalpage">
+    <div class="box">
+        <h1 class="subtitle is-4">Error 404</h1>
+        <p>The page you tried to access could not be found. <a href="/">Home</a></p>
+    </div>
+
+    <script type="module">
+        import analytics from '/assets/js/analytics.js';
+
+        analytics();
+    </script>
+</body>
 
 </html>

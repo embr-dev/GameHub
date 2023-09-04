@@ -10,29 +10,11 @@
 </head>
 
 <body>
-    <div class="main profile">
-        <div class="pfpContainer">
-            <div class="pfp">
-                <div class="lds-spinner">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                <span class="uploadIcon hidden"> <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16">
-                        <g fill="currentColor">
-                            <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
-                            <path d="M8 11a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0z" />
-                        </g>
-                    </svg>
+    <div id="app" class="profile hidden">
+        <div class="avatarContainer">
+            <div class="avatar">
+                <span class="uploadIcon hidden">
+                    <i class="fa-solid fa-upload" style="font-size: 20px;"></i>
                 </span>
             </div>
 
@@ -41,8 +23,8 @@
 
         <div class="username-container">
             <form class="usernameForm">
-                <input class="input is-danger is-rounded" type="text" value="Loading..." data-attr="username" autocomplete="off" spellcheck="false" autocorrect="off" readonly />
-                <button type="submit" class="button is-rounded is-danger has-right-sharp" data-val="0" disabled>
+                <input class="input is-link is-rounded" type="text" value="Loading..." data-attr="username" autocomplete="off" spellcheck="false" autocorrect="off" readonly />
+                <button type="submit" class="button is-rounded is-link has-right-sharp" data-val="0" disabled>
                     <span class="Icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M5 19h1.4l8.625-8.625l-1.4-1.4L5 17.6ZM19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575q.837 0 1.412.575l1.4 1.4q.575.575.6 1.388q.025.812-.55 1.387ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6Zm-3.525-.725l-.7-.7l1.4 1.4Z" />
@@ -51,12 +33,15 @@
                 </button>
             </form>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
-        <script src="/assets/js/cookie.js"></script>
-        <script src="/assets/js/api.js"></script>
-        <script src="/assets/js/page.js"></script>
-        <script src="/assets/js/profile.js"></script>
     </div>
+
+    <div id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <script src="/assets/js/profile.js" type="module"></script>
 </body>
 
 </html>

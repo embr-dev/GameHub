@@ -20,17 +20,36 @@
     </style>
 </head>
 
-<body> <iframe id="ifr" frameborder="0" scrolling="no"></iframe>
+<body>
+    <iframe frameborder="0" scrolling="no"></iframe>
+
     <script>
-        let ifr = (window === window.parent) ? false : true;
-        if (ifr) {
+        const showError = (errCode) => {
+            fetch('/assets/JSON/errors.json')
+                .then(resp => resp.json())
+                .then(errs => {
+                    if (errs.includes(errCode)) fetch(`/assets/error/${errCode}.html`)
+                        .then(obj => obj.text())
+                        .then(error => {
+                            document.documentElement.innerHTML = error;
+                        });
+                    else fetch('/assets/error/unknown.html')
+                        .then(obj => obj.text())
+                        .then(error => {
+                            document.documentElement.innerHTML = error;
+                        });
+                });
+        }
+
+        if ((window === window.parent) ? false : true) {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const game = urlParams.get('game');
             const width = urlParams.get('w');
             const height = urlParams.get('h');
+
             if (game && width && height) {
-                const ifr = document.getElementById('ifr');
+                const ifr = document.querySelector('ifre');
                 ifr.src = game;
                 ifr.height = height + 'px';
                 ifr.width = width + 'px';
@@ -41,9 +60,7 @@
                 document.body.innerHTML = '';
                 document.write('Failed to load game');
             }
-        } else {
-            window.location.href = '/403';
-        }
+        } else showError(404);
     </script>
 </body>
 

@@ -21,5 +21,3 @@ for (let i = 0; i < dropdownTabs.length; i++) {
         dropdownTabs[i].style.color = '#000';
     });
 };
-
-loaded++

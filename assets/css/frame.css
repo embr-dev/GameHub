@@ -1,0 +1,254 @@
+@media (prefers-color-scheme:light) {
+    :root {
+        --bg-color: #fff;
+        --text-color: #242425;
+    }
+}
+
+@media (prefers-color-scheme:dark) {
+    :root {
+        --bg-color: #242425;
+        --text-color: #fff;
+    }
+}
+
+html,
+body {
+    color: var(--text-color);
+    position: absolute;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+* {
+    user-select: none;
+}
+
+.pageContent {
+    margin: 1%;
+    display: flex;
+    flex-direction: row;
+    width: 99%;
+    height: 96%;
+}
+
+.mainContainer {
+    float: left;
+    width: 99%;
+    height: 99%;
+    background-position: fixed;
+    border-radius: 20px;
+    background-color: var(--bg-color);
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.616);
+}
+
+.sideContainer {
+    margin: 2vw;
+    width: min-content;
+    height: min-content;
+}
+
+.recomended {
+    padding: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-family: montserrat-black;
+    width: min-content;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+.mainGame {
+    margin: 0px;
+    border-radius: 20px 20px 0px 0px;
+    width: 100%;
+    height: 90%;
+    z-index: 10;
+}
+
+.bottom {
+    margin-top: 107%;
+}
+
+.gameThumb {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.616);
+    background-color: var(--bg-color);
+    user-select: none;
+    transition: 0.5s;
+    object-fit: cover;
+    object-position: center;
+    width: 200px;
+    height: 200px;
+}
+
+.gameThumb>img {
+    width: 200px;
+    height: 200px;
+    user-select: none;
+    transition: 0.5s;
+    object-fit: cover;
+    object-position: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.gameThumb:hover {
+    background-color: rgb(0, 0, 0, 0.7);
+}
+
+.gameBar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    height: 10%;
+    background-color: var(--bg-color);
+    border-radius: 0px 0px 20px 20px;
+}
+
+.logo {
+    height: 70%;
+    padding: 1%;
+    cursor: pointer;
+    margin: auto;
+}
+
+.logo:hover {
+    animation: shake 0.5s;
+    animation-iteration-count: 1;
+}
+
+.icon {
+    float: right;
+    position: relative;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-left: 20px;
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 100%;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.616);
+}
+
+span.icon>p {
+    margin: auto;
+}
+
+[data-attr="thumbs-up"]>svg,
+[data-attr="thumbs-down"]>svg {
+    font-size: 30px;
+}
+
+[data-func="open-comments"]>svg {
+    font-size: 30px;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;
+}
+
+.right {
+    float: right;
+    margin-right: 50px;
+    display: flex;
+    flex-direction: row;
+    width: min-content;
+}
+
+.gameTitle {
+    width: 500px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: auto;
+    color: var(--text-color);
+    font-family: montserrat-black;
+    font-size: 150%;
+}
+
+.gamebar-item {
+    float: right;
+    padding-right: 5px;
+    display: flex;
+    flex-direction: row;
+    width: 50px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.commentContainer {
+    margin: 0.5%;
+    margin-left: 48em;
+    position: absolute;
+    width: 33.3em;
+    height: 53em;
+    background: var(--bg-color);
+    border-radius: 0px 20px 20px 0px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.616);
+}
+
+.commentFrame {
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 20px 20px 0px;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}

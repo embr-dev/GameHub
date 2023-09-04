@@ -1,3 +1,5 @@
+import cookie from '/assets/js/cookie.js';
+
 class api_ {
     constructor() {
         try {
@@ -5,141 +7,147 @@ class api_ {
         } catch (e) {
             console.error('Could not get serverlist');
         }
-
-        this.get = async (route) => {
-            if (route) {
-                try {
-                    const response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                        method: 'GET',
-                        mode: 'cors',
-                        cache: 'no-cache',
-                        credentials: 'same-origin',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        redirect: 'follow',
-                        referrerPolicy: 'no-referrer',
-                    });
-                    var data;
-
-                    try {
-                        data = response.json();
-                    } catch (e) {
-                        data = response.text();
-                    }
-
-                    return await data;
-                } catch (e) {
-                    throw new Error('Could not connect to the server');
-                }
-            } else {
-                throw new Error('Missing parameters for API.get');
-            }
-        };
-
-        this.post = async (route, data, encoded) => {
-            if (route && data) {
-                try {
-                    var response;
-                    var data;
-
-                    if (encoded) {
-                        if (typeof data == 'object') {
-                            const encodingData = await API.encrypt(JSON.stringify(data));
-
-                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                                method: 'POST',
-                                mode: 'cors',
-                                cache: 'no-cache',
-                                credentials: 'same-origin',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'TokenID': encodingData.id
-                                },
-                                redirect: 'follow',
-                                referrerPolicy: 'no-referrer',
-                                body: JSON.stringify({ data: encodingData.data })
-                            });
-                        } else {
-                            const encodingData = await API.encrypt(data);
-
-                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                                method: 'POST',
-                                mode: 'cors',
-                                cache: 'no-cache',
-                                credentials: 'same-origin',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'TokenID': encodingData.id
-                                },
-                                redirect: 'follow',
-                                referrerPolicy: 'no-referrer',
-                                body: JSON.stringify({ data: encodingData.data })
-                            });
-                        }
-                    } else {
-                        if (typeof data == 'object') {
-                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                                method: 'POST',
-                                mode: 'cors',
-                                cache: 'no-cache',
-                                credentials: 'same-origin',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                redirect: 'follow',
-                                referrerPolicy: 'no-referrer',
-                                body: JSON.stringify(data)
-                            });
-                        } else {
-                            response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                                method: 'POST',
-                                mode: 'cors',
-                                cache: 'no-cache',
-                                credentials: 'same-origin',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                redirect: 'follow',
-                                referrerPolicy: 'no-referrer',
-                                body: data
-                            });
-                        }
-                    }
-
-                    try {
-                        data = response.json();
-                    } catch (e) {
-                        data = response.text();
-                    }
-
-                    return await data;
-                } catch (e) {
-                    throw new Error('Could not connect to the server');
-                }
-            } else {
-                throw new Error('Missing parameters for API.post');
-            }
-        };
-
-        this.encrypt = async (data) => {
-            const token = await this.token();
-
-            return {
-                data: CryptoJS.AES.encrypt(data, token.token).toString(),
-                id: token.id
-            };
-        }
-
-        this.token = async () => {
-            const token = await this.get('/token');
-            return token;
-        }
-
-        this.uuid = () => {
-            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
-        };
     }
+
+    /**
+     * 
+     * @returns {Promise.<boolean, Error>}
+     */
+    validSession = () => {
+        return new Promise((resolve, reject) => {
+            this.get('/me')
+                .then((res) => {
+                    if (res.status !== 404) resolve(true);
+                    else resolve(false);
+                })
+                .catch(() => resolve(false));
+        });
+    };
+
+    /**
+     * 
+     * @param {string} route 
+     * @returns {Promise.<object | string, Error>}
+     */
+    get = async (route) => {
+        if (route) {
+            try {
+                const response = await fetch(this.servers[0] + route, {
+                    credentials: 'include'
+                });
+
+                var data;
+
+                try {
+                    data = response.json();
+                } catch (e) {
+                    data = response.text();
+                }
+
+                return await data;
+            } catch (e) {
+                throw new Error('Could not connect to the server');
+            }
+        } else {
+            throw new Error('Missing parameters for API.get');
+        }
+    };
+
+    /**
+     * 
+     * @param {string} route 
+     * @param {*} data 
+     * @param {boolean} encoded 
+     * @returns {Promise.<object | string, Error>}
+     */
+    post = async (route, data, encoded) => {
+        if (route && data) {
+            try {
+                var response;
+                var data;
+
+                if (encoded) {
+                    if (typeof data == 'object') {
+                        const encodingData = await this.encrypt(JSON.stringify(data));
+
+                        response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'TokenID': encodingData.id
+                            },
+                            body: JSON.stringify({ data: encodingData.data })
+                        });
+                    } else {
+                        const encodingData = await this.encrypt(data);
+
+                        response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'TokenID': encodingData.id
+                            },
+                            body: JSON.stringify({ data: encodingData.data })
+                        });
+                    }
+                } else {
+                    if (typeof data == 'object') {
+                        response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            redirect: 'follow',
+                            referrerPolicy: 'no-referrer',
+                            body: JSON.stringify(data)
+                        });
+                    } else {
+                        response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
+                            method: 'POST',
+                            credentials: 'include',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: data
+                        });
+                    }
+                }
+
+                try {
+                    data = response.json();
+                } catch (e) {
+                    data = response.text();
+                }
+
+                return await data;
+            } catch (e) {
+                throw new Error('Could not connect to the server');
+            }
+        } else {
+            throw new Error('Missing parameters for API.post');
+        }
+    };
+
+    encrypt = async (data) => {
+        const token = await this.token();
+
+        return {
+            data: CryptoJS.AES.encrypt(data, token.token).toString(),
+            id: token.id
+        };
+    };
+
+    token = async () => {
+        const token = await this.get('/token');
+        return token;
+    };
+
+    uuid = () => {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16));
+    };
 }
 
 const API = new api_();
@@ -202,8 +210,8 @@ fetch('/config.json')
         }
     })
 
-if (!sessionStorage.getItem('session')) {
-    sessionStorage.setItem('session', API.uuid());
-}
+if (!sessionStorage.getItem('session')) sessionStorage.setItem('session', API.uuid());
 
 const session = sessionStorage.getItem('session');
+
+export default API;
