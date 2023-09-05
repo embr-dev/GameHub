@@ -1,7 +1,8 @@
-import { registerError } from './notification.js';
+import { registerSiteNotification, registerError } from './notification.js';
 import loadPageScripts from './page.js';
 import analytics from './analytics.js';
 
+registerSiteNotification('GameHub is still in public beta, pleas report all bugs to our <a href="https://discord.gg/RXBbxQ4wuJ">discord</a>.');
 loadPageScripts(new URLSearchParams(window.location.search), window.location.hash.replace('#', ''));
 analytics();
 
