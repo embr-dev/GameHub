@@ -24,16 +24,10 @@ const showError = (errCode) => {
         });
 }
 
-fetch('/assets/JSON/pages.json')
-    .then(res => res.json())
-    .then(async (pages) => {
-        const isLogin = await API.validSession();
-        const isMain = pages.main.includes(window.location.pathname);
-        const isOther = pages.other.includes(window.location.pathname);
+const authNeeded = [
+    '/app'
+];
 
-        if (!isMain && !isLogin) window.location.href = '/auth';
-
-        if (!pages.all.includes(window.location.pathname)) showError(404);
-    });
+if (authNeeded.includes(location.pathname) && !await API.validSession()) window.location.href = '/auth';
 
 export default {};

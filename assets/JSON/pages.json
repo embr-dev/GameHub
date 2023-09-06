@@ -1,6 +1,0 @@
-{
-    "main": ["/", "/login", "/signup"],
-    "authenticated": ["/app"],
-    "other": ["/terms", "/privacy"],
-    "all": ["/", "/login", "/signup", "/app", "/auth"]
-}

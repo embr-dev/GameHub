@@ -3,7 +3,7 @@ import cookie from '/assets/js/cookie.js';
 class api_ {
     constructor() {
         try {
-            this.servers = JSON.parse(cookie.get('servers'));
+            this.servers = JSON.parse(localStorage.getItem('servers'));
         } catch (e) {
             console.error('Could not get serverlist');
         }
@@ -22,6 +22,18 @@ class api_ {
                 })
                 .catch(() => resolve(false));
         });
+    };
+
+    /**
+     * 
+     * @returns {boolean}
+     */
+    connected = () => {
+        try {
+            return Boolean(this.servers[0]);
+        } catch (e) {
+            return false;
+        }
     };
 
     /**
@@ -155,58 +167,49 @@ const API = new api_();
 fetch('/config.json')
     .then(res => res.json())
     .then(config => {
-        API.auth = config.auth;
+        if (!localStorage.getItem('servers')) {
+            if (config.server === 'auto') fetch('https://raw.githubusercontent.com/EmberNetwork/GameHub-Assets/main/servers.json')
+                .then(res => res.json())
+                .then(servers => {
+                    if (servers) {
+                        const serverList = [];
+                        var serversProcessed = 0;
 
-        if (!cookie.get('servers')) {
-            if (config.server === 'auto') {
-                fetch('https://raw.githubusercontent.com/GameHub88/GameHub-Assets/main/servers.json')
-                    .then(res => res.json())
-                    .then(servers => {
-                        if (servers) {
-                            const serverList = [];
+                        servers.forEach(server => {
+                            fetch(server)
+                                .then(res => res.json())
+                                .then(serverData => {
+                                    serversProcessed += 1;
 
-                            servers.forEach(server => {
-                                fetch(server)
-                                    .then(res => res.json())
-                                    .then(serverData => {
-                                        if (serverData) {
-                                            if (serverData.status == 'ready') {
-                                                serverList.push(server);
-                                            }
-                                        }
-                                    });
-                            });
+                                    if (serverData) {
+                                        if (serverData.status == 'ready') serverList.push(server);
+                                    }
+                                }).catch(() => serversProcessed += 1);
+                        });
 
-                            if (serverList.length == 0) {
-                                console.error('No available server was found');
-                            } else {
-                                cookie.set('servers', JSON.stringify(serverList));
-                                location.reload();
+                        const checker = setInterval(() => {
+                            if (serversProcessed === servers.length) {
+                                clearInterval(checker);
+
+                                if (serverList.length == 0) console.error('No available server was found');
+                                else {
+                                    localStorage.setItem('servers', JSON.stringify(serverList));
+                                    location.reload();
+                                }
                             }
-                        } else {
-                            console.error('Could not fetch server list');
-                        }
-                    }).catch(e => {
-                        console.error('Could not fetch server list');
-                    })
-            } else {
-                fetch(config.server)
-                    .then(res => res.json())
-                    .then(serverData => {
-                        if (serverData) {
-                            if (serverData.status == 'ready') {
-                                cookie.set('servers', JSON.stringify(new Array(config.server)));
-                                location.reload();
-                            } else {
-                                console.error('Could not connect to default server');
-                            }
-                        } else {
-                            console.error('Could not connect to default server');
-                        }
-                    }).catch(e => {
-                        console.error('Could not connect to default server');
-                    })
-            }
+                        }, 1);
+                    } else console.error('Could not fetch server list');
+                }).catch(e => console.error('Could not fetch server list'));
+            else fetch(config.server)
+                .then(res => res.json())
+                .then(serverData => {
+                    if (serverData) {
+                        if (serverData.status == 'ready') {
+                            localStorage.setItem('servers', JSON.stringify(new Array(config.server)));
+                            location.reload();
+                        } else console.error('Could not connect to default server');
+                    } else console.error('Could not connect to default server');
+                }).catch(e => console.error('Could not connect to default server'));
         }
     })
 

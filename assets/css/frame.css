@@ -74,7 +74,9 @@ h1 {
 }
 
 .bottom {
-    margin-top: 107%;
+    position: absolute;
+    width: 16em;
+    bottom: 20px;
 }
 
 .gameThumb {

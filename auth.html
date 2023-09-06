@@ -27,8 +27,10 @@
         analytics();
 
         setTimeout(async () => {
-            if (await API.validSession()) window.location.replace('/app');
-            else window.location.replace(`${API.servers[0]}/auth?return=${location.origin}/app&type=${new URLSearchParams(window.location.search).get('type')}`)
+            if (API.connected()) {
+                if (await API.validSession()) window.location.replace('/app');
+                else window.location.replace(`${API.servers[0]}/auth?return=${location.origin}/app&type=${new URLSearchParams(window.location.search).get('type')}`)
+            } else window.location.replace('/?message=Login/Signup error: Failed to connect to server&type=danger');
         }, 300);
     </script>
 </body>
