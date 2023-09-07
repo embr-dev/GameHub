@@ -5,12 +5,9 @@ const nav = document.querySelector('.navbar');
 const searchContainer = document.querySelector('.database_nav');
 
 window.onscroll = () => {
-    if (window.pageYOffset > document.querySelector('.hero').offsetHeight) {
-        searchContainer.classList.add('shadowed');
-    } else {
-        searchContainer.classList.remove('shadowed');
-    }
-}
+    if (window.pageYOffset > document.querySelector('.hero').offsetHeight) searchContainer.classList.add('shadowed');
+    else searchContainer.classList.remove('shadowed');
+};
 
 API.get('/games').then(games => {
     const searchBar = document.querySelector('[data-func="search"]');
@@ -86,6 +83,7 @@ const openGame = (id) => {
             gameEl.scrollIntoView();
 
             gameEl.onload = () => {
+                alert('game loaded');
                 const frame = gameEl.contentWindow.document;
                 const commentContainer = frame.querySelector('.commentContainer');
                 const commentsToggle = frame.querySelector('[data-func="open-comments"]');
