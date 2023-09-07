@@ -91,7 +91,7 @@ const openGame = (id) => {
                 frame.querySelector('.mainGame').src = game.url;
                 frame.querySelector('.mainGame').onload = () => setTimeout(() => {
                     frame.querySelectorAll('.mainGame')[1].classList.add('hidden');
-                    frame.querySelector('.mainGame').classList.remove('hidden');
+                    frame.querySelectorAll('.mainGame')[0].classList.remove('hidden');
                 }, 1000);
                 frame.querySelector('.gameTitle').innerText = game.name;
 
