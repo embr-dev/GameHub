@@ -83,13 +83,14 @@ const openGame = (id) => {
             gameEl.scrollIntoView();
 
             gameEl.onload = () => {
-                alert('game loaded');
                 const frame = gameEl.contentWindow.document;
                 const commentContainer = frame.querySelector('.commentContainer');
                 const commentsToggle = frame.querySelector('[data-func="open-comments"]');
 
                 frame.querySelector('.mainGame').src = game.url;
                 frame.querySelector('.mainGame').onload = () => setTimeout(() => {
+                    alert('game loaded');
+                    
                     frame.querySelectorAll('.mainGame')[1].classList.add('hidden');
                     frame.querySelectorAll('.mainGame')[0].classList.remove('hidden');
                 }, 1000);
