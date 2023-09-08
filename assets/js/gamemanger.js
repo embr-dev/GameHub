@@ -88,9 +88,7 @@ const openGame = (id) => {
                 const commentsToggle = frame.querySelector('[data-func="open-comments"]');
 
                 frame.querySelector('.mainGame').src = game.url;
-                frame.querySelector('.mainGame').onload = () => setTimeout(() => {
-                    alert('game loaded');
-                    
+                frame.querySelector('.mainGame').onload = () => setTimeout(() => {                    
                     frame.querySelectorAll('.mainGame')[1].classList.add('hidden');
                     frame.querySelectorAll('.mainGame')[0].classList.remove('hidden');
                 }, 1000);
