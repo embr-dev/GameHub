@@ -1,3 +1,29 @@
+/*window.addEventListener('message', (e) => {
+    var data;
+
+    try {
+        data = JSON.parse(e.data);  
+    } catch (e) { }
+});*/
+
+const sendLog = (args, type) => {
+    try {
+        window.top.postMessage(JSON.stringify({
+            action: 'console',
+            type: type,
+            data: args.join(' ')
+        }), {
+            targetOrigin: window.top.location.origin
+        });
+    } catch (e) { }
+}
+
+console.log = (...args) => sendLog(args, 'log');
+console.warn = (...args) => sendLog(args, 'warn');
+console.error = (...args) => sendLog(args, 'error');
+console.info = (...args) => sendLog(args, 'info');
+console.debug = (...args) => { };
+
 if (window.top === window) document.documentElement.innerHTML = '';
 
 document.title = 'GameHub';

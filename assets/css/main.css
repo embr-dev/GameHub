@@ -629,17 +629,23 @@ input.input.is-link.is-rounded[data-attr='username'] {
     width: 200px;
     height: 200px;
     cursor: pointer;
+    padding: 10px;
+}
+
+.game.failed img {
+    padding: 10px;
+    background: #fff;
 }
 
 .game>img {
-    width: 200px;
-    height: 200px;
-    padding: 10px;
+    width: 180px;
+    height: 180px;
+    padding: 0px;
     user-select: none;
     transition: 0.5s;
     object-fit: cover;
     object-position: center;
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .game>p {

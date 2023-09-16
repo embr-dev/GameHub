@@ -46,6 +46,8 @@ API.get('/games').then(games => {
 
         gameEl.querySelector('img').onerror = (e) => {
             registerError(`Could not load splash image for ${e.target.parentElement.title}`);
+
+            e.target.parentElement.classList.add('failed');
             e.target.src = '/assets/img/logo.png';
         }
 
@@ -112,11 +114,13 @@ const openGame = (id) => {
                             recomendedGames[i].innerHTML = `<img src="${recomendations[i].thumbnail}" title="${recomendations[i].name}" />`;
 
                             recomendedGames[i].querySelector('img').onerror = (e) => {
+                                e.target.parentElement.classList.add('failed');
                                 e.target.src = '/assets/img/logo.png';
                             }
 
                             recomendedGames[i].addEventListener('click', (e) => {
                                 document.querySelector('.innerGame').remove();
+                                
                                 openGame(recomendations[i].id);
                             });
                         }
