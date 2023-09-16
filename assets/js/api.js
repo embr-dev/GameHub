@@ -48,21 +48,17 @@ class api_ {
                     credentials: 'include'
                 });
 
-                var data;
+                var data = await response.text();
 
                 try {
-                    data = response.json();
-                } catch (e) {
-                    data = response.text();
-                }
+                    data = JSON.parse(data);
+                } catch (e) { }
 
-                return await data;
+                return data;
             } catch (e) {
                 throw new Error('Could not connect to the server');
             }
-        } else {
-            throw new Error('Missing parameters for API.get');
-        }
+        } else throw new Error('Missing parameters for API.get');
     };
 
     /**
@@ -76,7 +72,6 @@ class api_ {
         if (route && data) {
             try {
                 var response;
-                var data;
 
                 if (encoded) {
                     if (typeof data == 'object') {
@@ -105,42 +100,37 @@ class api_ {
                         });
                     }
                 } else {
-                    if (typeof data == 'object') {
-                        response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            redirect: 'follow',
-                            referrerPolicy: 'no-referrer',
-                            body: JSON.stringify(data)
-                        });
-                    } else {
-                        response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
-                            method: 'POST',
-                            credentials: 'include',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: data
-                        });
-                    }
+                    if (typeof data == 'object') response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        redirect: 'follow',
+                        referrerPolicy: 'no-referrer',
+                        body: JSON.stringify(data)
+                    });
+                    else response = await fetch(`${this.servers[0]}${route}?hostname=${window.location.hostname}`, {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: data
+                    });
                 }
+
+                var responseData = await response.text();
 
                 try {
-                    data = response.json();
-                } catch (e) {
-                    data = response.text();
-                }
+                    responseData = JSON.parse(responseData);
+                } catch (e) { }
 
-                return await data;
+                return responseData;
             } catch (e) {
                 throw new Error('Could not connect to the server');
             }
-        } else {
-            throw new Error('Missing parameters for API.post');
-        }
+        } else throw new Error('Missing parameters for API.post');
     };
 
     encrypt = async (data) => {
