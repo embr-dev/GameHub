@@ -1,3 +1,16 @@
 {
-    "server": "auto"
+    "server": "auto",
+    "serverConfig": {
+        "port": 8080,
+        "ignoredPaths": [
+            "/node_modules/*",
+            "/development/*",
+            "/server/index.js",
+            "/README.md",
+            "/.gitignore",
+            "/LICENSE",
+            "/package.json",
+            "/package-lock.json"
+        ]
+    }
 }

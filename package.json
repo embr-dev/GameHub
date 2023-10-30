@@ -1,0 +1,23 @@
+{
+  "name": "gamehub",
+  "version": "1.1.0",
+  "description": "An open source, privacy respecting gaming website",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmberNetwork/GameHub.git"
+  },
+  "author": "EmberNetwork",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmberNetwork/GameHub/issues"
+  },
+  "homepage": "https://github.com/EmberNetwork/GameHub#readme",
+  "dependencies": {
+    "mime": "^3.0.0"
+  }
+}
