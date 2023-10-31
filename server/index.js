@@ -1,5 +1,7 @@
 import mime from 'mime';
 
+import Mirror from './mirror.js';
+
 import http from 'node:http';
 import path from 'node:path';
 import url from 'node:url';
@@ -9,6 +11,10 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const server = http.createServer();
 const packageFile = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')));
 const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../config.json'))).serverConfig;
+
+if (config.mirror.enabled) {
+    const mirrorServer = new Mirror(config.mirror);
+}
 
 const pathToFile = (url = '', folderPath) => {
     if (url.endsWith('/')) url = url + 'index.html';

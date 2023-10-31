@@ -11,6 +11,14 @@
             "/LICENSE",
             "/package.json",
             "/package-lock.json"
-        ]
+        ],
+        "mirror": {
+            "enabled": true,
+            "config": {
+                "cors": true,
+                "path": "/mirror",
+                "map": "https://raw.githubusercontent.com/EmberNetwork/Mirror/main/server/map.json"
+            }
+        }
     }
 }
