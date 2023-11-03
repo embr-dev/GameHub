@@ -15,9 +15,18 @@
         "mirror": {
             "enabled": true,
             "config": {
-                "cors": true,
                 "path": "/mirror",
-                "map": "https://raw.githubusercontent.com/EmberNetwork/Mirror/main/server/map.json"
+                "map": "https://raw.githubusercontent.com/EmberNetwork/Mirror/main/server/map.json",
+                "package": "https://raw.githubusercontent.com/EmberNetwork/Mirror/main/package.json",
+                "repo": {
+                    "owner": "EmberNetwork",
+                    "name": "Mirror"
+                },
+                "netplay": {
+                    "enabled": false,
+                    "TWILIO_ACCOUNT_SID": "",
+                    "TWILIO_AUTH_TOKEN": ""
+                }
             }
         }
     }

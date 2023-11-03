@@ -2,6 +2,7 @@ import mime from 'mime';
 
 import Mirror from './mirror.js';
 
+import childProcess from 'node:child_process';
 import http from 'node:http';
 import path from 'node:path';
 import url from 'node:url';
@@ -12,9 +13,10 @@ const server = http.createServer();
 const packageFile = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')));
 const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../config.json'))).serverConfig;
 
-if (config.mirror.enabled) {
-    const mirrorServer = new Mirror(config.mirror);
-}
+/**
+ * @type {Mirror}
+ */
+const mirrorServer = (config.mirror.enabled ? new Mirror(config.mirror.config, packageFile) : {});
 
 const pathToFile = (url = '', folderPath) => {
     if (url.endsWith('/')) url = url + 'index.html';
@@ -60,4 +62,7 @@ server.on('request', (req, res) => {
     }
 });
 
-server.listen(config.port || process.env.PORT || 8080, () => console.log(`GameHub server running\n\nPort: ${server.address().port}\nVersion: ${packageFile.version}`));
+server.on('listening', () => console.log(`GameHub server listening\n\nPort: ${server.address().port}\nVersion: ${packageFile.version} ${childProcess.execSync('git rev-parse HEAD') .toString().trim().slice(0, 7)}${config.mirror.enabled ? `\nMirror Server Version: ${mirrorServer.package.version} ${mirrorServer.latestCommit.sha.slice(0, 7)}` : ''}`));
+
+if (config.mirror.enabled) mirrorServer.on('ready', () => server.listen(config.port || process.env.PORT || 8080));
+else server.listen(config.port || process.env.PORT || 8080);
