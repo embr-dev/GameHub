@@ -15,7 +15,7 @@
         "mirror": {
             "enabled": true,
             "config": {
-                "path": "/mirror",
+                "path": "/mirror/",
                 "map": "https://raw.githubusercontent.com/EmberNetwork/Mirror/main/server/map.json",
                 "package": "https://raw.githubusercontent.com/EmberNetwork/Mirror/main/package.json",
                 "repo": {

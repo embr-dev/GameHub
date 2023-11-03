@@ -7,9 +7,10 @@ import fs from 'node:fs';
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
 class Mirror extends EventEmitter {
-    constructor(config, packageFile) {
+    constructor(config, packageFile, server) {
         super();
 
+        this.server = server;
         this.config = config;
         this.packageFile = packageFile;
         this.mapPath = this.config.map.split('/').slice(0, this.config.map.split('/').length - 1).join('/') + '/';
@@ -37,6 +38,7 @@ class Mirror extends EventEmitter {
                     message: JSON.parse(fs.readFileSync(path.join(__dirname, 'mirror/update.json'))).commit.message
                 }
             };
+            this.mirrorServer = (await import('./mirror/index.js')).default.attachToServer(this.server);
 
             resolve();
         });
@@ -77,7 +79,8 @@ class Mirror extends EventEmitter {
                         message: this.latestCommit.commit.message
                     },
                     version: this.package.version,
-                    updated: new Date().toISOString()
+                    updated: new Date().toISOString(),
+                    package: this.package
                 }));
 
                 resolve();
@@ -96,7 +99,7 @@ class Mirror extends EventEmitter {
                         if (file.includes('/')) fs.promises.mkdir(path.join(__dirname, '/mirror/', file.split('/').slice(0, file.split('/').length - 1).join('/')), {
                             recursive: true
                         });
-    
+
                         await fs.promises.writeFile(path.join(__dirname, '/mirror/', file), Buffer.from(await (await fetch(this.mapPath + file)).arrayBuffer()));
                     });
 
@@ -106,7 +109,8 @@ class Mirror extends EventEmitter {
                             message: this.latestCommit.commit.message
                         },
                         version: this.package.version,
-                        updated: new Date().toISOString()
+                        updated: new Date().toISOString(),
+                        package: this.package
                     }));
 
                     resolve();

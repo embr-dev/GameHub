@@ -16,7 +16,7 @@ const config = JSON.parse(fs.readFileSync(path.join(__dirname, '../config.json')
 /**
  * @type {Mirror}
  */
-const mirrorServer = (config.mirror.enabled ? new Mirror(config.mirror.config, packageFile) : {});
+const mirrorServer = (config.mirror.enabled ? new Mirror(config.mirror.config, packageFile, server) : {});
 
 const pathToFile = (url = '', folderPath) => {
     if (url.endsWith('/')) url = url + 'index.html';
@@ -48,7 +48,7 @@ server.on('request', (req, res) => {
         res.statusCode = 404;
         res.setHeader('content-type', 'text/html');
         res.end(fs.readFileSync(path.join(__dirname, '../', '404.html')));
-    } else {
+    } else if (!req.path.startsWith(config.mirror.config.path)) {
         const file = pathToFile(req.path, path.join(__dirname, '../'));
 
         if (file.exists) {
